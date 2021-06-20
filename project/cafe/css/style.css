@@ -11,7 +11,7 @@
 html,
 body {
   font-family: "微軟正黑體";
-  cursor: url("/cur/default.cur"), default;
+  cursor: url(../cur/default.cur), default;
 }
 
 h1,
@@ -77,7 +77,7 @@ header .navbar .brand {
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
   grid-column: 1/2;
-  background-image: url(/images/logo/brand.png);
+  background-image: url(../images/logo/brand.png);
   background-repeat: no-repeat;
   background-position: 2vw;
   background-size: 13vw;
@@ -145,7 +145,7 @@ header .navbar .nav-item1 {
 }
 
 header .navbar .nav-item1 .nav-link .icon {
-  background-image: url("/images/icon/icon1.png");
+  background-image: url(../images/icon/icon1.png);
 }
 
 header .navbar .nav-item2 {
@@ -154,7 +154,7 @@ header .navbar .nav-item2 {
 }
 
 header .navbar .nav-item2 .nav-link .icon {
-  background-image: url("/images/icon/icon2.png");
+  background-image: url(../images/icon/icon2.png);
 }
 
 header .navbar .nav-item3 {
@@ -163,7 +163,7 @@ header .navbar .nav-item3 {
 }
 
 header .navbar .nav-item3 .nav-link .icon {
-  background-image: url("/images/icon/icon3.png");
+  background-image: url(../images/icon/icon3.png);
 }
 
 header .navbar .nav-item4 {
@@ -172,7 +172,7 @@ header .navbar .nav-item4 {
 }
 
 header .navbar .nav-item4 .nav-link .icon {
-  background-image: url("/images/icon/icon4.png");
+  background-image: url(../images/icon/icon4.png);
 }
 
 header .navbar .nav-item5 {
@@ -267,15 +267,15 @@ header .navbar .nav-item5 {
 }
 
 .main .aside-1 .form__item-1 .icon {
-  background-image: url("/images/icon/icon5.png");
+  background-image: url(../images/icon/icon5.png);
 }
 
 .main .aside-1 .form__item-2 .icon {
-  background-image: url("/images/icon/icon7.png");
+  background-image: url(../images/icon/icon7.png);
 }
 
 .main .aside-1 .form__item-3 .icon {
-  background-image: url("/images/icon/icon6.png");
+  background-image: url(../images/icon/icon6.png);
 }
 
 .main .aside-1 .form__item-5 {
@@ -298,7 +298,7 @@ header .navbar .nav-item5 {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 2vw;
-  background-image: url("/images/icon/icon8.png");
+  background-image: url(../images/icon/icon8.png);
 }
 
 .main .aside-1 .form__item-5:hover {
@@ -341,7 +341,7 @@ header .navbar .nav-item5 {
 }
 
 .main .aside-1 .collapse-content .drop-down-menu .icon {
-  background-image: url("/images/icon/icon9.png");
+  background-image: url(../images/icon/icon9.png);
   padding-right: 1vw;
   height: 1vw;
   padding-right: 1.3vw;
@@ -430,7 +430,7 @@ header .navbar .nav-item5 {
 }
 
 .main .map {
-  background-image: url("/images/product/map.png");
+  background-image: url(../images/product/map.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -458,7 +458,7 @@ header .navbar .nav-item5 {
   width: 13vw;
   height: 13vw;
   position: absolute;
-  background-image: url("/images/product/Group 19.png");
+  background-image: url(../images/product/Group19.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -471,7 +471,7 @@ header .navbar .nav-item5 {
   width: 6vw;
   height: 6vw;
   display: inline-block;
-  background-image: url("/images/product/Vector.png");
+  background-image: url(../images/product/Vector.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -575,7 +575,7 @@ header .navbar .nav-item5 {
   height: 4vw;
   border: 0.3vw solid #000;
   border-radius: 50%;
-  background-image: url("/images/icon/prev.png");
+  background-image: url(../images/icon/prev.png);
   display: inline-block;
   background-repeat: no-repeat;
   background-position: center;
@@ -593,7 +593,7 @@ header .navbar .nav-item5 {
   height: 4vw;
   border: 0.3vw solid #000;
   border-radius: 50%;
-  background-image: url("/images/icon/next.png");
+  background-image: url(../images/icon/next.png);
   display: inline-block;
   background-repeat: no-repeat;
   background-position: center;
@@ -647,7 +647,7 @@ header .navbar .nav-item5 {
   background-repeat: no-repeat;
   background-position: left;
   background-size: contain;
-  background-image: url("/images/icon/big-1.png");
+  background-image: url(../images/icon/big-1.png);
 }
 
 .cafe__title h1 {
@@ -682,7 +682,7 @@ header .navbar .nav-item5 {
   background-repeat: no-repeat;
   background-position: left;
   background-size: contain;
-  background-image: url("/images/icon/icon7.png");
+  background-image: url(../images/icon/icon7.png);
 }
 
 .cafe__btn span {
@@ -733,7 +733,7 @@ header .navbar .nav-item5 {
 .product__card:hover > .product__para .icon-like {
   padding-right: 3vw;
   height: 3vw;
-  background-image: url("/images/product/like.png");
+  background-image: url(../images/product/like.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -751,7 +751,7 @@ header .navbar .nav-item5 {
 .product__card:hover > .product__para .icon {
   padding-right: 2vw;
   height: 1vw;
-  background-image: url("/images/product/stars.png");
+  background-image: url(../images/product/stars.png);
   background-position: left;
   background-repeat: no-repeat;
   background-size: contain;
@@ -830,7 +830,7 @@ header .navbar .nav-item5 {
 }
 
 .product__card-1 .product__pic {
-  background-image: url("/images/product/product-1.JPG");
+  background-image: url(../images/product/product-1.JPG);
 }
 
 .product__card-1 .product__para {
@@ -844,7 +844,7 @@ header .navbar .nav-item5 {
 }
 
 .product__card-2 .product__pic {
-  background-image: url("/images/product/product-2.jpg");
+  background-image: url(../images/product/product-2.jpg);
 }
 
 .product__card-2 .product__para {
@@ -858,7 +858,7 @@ header .navbar .nav-item5 {
 }
 
 .product__card-3 .product__pic {
-  background-image: url("/images/product/product-3.JPG");
+  background-image: url(../images/product/product-3.JPG);
 }
 
 .product__card-3 .product__para {
@@ -918,7 +918,7 @@ header .navbar .nav-item5 {
 .footer-container .brand {
   width: 20vw;
   padding-top: 4vw;
-  background-image: url("/images/logo/brand.png");
+  background-image: url(../images/logo/brand.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -971,23 +971,23 @@ header .navbar .nav-item5 {
 }
 
 .footer-container .footer-menu .footer-item .icon-1 {
-  background-image: url("/images/icon/big-1.png");
+  background-image: url(../images/icon/big-1.png);
 }
 
 .footer-container .footer-menu .footer-item .icon-2 {
-  background-image: url("/images/icon/big-2.png");
+  background-image: url(../images/icon/big-2.png);
 }
 
 .footer-container .footer-menu .footer-item .icon-3 {
-  background-image: url("/images/icon/big-3.png");
+  background-image: url(../images/icon/big-3.png);
 }
 
 .footer-container .footer-menu .footer-item .icon-4 {
-  background-image: url("/images/icon/big-4.png");
+  background-image: url(../images/icon/big-4.png);
 }
 
 .footer-container .footer-menu .footer-item .icon-5 {
-  background-image: url("/images/icon/big-5.png");
+  background-image: url(../images/icon/big-5.png);
 }
 
 .footer-container .contact-title {
@@ -1029,18 +1029,18 @@ header .navbar .nav-item5 {
 }
 
 .footer-container .contact-menu .contact-item .icon-1 {
-  background-image: url("/images/find/facebook.png");
+  background-image: url(../images/find/facebook.png);
 }
 
 .footer-container .contact-menu .contact-item .icon-2 {
-  background-image: url("/images/find/instagram.png");
+  background-image: url(../images/find/instagram.png);
 }
 
 .footer-container .contact-menu .contact-item .icon-3 {
-  background-image: url("/images/find/mail.png");
+  background-image: url(../images/find/mail.png);
 }
 
 .footer-container .contact-menu .contact-item .icon-4 {
-  background-image: url("/images/find/phone.png");
+  background-image: url(../images/find/phone.png);
 }
 /*# sourceMappingURL=style.css.map */
