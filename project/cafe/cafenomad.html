@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh_TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Nomad</title>
+    <link rel="stylesheet" href="vendor/nornalize_css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="vendor/fullpage/fullpage.min.css">
+    <link rel="stylesheet" href="vendor/OwlCarousel2-2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <script src="vendor/js/jquery-3.5.0.min.js"></script>
+
+</head>
+
+<body>
+    <div class="wrapper" id="fullpage">
+        <!-- start header -->
+        <div class="section section-1">
+            <header class="header">
+                <div class="navbar" id="menu">
+                    <a href="index.html" class="brand">
+                        <h1>Cafe Nomad</h1>
+                    </a>
+                    <div class="nav_group nav-item1">
+                        <a href="#secondPage" class="nav-link">
+                            <div class="icon"></div><span>熱門咖啡廳</span>
+                        </a>
+                    </div>
+                    <div class="nav_group nav-item2">
+                        <a href="#!" class="nav-link">
+                            <div class="icon"></div><span>我要分享</span>
+                        </a>
+                    </div>
+                    <div class="nav_group nav-item3">
+                        <a href="#!" class="nav-link">
+                            <div class="icon"></div><span>收藏</span>
+                        </a>
+                    </div>
+                    <div class="nav_group nav-item4">
+                        <a href="#!" class="nav-link">
+                            <div class="icon"></div><span>登入</span>
+                        </a>
+                    </div>
+                    <div class="nav-item5"><span></span></div>
+                </div>
+                <!-- start main -->
+                <section class="main">
+                    <div class="aside aside-1">
+                        <div class="title">
+                            <h1>開始探索<br>理想咖啡廳</h1>
+                        </div>
+                        <div class="form form__item-1">
+                            <div class="icon"></div>
+                            <input type="text" class="collapse-title collapse-title-1" placeholder="你要去哪裡？"></input>
+                        </div>
+                        <div class="collapse-content collapse-content-1">
+                            <div class="drop-down-menu">
+                                <a class="drop-down-item">附近熱門位置</a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <a href="#!" class="drop-down-item"></a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <a href="#!" class="drop-down-item"></a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <div class="icon"></div>
+                                <a href="#!" class="drop-down-item">中山站</a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <div class="icon"></div>
+                                <a href="#!" class="drop-down-item">北門站</a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <div class="icon"></div>
+                                <a href="#!" class="drop-down-item">中正區</a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <div class="icon"></div>
+                                <a href="#!" class="drop-down-item">古亭站</a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <div class="icon"></div>
+                                <a href="#!" class="drop-down-item">大安區</a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <div class="icon"></div>
+                                <a href="#!" class="drop-down-item">東門站</a>
+                            </div>
+
+                        </div>
+                        <div class="form form__item-2">
+                            <div class="icon"></div>
+                            <input type="text" class="collapse-title collapse-title-2" placeholder="篩選"></input>
+                        </div>
+                        <div class="collapse-content collapse-content-2">
+                            <div class="checkbox-item">
+                                <div class="socket"></div>
+                                <label for="socket">
+                                    <span>有插座</span>
+                                </label>
+                                <input id="socket" type="checkbox">
+                                <div class="check"></div>
+                            </div>
+                            <div class="checkbox-item">
+                                <label for="wifi">
+                                    <span>有Wi-Fi</span>
+                                </label>
+                                <input id="wifi" type="checkbox">
+                                <div class="check"></div>
+                            </div>
+                            <div class="checkbox-item">
+                                <label for="lowest">
+                                    <span>無低消</span>
+                                </label>
+                                <input id="lowest" type="checkbox">
+                                <div class="check"></div>
+                            </div>
+                            <div class="checkbox-item">
+                                <label for="limit">
+                                    <span>不限時</span>
+                                </label>
+                                <input id="limit" type="checkbox">
+                                <div class="check"></div>
+                            </div>
+                            <div class="checkbox-item">
+                                <label for="meal">
+                                    <span>有正餐</span>
+                                </label>
+                                <input id="meal" type="checkbox">
+                                <div class="check"></div>
+                            </div>
+                            <div class="checkbox-item">
+                                <label for="reserve">
+                                    <span>可預約</span>
+                                </label>
+                                <input id="reserve" type="checkbox">
+                                <div class="check"></div>
+                            </div>
+
+                        </div>
+                        <div class="form form__item-3">
+                            <div class="icon"></div>
+                            <input type="text" class="collapse-title collapse-title-3" placeholder="關鍵字"></input>
+                        </div>
+                        <div class="collapse-content collapse-content-3">
+                            <div class="drop-down-menu">
+                                <a class="drop-down-item">熱門關鍵字</a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <a href="#!" class="drop-down-item"></a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <a href="#!" class="drop-down-item"></a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <a href="#!" class="drop-down-item"><span>＃</span>網美</a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <a href="#!" class="drop-down-item"><span>＃</span>復古</a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <a href="#!" class="drop-down-item"><span>＃</span>日系</a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <a href="#!" class="drop-down-item"><span>＃</span>韓系</a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <a href="#!" class="drop-down-item"><span>＃</span>深夜</a>
+                            </div>
+                            <div class="drop-down-menu">
+                                <a href="#!" class="drop-down-item"><span>＃</span>毛小孩</a>
+                            </div>
+
+                        </div>
+                        <div class="form form__item-4">
+                            <div class="icon"></div>
+                            <span></span>
+                        </div>
+                        <a href="#!" class="form form__item-5 icon">
+                        </a>
+                        <div class="form__item-6">
+                            <div class="icon"></div>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="map">
+                        <a href="#secondPage" class="scroll--down">
+                            <div class="scroll"></div>
+                            <div class="down"></div>
+                        </a>
+                    </div>
+                    <div class="aside aside-2"></div>
+                </section>
+                <!-- end main -->
+            </header>
+        </div>
+        <!-- end header -->
+
+        <div class="section section-2" id="popular-cafe">
+            <header class="header">
+                <div class="navbar" id="menu">
+                    <a href="#firstPage" class="brand">
+                        <h1>Cafe Nomad</h1>
+                    </a>
+                    <div class="nav_group nav-item1" style="background-color: #fadc59;">
+                        <a href="#secondPage" class="nav-link">
+                            <div class="icon"></div><span>熱門咖啡廳</span>
+                        </a>
+                    </div>
+                    <div class="nav_group nav-item2">
+                        <a href="#!" class="nav-link">
+                            <div class="icon"></div><span>我要分享</span>
+                        </a>
+                    </div>
+                    <div class="nav_group nav-item3">
+                        <a href="#!" class="nav-link">
+                            <div class="icon"></div><span>收藏</span>
+                        </a>
+                    </div>
+                    <div class="nav_group nav-item4">
+                        <a href="#!" class="nav-link">
+                            <div class="icon"></div><span>登入</span>
+                        </a>
+                    </div>
+                    <div class="nav-item5"><span></span></div>
+                </div>
+            </header>
+            <section class="popular-cafe">
+                <div class="popular-cafe__title">
+                    <div class="cafe__title">
+                        <div class="icon"></div>
+                        <h1>熱門咖啡廳</h1>
+                    </div>
+                    <a href="#!" class="cafe__btn">
+                        <div class="icon"></div>
+                        <span>篩選</span>
+                    </a>
+                </div>
+                <div class="container product-group owl-carousel owl-theme">
+                    <div class="product__card product__card-1 item">
+                        <a class="product__pic" href="#!"></a>
+                        <a class="product__para" href="#!">
+                            <h2 class="product__title">北風社</h2>
+                            <div class="icon-like"></div>
+                            <div class="icon"></div>
+                            <h3>4.7</h3>
+                            <p>台北市中山區八德路二段330號</p>
+                        </a>
+                    </div>
+                    <div class="product__card product__card-2 item">
+                        <a class="product__pic" href="#!"></a>
+                        <a class="product__para" href="#!">
+                            <h2 class="product__title">在三樓</h2>
+                            <div class="icon-like"></div>
+                            <div class="evaluate"></div>
+                            <div class="icon"></div>
+                            <h3>4.7</h3>
+                            <p>台北市中山區八德路二段330號</p>
+                        </a>
+                    </div>
+                    <div class="product__card product__card-3 item">
+                        <a class="product__pic" href="#!"></a>
+                        <a class="product__para" href="#!">
+                            <h2 class="product__title">森氏咖啡所</h2>
+                            <div class="icon-like"></div>
+                            <div class="evaluate"></div>
+                            <div class="icon"></div>
+                            <h3>4.7</h3>
+                            <p>台北市中山區八德路二段330號</p>
+                        </a>
+                    </div>
+                    <div class="product__card product__card-1 item">
+                        <a class="product__pic" href="#!"></a>
+                        <a class="product__para" href="#!">
+                            <h2 class="product__title">北風社</h2>
+                            <div class="icon-like"></div>
+                            <div class="icon"></div>
+                            <h3>4.7</h3>
+                            <p>台北市中山區八德路二段330號</p>
+                        </a>
+                    </div>
+                    <div class="product__card product__card-2 item">
+                        <a class="product__pic" href="#!"></a>
+                        <a class="product__para" href="#!">
+                            <h2 class="product__title">在三樓</h2>
+                            <div class="icon-like"></div>
+                            <div class="evaluate"></div>
+                            <div class="icon"></div>
+                            <h3>4.7</h3>
+                            <p>台北市中山區八德路二段330號</p>
+                        </a>
+                    </div>
+                    <div class="product__card product__card-3 item">
+                        <a class="product__pic" href="#!"></a>
+                        <a class="product__para" href="#!">
+                            <h2 class="product__title">森氏咖啡所</h2>
+                            <div class="icon-like"></div>
+                            <div class="evaluate"></div>
+                            <div class="icon"></div>
+                            <h3>4.7</h3>
+                            <p>台北市中山區八德路二段330號</p>
+                        </a>
+                    </div>
+                    <div class="product__card product__card-1 item">
+                        <a class="product__pic" href="#!"></a>
+                        <a class="product__para" href="#!">
+                            <h2 class="product__title">北風社</h2>
+                            <div class="icon-like"></div>
+                            <div class="icon"></div>
+                            <h3>4.7</h3>
+                            <p>台北市中山區八德路二段330號</p>
+                        </a>
+                    </div>
+                    <div class="product__card product__card-2 item">
+                        <a class="product__pic" href="#!"></a>
+                        <a class="product__para" href="#!">
+                            <h2 class="product__title">在三樓</h2>
+                            <div class="icon-like"></div>
+                            <div class="evaluate"></div>
+                            <div class="icon"></div>
+                            <h3>4.7</h3>
+                            <p>台北市中山區八德路二段330號</p>
+                        </a>
+                    </div>
+                    <div class="product__card product__card-3 item">
+                        <a class="product__pic" href="#!"></a>
+                        <a class="product__para" href="#!">
+                            <h2 class="product__title">森氏咖啡所</h2>
+                            <div class="icon-like"></div>
+                            <div class="evaluate"></div>
+                            <div class="icon"></div>
+                            <h3>4.7</h3>
+                            <p>台北市中山區八德路二段330號</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="section section-3">
+            <header class="header">
+                <div class="navbar" id="menu">
+                    <a href="#firstPage" class="brand">
+                        <h1>Cafe Nomad</h1>
+                    </a>
+                    <div class="nav_group nav-item1">
+                        <a href="#secondPage" class="nav-link">
+                            <div class="icon"></div><span>熱門咖啡廳</span>
+                        </a>
+                    </div>
+                    <div class="nav_group nav-item2">
+                        <a href="#!" class="nav-link">
+                            <div class="icon"></div><span>我要分享</span>
+                        </a>
+                    </div>
+                    <div class="nav_group nav-item3">
+                        <a href="#!" class="nav-link">
+                            <div class="icon"></div><span>收藏</span>
+                        </a>
+                    </div>
+                    <div class="nav_group nav-item4">
+                        <a href="#!" class="nav-link">
+                            <div class="icon"></div><span>登入</span>
+                        </a>
+                    </div>
+                    <div class="nav-item5"><span></span></div>
+                </div>
+            </header>
+            <footer class="footer">
+                <div class="footer-container">
+                    <a href="index.html" class="brand">
+                        <h1>Cafe Nomad</h1>
+                    </a>
+                    <ul class="footer-menu">
+                        <li class="footer-item">
+                            <a href="#!">
+                                <div class="icon icon-1"></div>
+                                <h1>熱門咖啡廳</h1>
+                            </a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="#!">
+                                <div class="icon icon-2"></div>
+                                <h1>我要分享</h1>
+                            </a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="#!">
+                                <div class="icon icon-3"></div>
+                                <h1>收藏</h1>
+                            </a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="#!">
+                                <div class="icon icon-4"></div>
+                                <h1>會員</h1>
+                            </a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="#!">
+                                <div class="icon icon-5"></div>
+                                <h1>關於我們</h1>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="contact-title">
+                        <h1>FIND US</h1>
+                    </div>
+                    <ul class="contact-menu">
+                        <li class="contact-item">
+                            <a href="#!">
+                                <div class="icon icon-1"></div>
+                            </a>
+                        </li>
+                        <li class="contact-item">
+                            <a href="#!">
+                                <div class="icon icon-2"></div>
+                            </a>
+                        </li>
+                        <li class="contact-item">
+                            <a href="#!">
+                                <div class="icon icon-3"></div>
+                            </a>
+                        </li>
+                        <li class="contact-item">
+                            <a href="#!">
+                                <div class="icon icon-4"></div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="copyright">
+                    <h4>copyright © 2021 HKT</h4>
+                </div>
+            </footer>
+
+        </div>
+
+
+
+    </div>
+    <script src="vendor/js/jquery-3.5.0.min.js"></script>
+    <script src="vendor/fullpage/fullpage.min.js"></script>
+    <script src="vendor/OwlCarousel2-2.3.4/owl.carousel.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("body").on("click", function (event) {
+                console.log($(event.target))
+                if ($(event.target).hasClass("collapse-title-1")) {
+                    $(event.target).parents(".form").siblings(".collapse-content-1").toggleClass("active");
+                    $(event.target).parents(".form").siblings(".collapse-content-2,.collapse-content-3").removeClass("active");
+                    $(event.target).parents(".form").toggleClass("active");
+                    $(event.target).parents(".form").siblings(".form").removeClass("active");
+                }
+                if ($(event.target).hasClass("collapse-title-2")) {
+                    $(event.target).parents(".form").siblings(".collapse-content-2").toggleClass("active");
+                    $(event.target).parents(".form").siblings(".collapse-content-1,.collapse-content-3").removeClass("active");
+                    $(event.target).parents(".form").toggleClass("active");
+                    $(event.target).parents(".form").siblings(".form").removeClass("active");
+                }
+                if ($(event.target).hasClass("collapse-title-3")) {
+                    $(event.target).parents(".form").siblings(".collapse-content-3").toggleClass("active");
+                    $(event.target).parents(".form").siblings(".collapse-content-1,.collapse-content-2").removeClass("active");
+                    $(event.target).parents(".form").toggleClass("active");
+                    $(event.target).parents(".form").siblings(".form").removeClass("active");
+                }
+                if ($(event.target).hasClass("form__item-5")) {
+                    $(event.target).siblings(".collapse-content").removeClass("active");
+                    $(event.target).siblings(".form").removeClass("active");
+
+                }
+
+            });
+
+            $('#fullpage').fullpage({
+                licenseKey: '',
+                //options here
+                // 自動換整頁
+                // autoScrolling:true,
+                // scrollHorizontally: true
+                // navigation: true,
+                // menu: '#menu',
+                anchors: ['firstPage', 'secondPage', 'thirdPage']
+            });
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                items: 3,
+                autoplay: true,
+                autoplayTimeout: 6000,
+                // responsive: {
+                //     0: {
+                //         items: 1
+                //     },
+                //     600: {
+                //         items: 3
+                //     },
+                //     1000: {
+                //         items: 5
+                //     }
+                // }
+            })
+        });
+    </script>
+</body>
+
+</html>
