@@ -216,6 +216,7 @@ body {
     display: inline-block;
     margin-right: 30px;
     font-weight: 800;
+    cursor: pointer;
 }
 .content{
     display: inline-block;

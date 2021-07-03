@@ -2512,7 +2512,13 @@
         
     });
 
-
+    $('.title').click(function(){
+        $(this).parent().find('input[type=checkbox]').each(function(e) {
+            $(this).prop('checked', true)
+            // console.log($(this).is(':checked'))
+            Cost()
+        })
+    })
 
     // 變數區
     var allTree  = document.querySelectorAll('.tree')
@@ -2636,8 +2642,6 @@
         })
         cart()
     }
-    
-
 
     // dialog
     $(function() {  
