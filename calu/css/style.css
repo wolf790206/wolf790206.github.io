@@ -85,7 +85,6 @@ button{
 }
 .ui-widget{
     width: 50% !important;
-    max-height: 80%;
     z-index: 999 !important;
     line-height: 1 !important;
 }
@@ -262,9 +261,6 @@ span{
 }
 .footer .total, .footer .cost{
     font-size: 30px;
-}
-.footer .dalor{
-    margin-right: 200px;
 }
 .deleted, .comfirm, .clear, .copy{
     border-radius: 10px;
