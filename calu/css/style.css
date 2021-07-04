@@ -279,3 +279,6 @@ span{
     background-color: rgb(35, 36, 68);
     color: rgb(247, 247, 247);
 }
+#dialog i{
+    font-style: normal;
+}

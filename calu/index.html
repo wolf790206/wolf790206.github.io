@@ -2425,7 +2425,7 @@
         </div>
         <p id="copythis"></p>
     </div>
-
+<br>
     <!-- cart -->
     <div class="footer">
         <div class="container-footer">
@@ -2529,17 +2529,21 @@
 
     // 建立訊息
     var createMas = function() {
+        let html = `學員總點數：${allXp} xp<br>`
+        let newEle = document.createElement('i')
+        newEle.innerHTML = html
+        node.appendChild(newEle)
         document.querySelectorAll('.tree').forEach((tree) => {
             if (Number(tree.querySelector(".cost").textContent) > 0){
-                let html = `-${tree.querySelector(".fieldTitle").textContent}-`
-                let newEle = document.createElement('p')
+                let html = `-${tree.querySelector(".fieldTitle").textContent}-<br>`
+                let newEle = document.createElement('i')
                 newEle.innerHTML = html
                 node.appendChild(newEle)
             } 
             tree.querySelectorAll('.comCost').forEach((ck) =>{
                 if (Number(ck.textContent) === Number(ck.parentElement.parentElement.querySelector('.total').textContent)){
-                    let html = `【組合】${ck.parentElement.parentElement.querySelector('input[type=checkbox] + label').textContent}`
-                    let newEle = document.createElement('p')
+                    let html = `【組合】${ck.parentElement.parentElement.querySelector('input[type=checkbox] + label').textContent}<br>`
+                    let newEle = document.createElement('i')
                     newEle.innerHTML = html
                     node.appendChild(newEle)
                 }
@@ -2548,8 +2552,8 @@
                         ck.parentElement.parentElement.querySelectorAll('.lessonclass').forEach((c) => {
                             console.log(c.querySelector('input[type=checkbox]').checked)
                             if (c.querySelector('input[type=checkbox]').checked) {
-                                let html = `${c.querySelector('input[type=checkbox] + label').textContent}`
-                                let newEle = document.createElement('p')
+                                let html = `${c.querySelector('input[type=checkbox] + label').textContent}<br>`
+                                let newEle = document.createElement('i')
                                 newEle.innerHTML = html
                                 node.appendChild(newEle)
                             }
@@ -2558,14 +2562,12 @@
                 }
             })
             if (Number(tree.querySelector(".cost").textContent) > 0){
-                let html = `
-                    -${tree.querySelector(".cost").textContent} xp -
-                `
+                let html = `-${tree.querySelector(".cost").textContent} xp -`
                 let newEle = document.createElement('p')
                 newEle.innerHTML = html
                 node.appendChild(newEle)
             } 
-        })
+        })  
     }
 
     // 清除勾選
