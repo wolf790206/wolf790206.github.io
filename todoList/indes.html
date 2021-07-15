@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-hant-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    
+</head>
+<body>
+
+    <div class="wrapper">
+        <header>To Do List</header>
+        <div class="inputField">
+            <input type="text" placeholder="Add your new todo">
+            <button class="add"><i class="fas fa-plus"></i></button>
+        </div>
+        <ul class="todoList">
+        <!-- data are comes from local storage -->
+        </ul>
+        <div class="footer">
+            <span>You have <span class="pendingTasks"></span> pending tasks</span>
+            <button class="deletedAll">Clear All</button>
+        </div>
+    </div>
+    
+</body>
+
+<script>
+// getting all required elements
+    const inputBox = document.querySelector(".inputField input");
+    const addBtn = document.querySelector(".inputField button");
+    const todoList = document.querySelector(".todoList");
+    const deleteAllBtn = document.querySelector(".footer button");
+
+    function showTasks(){
+        const html = `
+                ${inputBox.value}
+                <span class="editicon"><i class="fas fa-pencil-alt"></i></span>
+                <span class="icon deleted"><i class="fas fa-trash"></i></span>
+            `
+        const newEle = document.createElement('li');
+        newEle.innerHTML = html;
+        todoList.appendChild(newEle);
+        inputBox.value = '';
+    }
+
+    document.querySelector('.wrapper').addEventListener('click', (evt) => {
+        // create evt
+        if (evt.target.parentNode.classList.contains('add')){
+            if (inputBox.value != '') showTasks()
+        }
+        if (evt.target.classList.contains('add')){
+            if (inputBox.value != '') showTasks()
+        }
+
+        // evt deleted
+        if (evt.target.parentNode.classList.contains('deleted')){
+            evt.target.parentNode.parentNode.remove(evt.target.parentNode.parentNode)
+        }
+        if (evt.target.classList.contains('deleted')){
+            evt.target.parentNode.remove(evt.target.parentNode)
+        }
+
+        // all deleted
+        if (evt.target.classList.contains('deletedAll')){
+            todoList.querySelectorAll('li').forEach((e) => {
+                e.remove(e)
+            })
+        }
+    })
+
+</script>
+
+</html>
