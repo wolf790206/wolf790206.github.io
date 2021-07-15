@@ -24,6 +24,10 @@
             <span>You have <span class="pendingTasks"></span> pending tasks</span>
             <button class="deletedAll">Clear All</button>
         </div>
+        <div class="edit disNone">
+            <input type="text" placeholder="Edit your todo">
+            <button class="add">OK</i></button>
+        </div>
     </div>
     
 </body>
@@ -34,6 +38,7 @@
     const addBtn = document.querySelector(".inputField button");
     const todoList = document.querySelector(".todoList");
     const deleteAllBtn = document.querySelector(".footer button");
+    const editBox = document.querySelector(".edit");
 
     function showTasks(){
         const html = `
@@ -48,6 +53,7 @@
     }
 
     document.querySelector('.wrapper').addEventListener('click', (evt) => {
+        // console.log(evt.target)
         // create evt
         if (evt.target.parentNode.classList.contains('add')){
             if (inputBox.value != '') showTasks()
@@ -70,6 +76,42 @@
                 e.remove(e)
             })
         }
+        // edit task
+        if (evt.target.classList.contains('editicon')){
+            let text = evt.target.parentNode.innerText
+
+            editBox.querySelector("input").value = text
+            editBox.classList.remove("disNone")
+            document.querySelector('.edit').addEventListener('click',(e) => {
+                if (e.target.classList.contains('add')){
+                    editBox.classList.add("disNone")
+                    let html = `
+                        ${editBox.querySelector("input").value}
+                        <span class="editicon"><i class="fas fa-pencil-alt"></i></span>
+                        <span class="icon deleted"><i class="fas fa-trash"></i></span>
+                    `
+                    evt.target.parentNode.innerHTML = html
+                }
+            })
+        }
+        if (evt.target.parentNode.classList.contains('editicon')){
+            let text = evt.target.parentNode.parentNode.innerText
+
+            editBox.querySelector("input").value = text
+            editBox.classList.remove("disNone")
+            document.querySelector('.edit').addEventListener('click',(e) => {
+                if (e.target.classList.contains('add')){
+                    editBox.classList.add("disNone")
+                    let html = `
+                        ${editBox.querySelector("input").value}
+                        <span class="editicon"><i class="fas fa-pencil-alt"></i></span>
+                        <span class="icon deleted"><i class="fas fa-trash"></i></span>
+                    `
+                    evt.target.parentNode.parentNode.innerHTML = html
+                }
+            })
+        }
+
     })
 
 </script>
