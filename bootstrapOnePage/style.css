@@ -1,0 +1,206 @@
+* {
+    font-family: 'Space Grotesk', sans-serif;
+}
+.backToTop {
+    border-radius: 50%;
+    background-color: rgb(1, 2, 244);
+    width: 48px;
+    height: 48px;
+
+    color: aliceblue;
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header.masthead {
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 4.5rem);
+    background-image: url('./assets/0013.jpg');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    height: 100vh;
+    min-height: 40rem;
+    padding-top: 4.5rem;
+    padding-bottom: 0;
+
+}
+.masthead h1 {
+    font-size: 115px;
+    /* transform: translateX(800px); */
+    position:relative;
+    left:1000px;
+}
+.masthead .slogan{
+    position:relative;
+    left:1000px;
+}
+.masthead .btn {
+    position:relative;
+    left:1000px;
+}
+/* .masthead h1::before {
+    content: '-';
+    z-index:999;
+
+    }
+.masthead h1::after {
+    content: '-';
+    z-index:999;
+} */
+
+hr.divider {
+    height: 0.2rem;
+    max-width: 3.25rem;
+    margin: 1.5rem auto;
+    background-color: #f4623a;
+    opacity: 1;
+}
+
+.btn-xl {
+    padding: 1.25rem 2.25rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 10rem;
+}
+
+.page-section {
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.navbar-shrink {
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    background-color: white;
+    transition: all 1s;
+}
+
+.navbar-brand {
+    color: gray !important;
+}
+
+.nav-link {
+    color: gray !important;
+}
+
+.portfolio img {
+    max-width: 100%;
+}
+
+.textOrange {
+    color: #f4623a;
+}
+
+/* dogpic */
+.dogPic {
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 4.5rem);
+    background-image: url('./assets/006.jpg');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    height: 30vh;
+    min-height: 40rem;
+    padding-top: 4.5rem;
+    padding-bottom: 0;
+}
+
+.dogPic h3 {
+    color: #fff;
+    padding-top: 11.5rem;
+}
+
+.dog1,
+.dog2,
+.dog3,
+.dog4,
+.dog5,
+.dog6 {
+    height: auto;
+    min-height: 16rem;
+    /* padding-top: 4.5rem; */
+    margin-bottom: 6%;
+    padding: 0 10%;
+
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+
+    color: #fff;    
+    display: flex;
+    
+}
+.dog1 p,.dog2 p,.dog3 p,.dog4 p,.dog5 p,.dog6 p {
+    opacity: 0;
+    transition: all 0.7s;
+}
+.dog1:hover p,.dog2:hover p,.dog3:hover p,.dog4:hover p,.dog5:hover p,.dog6:hover p {
+    opacity: 1;
+}
+
+.dog1 {
+    background-image: url('./assets/0016.jpg');
+}
+
+.dog2 {
+    background-image: url('./assets/0018.jpg');
+}
+
+.dog3 {
+    background-image: url('./assets/007.jpg');
+}
+
+.dog4 {
+    background-image: url('./assets/006.jpg');
+}
+
+.dog5 {
+    background-image: url('./assets/0013.jpg');
+}
+
+.dog6 {
+    background-image: url('./assets/0019.jpg');
+}
+
+
+/* this is contact */
+.contact p {
+    max-height: 20px;
+    overflow: hidden;
+    transition: all ease 2s;
+}
+
+.contact p.active {
+    max-height: 200px;
+}
+
+
+
+/* fade alert */
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity 0.15s linear;
+    -moz-transition: opacity 0.15s linear;
+    -o-transition: opacity 0.15s linear;
+    transition: opacity 0.15s linear;
+}
+
+.fade.in {
+    opacity: 1;
+}
+
+.active {
+    opacity:0.5;
+    transition: all 0.7s;
+}
