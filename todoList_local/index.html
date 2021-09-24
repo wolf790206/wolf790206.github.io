@@ -74,12 +74,14 @@
     }
     addBtn.onclick = () => {
         let userValue = inputBox.value;
-        let getLocalStorageData = localStorage.getItem('NewTodo');
-        if (getLocalStorageData == null) listArray = [];
-        else listArray = JSON.parse(getLocalStorageData);
-        listArray.push(userValue);
-        localStorage.setItem('NewTodo', JSON.stringify(listArray));
-        showTasks();
+        if (userValue !== null){
+            let getLocalStorageData = localStorage.getItem('NewTodo');
+            if (getLocalStorageData == null) listArray = [];
+            else listArray = JSON.parse(getLocalStorageData);
+            listArray.push(userValue);
+            localStorage.setItem('NewTodo', JSON.stringify(listArray));
+            showTasks();
+        }
     }
     function deletedTask(index){
         let getLocalStorageData = localStorage.getItem('NewTodo');
