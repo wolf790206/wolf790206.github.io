@@ -74,7 +74,7 @@
     }
     addBtn.onclick = () => {
         let userValue = inputBox.value;
-        if (userValue !== null){
+        if (userValue !== ""){
             let getLocalStorageData = localStorage.getItem('NewTodo');
             if (getLocalStorageData == null) listArray = [];
             else listArray = JSON.parse(getLocalStorageData);
