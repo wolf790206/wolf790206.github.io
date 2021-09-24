@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-hant-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    
+</head>
+<body>
+
+    <div class="wrapper">
+        <header>
+            To Do List
+            <div class="content">
+                <span>You have <span class="pendingTasks"></span> pending tasks</span>
+                <button class="deletedAll">Clear All</button>
+            </div>
+        </header>
+        <div class="inputField">
+            <input type="text" placeholder="Add your new todo">
+            <button class="add"><i class="fas fa-plus"></i></button>
+        </div>
+        <ul class="todoList">
+            <li>
+                <input type="checkbox" id="check1">
+                <label for="check1">jgoiewjfojfow</label>
+                <span class="editicon"><i class="fas fa-pencil-alt"></i></span>
+                <span class="icon deleted"><i class="fas fa-trash"></i></span>
+            </li>
+        <!-- data are comes from local storage -->
+        </ul>
+        <div class="edit disNone">
+            <i class="index"></i>
+            <input type="text" placeholder="Edit your todo">
+            <button class="add">OK</i></button>
+        </div>
+    </div>
+    
+</body>
+
+<script>
+// getting all required elements
+    const inputBox = document.querySelector(".inputField input");
+    const addBtn = document.querySelector(".inputField button");
+    const todoList = document.querySelector(".todoList");
+    const deleteAllBtn = document.querySelector(".content button");
+    const editBox = document.querySelector(".edit");
+    var listArray = [];
+
+    showTasks();
+    function showTasks(){
+        let userValue = inputBox.value;
+        let getLocalStorageData = localStorage.getItem('NewTodo');
+        if (getLocalStorageData == null) listArray = [];
+        else listArray = JSON.parse(getLocalStorageData);
+        const pendingTasksNumber = document.querySelector('.pendingTasks');
+        pendingTasksNumber.textContent = listArray.length;
+        let newTodoList = '';
+        listArray.forEach((element, index) => {
+            newTodoList +=  `
+                <li>
+                <input type="checkbox" id="check${index}">
+                <label for="check${index}">i${element}</label>
+                <span class="editicon" onclick="openEditTask(${index})"><i class="fas fa-pencil-alt"></i></span>
+                <span class="icon" onclick="deletedTask(${index})"><i class="fas fa-trash"></i></span>
+                </li>
+            `;
+        });
+        todoList.innerHTML = newTodoList;
+        inputBox.value = '';
+    }
+    addBtn.onclick = () => {
+        let userValue = inputBox.value;
+        let getLocalStorageData = localStorage.getItem('NewTodo');
+        if (getLocalStorageData == null) listArray = [];
+        else listArray = JSON.parse(getLocalStorageData);
+        listArray.push(userValue);
+        localStorage.setItem('NewTodo', JSON.stringify(listArray));
+        showTasks();
+    }
+    function deletedTask(index){
+        let getLocalStorageData = localStorage.getItem('NewTodo');
+        listArray = JSON.parse(getLocalStorageData);
+        listArray.splice(index, 1);
+        localStorage.setItem("NewTodo", JSON.stringify(listArray));
+        showTasks();
+    }
+    deleteAllBtn.onclick = () => {
+        listArray = [];
+        localStorage.setItem("NewTodo", JSON.stringify(listArray));
+        showTasks();
+    }
+    function openEditTask(index){
+        let getLocalStorageData = localStorage.getItem('NewTodo');
+        listArray = JSON.parse(getLocalStorageData);
+        editValue = listArray[index]
+        editBox.querySelector("input").value = listArray[index];
+        editBox.querySelector(".index").innerText = index;
+        editBox.classList.remove("disNone");
+    }
+    editBox.querySelector('button').onclick = () => {
+        let editValue = editBox.querySelector("input").value;
+        let index = editBox.querySelector(".index").innerText;
+        let getLocalStorageData = localStorage.getItem('NewTodo');
+        listArray = JSON.parse(getLocalStorageData);
+        listArray.splice(index, 1, editValue);
+        localStorage.setItem("NewTodo", JSON.stringify(listArray));
+        showTasks();
+        editBox.classList.add("disNone");
+    }
+
+
+    // document.querySelector('.wrapper').addEventListener('click', (evt) => {
+    //     // edit task
+    //     if (evt.target.classList.contains('editicon')){
+    //         let text = evt.target.parentNode.innerText
+            
+    //         editBox.querySelector("input").value = text
+    //         editBox.classList.remove("disNone")
+    //         document.querySelector('.edit').addEventListener('click',(e) => {
+    //             if (e.target.classList.contains('add')){
+    //                 editBox.classList.add("disNone")
+    //                 let html = `
+    //                     ${editBox.querySelector("input").value}
+    //                     <span class="editicon"><i class="fas fa-pencil-alt"></i></span>
+    //                     <span class="icon deleted"><i class="fas fa-trash"></i></span>
+    //                 `
+    //                 evt.target.parentNode.innerHTML = html
+    //             }
+    //         })
+    //     }
+    //     if (evt.target.parentNode.classList.contains('editicon')){
+    //         let text = evt.target.parentNode.parentNode.innerText
+
+    //         editBox.querySelector("input").value = text
+    //         editBox.classList.remove("disNone")
+    //         document.querySelector('.edit').addEventListener('click',(e) => {
+    //             if (e.target.classList.contains('add')){
+    //                 editBox.classList.add("disNone")
+    //                 let html = `
+    //                     ${editBox.querySelector("input").value}
+    //                     <span class="editicon"><i class="fas fa-pencil-alt"></i></span>
+    //                     <span class="icon deleted"><i class="fas fa-trash"></i></span>
+    //                 `
+    //                 evt.target.parentNode.parentNode.innerHTML = html
+    //             }
+    //         })
+    //     }
+
+    // })
+
+</script>
+
+</html>
