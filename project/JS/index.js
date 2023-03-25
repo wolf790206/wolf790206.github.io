@@ -163,27 +163,15 @@ document.addEventListener('scroll', () => {
 });
 
 // drag Event
-const controlBtn = document.querySelector('.controlImage .controlBtn');
-const image1 = document.querySelector('.controlImage .image1');
-const dragBox = document.querySelector('.controlImage .imageContainer');
-const dragBoxStyle = document.querySelector('.controlImage .dragBoxStyle');
-const dragBoxWidth = dragBox.clientWidth;
-var moveDistance;
-controlBtn.onmousedown = function (e) {
-	moveDistance = e.pageX - controlBtn.offsetLeft;
-	dragBox.addEventListener('mousemove', movehandle);
-};
-controlBtn.onmouseup = function (e) {
-	dragBox.removeEventListener('mousemove', movehandle);
-};
-function movehandle(e) {
-	if ((window.innerWidth - dragBoxWidth) / 2 < e.pageX)
-		if (e.pageX < window.innerWidth - (window.innerWidth - dragBoxWidth) / 2) {
-			controlBtn.style.left = e.pageX - moveDistance + 'px';
-			image1.style.width = e.pageX - moveDistance + 'px';
-			dragBoxStyle.style.left = e.pageX - moveDistance - 5 + 'px';
-		}
-}
+new SliderBar({
+	el: '#mySlider', // The container, required
+	beforeImg: 'https://lh3.google.com/u/0/d/1uCDmQG4gC6TiHxKGQg5CVoLIBRYtftad=w2000-h2666-iv1', // before image, required
+	afterImg: 'https://lh3.google.com/u/0/d/1n-w4_BOLJnDz9qY2RlB_YG_Rj9wLzGKG=w2000-h2666-iv1', // after image, required
+	width: 'default', // slide-wrap width, default 100%
+	height: 'default', // slide-wrap height, default image-height
+	line: false, // Dividing line, default true
+	lineColor: 'rgba(0,0,0,0.5)', // Dividing line color, default rgba(0,0,0,0.5)
+});
 
 // get leftAndRightDataBase
 

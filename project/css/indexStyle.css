@@ -184,33 +184,19 @@ section {
 		display: block;
 		width: 90%;
 	}
-	.section2 .controlImage .imageContainerInner.image1 {
-		background-position: top left;
-		border-top-right-radius: 0;
-		border-bottom-right-radius: 0;
+	.section2 .controlImage #mySlider {
+		width: 100%;
+		height: 100%;
+	}
+	.section2 .controlImage #mySlider .slider-container {
+		width: 100%;
+		height: 100%;
+	}
+	.section2 .controlImage #mySlider .before-img {
 		z-index: 1;
-		width: 50%;
 	}
-	.section2 .controlImage .imageContainerInner.image2 {
-		background-position: top right;
-		left: auto;
-		right: 0;
-	}
-	.section2 .controlImage .imageContainerInner.dragBoxStyle {
-		background-position: top left;
+	.section2 .controlImage #mySlider .slider-btn {
 		z-index: 2;
-		width: 10px;
-		background: transparent;
-		background: linear-gradient(90deg, #00000000 0%, #00000080 100%);
-		left: calc(50% - 5px);
-	}
-	.section2 .controlImage .controlBtn {
-		width: 50px;
-		height: 50px;
-		z-index: 2;
-		border-radius: 100px;
-		background: #fff;
-		cursor: pointer;
 	}
 	.section2 .contentBox {
 		flex: none;
