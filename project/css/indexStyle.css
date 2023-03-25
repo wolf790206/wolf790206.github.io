@@ -1,0 +1,224 @@
+/* ------------ *\
+    layout 
+\* ------------ */
+
+section {
+	border: 1px solid #000;
+	height: 100vh;
+}
+
+/* ------------ *\
+    Utility 
+\* ------------ */
+
+/* ------------ *\
+    component
+\* ------------ */
+#banner {
+	width: 100%;
+	height: 100vh;
+	border: 1px solid #000;
+	overflow: hidden;
+}
+.vedio {
+	width: 100%;
+	height: 100%;
+}
+#banner .slowgon {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+	line-height: 1.5;
+	font-weight: 900;
+	color: #fff;
+	height: 60vh;
+	white-space: nowrap;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+#banner .slowgon .top {
+	font-size: 24px;
+}
+#banner .slowgon .bottom {
+	font-size: 18px;
+}
+#banner .slowgon .logo {
+	max-width: 600px;
+	width: 50vw;
+}
+
+.section2 {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+}
+.section2 .part1 {
+	width: 100%;
+}
+.section2 .imageContainerInner.image1 {
+	background-image: url(../img/section2/01.png);
+	border-radius: 30px;
+}
+.section2 .imageContainerInner.image2 {
+	background-image: url(../img/section2/02.png);
+	border-radius: 30px;
+}
+.section2 .contentBox {
+	flex: 1;
+	display: flex;
+	margin-bottom: 30px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+}
+.section2 .contentBox .content {
+	white-space: nowrap;
+	font-size: 18px;
+	font-weight: 700;
+	text-align: center;
+	color: #ffffff;
+	line-height: 1.5;
+	margin-bottom: 30px;
+}
+.section2 .contentBox .contentBtn {
+	display: flex;
+	justify-content: space-between;
+	width: 90%;
+	overflow: hidden;
+	border-radius: 100px;
+}
+.section2 .contentBox .contentBtn > .changeBtn {
+	width: 100%;
+	font-size: 28px;
+	font-weight: 900;
+	text-align: center;
+	line-height: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	z-index: -1;
+	opacity: 0;
+	transition: opacity 0.5s;
+	transition-timing-function: ease-in-out;
+}
+.section2 .contentBox .contentBtn > .changeBtn.active {
+	opacity: 1;
+	z-index: 0;
+}
+.changeBtn .whiteBlock,
+.changeBtn .pinkBlock {
+	min-width: 80px;
+	padding: 20px 15px;
+}
+.whiteBlock {
+	width: 10%;
+	background: #fff;
+}
+.pinkBlock {
+	width: 90%;
+	text-align: left;
+	background: #ff0082;
+	color: #fff;
+}
+
+.section2 .contentBox .contentBtn .leftBtn,
+.section2 .contentBox .contentBtn .rightBtn {
+	background: #fff;
+	width: 49%;
+	white-space: nowrap;
+	font-size: 28px;
+	font-weight: 900;
+	text-align: center;
+	color: #0000ff;
+	line-height: 1;
+	padding: 20px 0;
+	opacity: 1;
+	transition: opacity 0.5s;
+	transition-timing-function: ease-in-out;
+	cursor: pointer;
+	z-index: 0;
+}
+.section2 .contentBox .contentBtn .leftBtn.active,
+.section2 .contentBox .contentBtn .rightBtn.active {
+	opacity: 0;
+	z-index: -1;
+}
+
+.section2 .controlImage {
+	display: none;
+}
+
+@media screen and (max-width: 1400px) {
+	.section2 .row {
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+	.section2 .col {
+		flex: none;
+		width: 40%;
+		justify-content: space-around;
+	}
+	.section2 .contentBox {
+		flex: none;
+		margin-top: 30px;
+		width: 100%;
+		order: 2;
+	}
+	.section2 .contentBox .contentBtn {
+		width: 60%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.section2 .col {
+		display: none;
+	}
+	.section2 .controlImage {
+		display: block;
+		width: 90%;
+	}
+	.section2 .controlImage .imageContainerInner.image1 {
+		background-position: top left;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+		z-index: 1;
+		width: 50%;
+	}
+	.section2 .controlImage .imageContainerInner.image2 {
+		background-position: top right;
+		left: auto;
+		right: 0;
+	}
+	.section2 .controlImage .imageContainerInner.dragBoxStyle {
+		background-position: top left;
+		z-index: 2;
+		width: 10px;
+		background: transparent;
+		background: linear-gradient(90deg, #00000000 0%, #00000080 100%);
+		left: calc(50% - 5px);
+	}
+	.section2 .controlImage .controlBtn {
+		width: 50px;
+		height: 50px;
+		z-index: 2;
+		border-radius: 100px;
+		background: #fff;
+		cursor: pointer;
+	}
+	.section2 .contentBox {
+		flex: none;
+		margin-top: 30px;
+		width: 100%;
+		order: 2;
+	}
+	.section2 .contentBox .contentBtn {
+		width: 70%;
+	}
+}

@@ -1,0 +1,288 @@
+/* ------------ *\
+    globel 
+\* ------------ */
+
+* {
+	box-sizing: border-box;
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+body,
+html {
+	width: 100%;
+}
+a {
+	text-decoration: none;
+	color: #0000ff;
+}
+
+/* ------------ *\
+    layout 
+\* ------------ */
+
+.backgroundImg {
+	width: 100%;
+	height: 100vh;
+	background-image: url(../img/bg.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+@media screen and (max-width: 1000px) {
+	.backgroundImg {
+		background-size: contain;
+		background-repeat: repeat-y;
+		background-position: center;
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+}
+
+.container {
+	margin: 0 auto;
+	width: 95%;
+	display: flex;
+	max-width: 1400px;
+}
+.container.center {
+	justify-content: center;
+}
+
+.row {
+	width: 100%;
+	display: flex;
+}
+.row.wrap {
+	flex-wrap: wrap;
+}
+
+.col {
+	flex: 1;
+}
+
+.imageContainer,
+.imageContainer::before {
+	width: 100%;
+}
+.imageContainer::before {
+	content: '';
+	display: block;
+	padding-top: 100%;
+}
+.imageContainerInner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.tranCenter {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* ------------ *\
+    Utility 
+\* ------------ */
+.await {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #00000051;
+	display: none;
+}
+.await.active {
+	display: block;
+}
+
+#decorate {
+	width: 100%;
+	height: 100%;
+	/* overflow: hidden; */
+}
+#decorate .box {
+	position: absolute;
+	width: 90%;
+	height: 100vh;
+}
+#decorate .box.left {
+	top: -2%;
+	left: -40%;
+}
+#decorate .box.right {
+	top: -2%;
+	right: -50%;
+}
+
+#decorate .box img {
+	opacity: 0.9;
+	width: 70%;
+	min-width: 800px;
+	max-width: 1000px;
+	position: absolute;
+}
+#decorate .box img.decorate1 {
+	top: 0;
+	left: 15%;
+}
+#decorate .box img.decorate2 {
+	top: 15%;
+	left: 30%;
+}
+#decorate .box img.decorate3 {
+	bottom: 0%;
+	left: 0%;
+}
+#decorate .box img.decorate4 {
+	width: 50%;
+	min-width: 580px;
+	max-width: 730px;
+	bottom: 0%;
+	left: 5%;
+}
+
+/* ------------ *\
+    component
+\* ------------ */
+header,
+nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+}
+
+#windowsNav {
+	gap: 20px;
+	width: 70%;
+	min-width: 900px;
+	border-radius: 100px;
+	background-color: #ffffff;
+	transition: width 0.3s, border-radius 0.8s;
+}
+#windowsNav .navigator {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 50%;
+	min-width: 550px;
+	color: #0000ff;
+	line-height: 2;
+	font-weight: 1000;
+}
+.navItem {
+	font-size: 20px;
+	padding: 0 15px;
+}
+.navLink {
+	font-weight: 900;
+	font-size: 20px;
+}
+nav .navAniEle {
+	display: flex;
+	gap: 5px;
+}
+.navAniEle .block {
+	width: 2px;
+	opacity: 0.2;
+	background: #0000ff;
+	transition: opacity 0.5s;
+}
+.navAniEle .block.active {
+	opacity: 0;
+}
+#ipadNav,
+.scrollDown {
+	display: none;
+}
+
+@media screen and (max-width: 768px) {
+	#windowsNav {
+		display: none;
+	}
+	header {
+		width: 100%;
+		background: transparent;
+	}
+
+	#ipadNav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		width: 100%;
+		min-height: 70px;
+		transition: background 0.3s;
+	}
+	#ipadNav.active {
+		background: #fff;
+	}
+	#ipadNav .logo {
+	}
+	#ipadNav .hamburgerBtn {
+		color: #fff;
+		font-size: 40px;
+		cursor: pointer;
+		margin: 15px;
+		opacity: 1;
+		transition: opacity 1s;
+		z-index: 99;
+	}
+	#ipadNav .hamburgerBtn.active {
+		font-size: 40px;
+		cursor: none;
+		margin: 15px;
+		opacity: 0;
+		z-index: 0;
+	}
+	#ipadNav .clossBtn {
+		position: absolute;
+		right: 0;
+		top: 0;
+		color: #0000ff;
+		font-size: 40px;
+		cursor: none;
+		margin: 15px;
+		opacity: 0;
+		transition: opacity 1s;
+		z-index: 0;
+	}
+	#ipadNav .clossBtn.active {
+		cursor: pointer;
+		opacity: 1;
+		z-index: 99;
+	}
+	#ipadNav .navigator {
+		display: flex;
+		/* overflow: hidden; */
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		width: 100%;
+		height: 0vh;
+		opacity: 0;
+		transition: height 1s, opacity 1s;
+	}
+	#ipadNav .navigator.active {
+		opacity: 1;
+		height: 30vh;
+	}
+	.scrollDown {
+		cursor: pointer;
+		display: block;
+		top: 90vh;
+		z-index: 2;
+	}
+}
