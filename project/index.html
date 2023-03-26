@@ -9,19 +9,15 @@
 		<title>Document</title>
 		<link
 			rel="stylesheet"
-			href="./css/reset.css"
+			href="./assets/css/reset.css"
 		/>
 		<link
 			rel="stylesheet"
-			href="./css/globel.css"
+			href="./assets/css/globel.css"
 		/>
 		<link
 			rel="stylesheet"
-			href="./css/indexStyle.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="./css/main.css"
+			href="./assets/css/indexStyle.css"
 		/>
 	</head>
 	<body>
@@ -31,44 +27,44 @@
 				<div class="box left">
 					<img
 						class="decorate1"
-						src="./img/decorate/decorate01.png"
+						src="./assets/img/decorate/decorate01.png"
 						alt=""
 					/>
 					<img
 						class="decorate2"
-						src="./img/decorate/decorate02.png"
+						src="./assets/img/decorate/decorate02.png"
 						alt=""
 					/>
 					<img
 						class="decorate3"
-						src="./img/decorate/decorate03.png"
+						src="./assets/img/decorate/decorate03.png"
 						alt=""
 					/>
 					<img
 						class="decorate4"
-						src="./img/decorate/decorate04.png"
+						src="./assets/img/decorate/decorate04.png"
 						alt=""
 					/>
 				</div>
 				<div class="box right">
 					<img
 						class="decorate1"
-						src="./img/decorate/decorate01.png"
+						src="./assets/img/decorate/decorate01.png"
 						alt=""
 					/>
 					<img
 						class="decorate2"
-						src="./img/decorate/decorate02.png"
+						src="./assets/img/decorate/decorate02.png"
 						alt=""
 					/>
 					<img
 						class="decorate3"
-						src="./img/decorate/decorate03.png"
+						src="./assets/img/decorate/decorate03.png"
 						alt=""
 					/>
 					<img
 						class="decorate4"
-						src="./img/decorate/decorate04.png"
+						src="./assets/img/decorate/decorate04.png"
 						alt=""
 					/>
 				</div>
@@ -81,7 +77,7 @@
 				</div>
 				<div class="logo">
 					<img
-						src="./img/logo/center.svg"
+						src="./assets/img/logo/center.svg"
 						alt=""
 					/>
 				</div>
@@ -236,7 +232,19 @@
 			crossorigin="anonymous"
 		></script>
 		<script src="https://cdn.jsdelivr.net/npm/before-after-slider@1.0.0/dist/slider.bundle.js"></script>
-		<script src="./JS/globel.js"></script>
-		<script src="./JS/index.js"></script>
+		<script src="./assets/JS/globel.js"></script>
+		<script src="./assets/JS/index.js"></script>
+		<script>
+			// drag Event
+			new SliderBar({
+				el: '#mySlider', // The container, required
+				beforeImg: './assets/img/section2/left.png', // before image, required
+				afterImg: './assets/img/section2/right.png', // after image, required
+				width: 'default', // slide-wrap width, default 100%
+				height: 'default', // slide-wrap height, default image-height
+				line: false, // Dividing line, default true
+				lineColor: 'rgba(0,0,0,0.5)', // Dividing line color, default rgba(0,0,0,0.5)
+			});
+		</script>
 	</body>
 </html>

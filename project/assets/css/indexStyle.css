@@ -62,11 +62,11 @@ section {
 	width: 100%;
 }
 .section2 .imageContainerInner.image1 {
-	background-image: url(../img/section2/01.png);
+	background-image: url(../img/section2/left.png);
 	border-radius: 30px;
 }
 .section2 .imageContainerInner.image2 {
-	background-image: url(../img/section2/02.png);
+	background-image: url(../img/section2/right.png);
 	border-radius: 30px;
 }
 .section2 .contentBox {

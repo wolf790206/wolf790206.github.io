@@ -162,17 +162,6 @@ document.addEventListener('scroll', () => {
 	//navigate end
 });
 
-// drag Event
-new SliderBar({
-	el: '#mySlider', // The container, required
-	beforeImg: 'https://lh3.google.com/u/0/d/1upe03I4hyGpfvpHFwGrEDWI4MJC29Emz=w1473-h944-iv2', // before image, required
-	afterImg: 'https://lh3.google.com/u/0/d/1ap56K_ax4i6oEW9iccmTDXR0uSC1zWzP=w1473-h944-iv2', // after image, required
-	width: 'default', // slide-wrap width, default 100%
-	height: 'default', // slide-wrap height, default image-height
-	line: false, // Dividing line, default true
-	lineColor: 'rgba(0,0,0,0.5)', // Dividing line color, default rgba(0,0,0,0.5)
-});
-
 // get leftAndRightDataBase
 
 function getData() {
