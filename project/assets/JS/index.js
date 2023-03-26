@@ -216,12 +216,12 @@ function round2(num) {
 
 // localstorage
 function getLocalstorage() {
-	const getData = window.localStorage.getItem('Data');
+	const getData = window.localStorage.getItem('data');
 	return JSON.parse(getData);
 }
 function setLocalstorage(Data) {
 	const reData = settingData(Data);
-	window.localStorage.setItem('Data', JSON.stringify(reData));
+	window.localStorage.setItem('data', JSON.stringify(reData));
 	console.log('succes localstorage');
 }
 
