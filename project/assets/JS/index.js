@@ -82,11 +82,17 @@ Btn.forEach((e) => {
 		changeBtnAction(event);
 	});
 });
+const getLocalstorageData = getLocalstorage() || null;
+if (getLocalstorageData)
+	if (getLocalstorageData.changeBtn) {
+		if (!contentBtnAwait.classList.contains('active')) contentBtnAwait.classList.add('active');
+	}
 function changeBtnAction(ele) {
 	let data = {};
-	data.left = ele.target.dataset.left;
-	data.right = ele.target.dataset.right;
-	contentBtnAwait.classList.add('active');
+	data.left = ele ? ele.target.dataset.left : 0;
+	data.right = ele ? ele.target.dataset.right : 0;
+	if (!contentBtnAwait.classList.contains('active')) contentBtnAwait.classList.add('active');
+
 	setTimeout(() => {
 		let left = leftAndRightDataBase.left + Number(data.left);
 		let right = leftAndRightDataBase.right + Number(data.right);
@@ -99,9 +105,13 @@ function changeBtnAction(ele) {
 			if (!e.classList.contains('active')) e.classList.add('active');
 		});
 		contentBtnAwait.classList.remove('active');
-		postData(data);
-	}, 2000);
+		if (!getLocalstorageData) {
+			postData(data);
+			setLocalstorage({ changeBtn: true });
+		}
+	}, 2500);
 }
+
 // resize Event
 window.addEventListener('resize', (e) => {
 	const scroll = window.scrollY;
@@ -118,6 +128,7 @@ window.addEventListener('resize', (e) => {
 		header.style.position = `fixed`;
 	}
 });
+
 // scroll Event
 document.addEventListener('scroll', () => {
 	const scroll = window.scrollY;
@@ -173,6 +184,7 @@ function getData() {
 		})
 		.then((result) => {
 			leftAndRightDataBase = JSON.parse(result).data;
+			if (getLocalstorageData) if (getLocalstorageData.changeBtn) changeBtnAction();
 		})
 		.catch((err) => console.log('err', err));
 }
@@ -191,7 +203,7 @@ function postData(data) {
 	const scriptURL =
 		'https://script.google.com/macros/s/AKfycbx9OZindyqrkwlqcEpNe34qRQEtP0QFJHEXKj17nTAz_d6fEUlGcqSrItXIZQ_f-i5Z/exec';
 	$.post(scriptURL, getHTMLData(data), function (e) {
-		console.log(e);
+		console.log('post data msg', e);
 	});
 }
 
@@ -200,4 +212,24 @@ function postData(data) {
 function round2(num) {
 	var m = Number((Math.abs(num) * 100).toPrecision(15));
 	return (Math.round(m) / 100) * Math.sign(num);
+}
+
+// localstorage
+function getLocalstorage() {
+	const getData = window.localStorage.getItem('Data');
+	return JSON.parse(getData);
+}
+function setLocalstorage(Data) {
+	const reData = settingData(Data);
+	window.localStorage.setItem('Data', JSON.stringify(reData));
+	console.log('succes localstorage');
+}
+
+function settingData(Data) {
+	const newDate = new Date();
+	const changeBtn = Data.changeBtn ? true : false;
+	return {
+		time: newDate,
+		changeBtn: changeBtn,
+	};
 }
