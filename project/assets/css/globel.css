@@ -108,52 +108,6 @@ a {
 	display: block;
 }
 
-#decorate {
-	width: 100%;
-	height: 100%;
-	/* overflow: hidden; */
-}
-#decorate .box {
-	position: absolute;
-	width: 90%;
-	height: 100vh;
-}
-#decorate .box.left {
-	top: -2%;
-	left: -40%;
-}
-#decorate .box.right {
-	top: -2%;
-	right: -50%;
-}
-
-#decorate .box img {
-	opacity: 0.9;
-	width: 70%;
-	min-width: 800px;
-	max-width: 1000px;
-	position: absolute;
-}
-#decorate .box img.decorate1 {
-	top: 0;
-	left: 15%;
-}
-#decorate .box img.decorate2 {
-	top: 15%;
-	left: 30%;
-}
-#decorate .box img.decorate3 {
-	bottom: 0%;
-	left: 0%;
-}
-#decorate .box img.decorate4 {
-	width: 50%;
-	min-width: 580px;
-	max-width: 730px;
-	bottom: 0%;
-	left: 5%;
-}
-
 /* ------------ *\
     component
 \* ------------ */
@@ -204,8 +158,7 @@ nav .navAniEle {
 .navAniEle .block.active {
 	opacity: 0;
 }
-#ipadNav,
-.scrollDown {
+#ipadNav {
 	display: none;
 }
 
@@ -278,11 +231,5 @@ nav .navAniEle {
 	#ipadNav .navigator.active {
 		opacity: 1;
 		height: 30vh;
-	}
-	.scrollDown {
-		cursor: pointer;
-		display: block;
-		top: 90vh;
-		z-index: 2;
 	}
 }

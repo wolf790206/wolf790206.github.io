@@ -3,7 +3,6 @@
 \* ------------ */
 
 section {
-	border: 1px solid #000;
 	height: 100vh;
 }
 
@@ -17,8 +16,6 @@ section {
 #banner {
 	width: 100%;
 	height: 100vh;
-	border: 1px solid #000;
-	overflow: hidden;
 }
 .vedio {
 	width: 100%;
@@ -49,18 +46,118 @@ section {
 }
 #banner .slowgon .logo {
 	max-width: 600px;
+	min-width: 300px;
 	width: 50vw;
+}
+
+#decorate {
+	width: 100%;
+	height: 100%;
+}
+#decorate .box {
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	top: -2%;
+	opacity: 1;
+}
+#decorate .box .left {
+	width: 100%;
+	height: 100vh;
+	left: -40%;
+}
+#decorate .box .right {
+	width: 100%;
+	height: 100vh;
+	top: -2%;
+	right: -60%;
+}
+
+#decorate .box img {
+	opacity: 0.9;
+	width: 70%;
+	min-width: 800px;
+	max-width: 1000px;
+	position: absolute;
+}
+#decorate .box img.decorate1 {
+	top: 0;
+	left: 15%;
+}
+#decorate .box img.decorate2 {
+	top: 15%;
+	left: 30%;
+}
+#decorate .box img.decorate3 {
+	bottom: 0%;
+	left: 0%;
+}
+#decorate .box img.decorate4 {
+	width: 50%;
+	min-width: 580px;
+	max-width: 730px;
+	bottom: 0%;
+	left: 5%;
+}
+
+.section1 {
+	height: 250vh;
+}
+.section1 .imageBox {
+	width: 100%;
+	height: 100%;
+}
+.section1 .imageBox .image {
+	position: absolute;
+	opacity: 0;
+}
+.section1 .imageBox .image.image04 {
+	width: 46%;
+	left: 5%;
+	bottom: 19%;
+}
+.section1 .imageBox .image.image03 {
+	width: 57%;
+	left: 22%;
+	bottom: 3%;
+}
+.section1 .imageBox .image.image02 {
+	width: 45%;
+	right: 5%;
+	bottom: 14%;
+}
+.section1 .imageBox .image.image01 {
+	width: 36%;
+	right: 17%;
+	bottom: 57%;
+}
+@media screen and (max-width: 1024px) {
+	.section1 {
+		height: 200vh;
+	}
+}
+@media screen and (max-width: 768px) {
+	.section1 {
+		height: 150vh;
+	}
 }
 
 .section2 {
 	width: 100%;
-	height: 100vh;
-	display: flex;
-	align-items: center;
+	height: 150vh;
 }
 .section2 .part1 {
 	width: 100%;
+	height: 100vh;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	padding: 0 30px;
 }
+
 .section2 .imageContainerInner.image1 {
 	background-image: url(../img/section2/left.png);
 	border-radius: 30px;
@@ -127,7 +224,6 @@ section {
 	background: #ff0082;
 	color: #fff;
 }
-
 .section2 .contentBox .contentBtn .leftBtn,
 .section2 .contentBox .contentBtn .rightBtn {
 	background: #fff;
@@ -206,5 +302,11 @@ section {
 	}
 	.section2 .contentBox .contentBtn {
 		width: 70%;
+	}
+}
+
+@media screen and (max-width: 375px) {
+	.section2 .contentBox .content {
+		white-space: normal;
 	}
 }

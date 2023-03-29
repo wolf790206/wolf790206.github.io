@@ -1,6 +1,8 @@
 const header = document.querySelector('header');
 const wHeight = window.innerHeight;
+const wWidth = window.innerWidth;
 var leftAndRightDataBase;
+console.log('wHeight : ', wHeight);
 
 if (window.innerWidth > 768) {
 	header.style.top = `-${header.clientHeight}px`;
@@ -47,10 +49,58 @@ function navAniBlock(ele1, ele2, height, scroll) {
 }
 navAniEle();
 
+function animateEaseInOut(element, options) {
+	let startValues = {};
+	let endValues = {};
+	let units = {};
+
+	// 初始化每个元素的属性值
+	Object.keys(options.animate).forEach((prop) => {
+		startValues[prop] = options.animate[prop].startValue;
+		endValues[prop] = options.animate[prop].endValue;
+		units[prop] = options.animate[prop].unit || '';
+	});
+
+	// 滚动范围
+	let scrollRange =
+		options.scrollRange || document.documentElement.scrollHeight - window.innerHeight;
+
+	function animate() {
+		let scrollPosition = window.scrollY - options.startScroll;
+		let scrollPercentage = scrollPosition / scrollRange;
+		let progressPercentage = Math.sin((scrollPercentage * Math.PI) / 2);
+
+		Object.keys(endValues).forEach((prop) => {
+			let currentValue =
+				startValues[prop] + progressPercentage * (endValues[prop] - startValues[prop]);
+			element.style[prop] = currentValue + units[prop];
+		});
+
+		if (scrollPosition < scrollRange) {
+			// 如果滚动位置未到达目标，则继续更新动画
+			window.requestAnimationFrame(animate);
+		} else {
+			// 动画完成
+			if (typeof options.onComplete === 'function') {
+				options.onComplete();
+			}
+		}
+	}
+
+	animate();
+}
+function whereAni(element, options) {
+	const ROption = {};
+	ROption['animate'] = options.animate;
+	ROption['scrollRange'] = options.scrollRange;
+	ROption['startScroll'] = options.startScroll;
+
+	animateEaseInOut(element, ROption);
+}
+
 // onclick Event
 const hamburgerBtn = document.querySelector('#ipadNav .hamburgerBtn');
 const clossBtn = document.querySelector('#ipadNav .clossBtn');
-const scrollDown = document.querySelector('.scrollDown');
 hamburgerBtn.addEventListener('click', (e) => {
 	const ipadNav = document.querySelector('#ipadNav .navigator');
 	ipadNav.classList.toggle('active');
@@ -68,9 +118,6 @@ clossBtn.addEventListener('click', (e) => {
 	document.querySelector('#ipadNav').style.background = `${
 		window.scrollY > 100 ? '#fff' : 'none'
 	}`;
-});
-scrollDown.addEventListener('click', () => {
-	window.scrollTo({ top: wHeight - 70, behavior: 'smooth' });
 });
 
 const contentBtnAwait = document.querySelector('.contentBtn .await');
@@ -114,8 +161,9 @@ function changeBtnAction(ele) {
 
 // resize Event
 window.addEventListener('resize', (e) => {
-	const scroll = window.scrollY;
 	const size = e.target.innerWidth;
+	// nav
+	const scroll = window.scrollY;
 	if (size > 768) {
 		if (scroll < header.clientHeight) {
 			header.style.position = `relative`;
@@ -127,13 +175,54 @@ window.addEventListener('resize', (e) => {
 	} else {
 		header.style.position = `fixed`;
 	}
+	// banner
+	bannerDecoratePos(size);
 });
+function bannerDecoratePos(size) {
+	const bannerBox = document.querySelectorAll('#decorate .box');
+	const bannerBoxL = document.querySelector('#decorate .box .left');
+	const bannerBoxR = document.querySelector('#decorate .box .right');
+	if (size < 1200) {
+		if (size >= 375) {
+			let opacityRange = 0.5 * ((size - 375) / 825) + 0.5;
+			let topRange = -(12 * ((size - 375) / 825)) + 10;
+			bannerBox.forEach((e) => {
+				e.style.opacity = `${opacityRange}`;
+				e.style.top = `${topRange}%`;
+			});
+			let leftRange = 110 * ((size - 375) / 825) - 150;
+			bannerBoxL.style.left = `${leftRange}%`;
+			if (size < 500) {
+				let rightRange = 60 * ((size - 375) / 125) - 120;
+				bannerBoxR.style.right = `${rightRange}%`;
+			} else {
+				bannerBoxR.style.right = `-60%`;
+			}
+		} else {
+			bannerBox.forEach((e) => {
+				e.style.opacity = `.5`;
+				e.style.top = `10%`;
+			});
+			let leftRange = 50 * ((size - 320) / 55) - 200;
+			bannerBoxL.style.left = `${leftRange}%`;
+		}
+	} else {
+		bannerBox.forEach((e) => {
+			e.style.opacity = `1`;
+			e.style.top = `-2%`;
+		});
+		bannerBoxL.style.left = `-40%`;
+		bannerBoxR.style.right = `-60%`;
+	}
+}
+bannerDecoratePos(wWidth);
 
 // scroll Event
 document.addEventListener('scroll', () => {
 	const scroll = window.scrollY;
+	console.log('scroll : ', scroll);
 
-	//navigate start
+	// navigate start
 	const nav = document.getElementById('windowsNav');
 	const banner = document.getElementById('banner');
 	const bannerGap = banner.clientHeight / 20;
@@ -170,7 +259,168 @@ document.addEventListener('scroll', () => {
 		ipadNavContainer.style.background = `transparent`;
 		hamburgerBtn.style.color = `#fff`;
 	}
-	//navigate end
+	// navigate end
+
+	// banner start
+	if (scroll < wHeight / 2) {
+		const bannerSlowgon = document.querySelector('#banner .slowgon');
+		whereAni(bannerSlowgon, {
+			animate: {
+				top: {
+					startValue: 50,
+					endValue: 30,
+					unit: '%',
+				},
+				opacity: {
+					startValue: 1,
+					endValue: 0.3,
+					unit: '',
+				},
+			},
+			// 指定滚动范围
+			scrollRange: wHeight / 2,
+			// 指定起始滚动位置（可选）
+			startScroll: 0,
+		});
+	}
+	// banner end
+	// section1 start
+	if (scroll > wHeight / 2) {
+		const section1Img1 = document.querySelector('.section1 .image.image01');
+		if (scroll <= wHeight * 1.5)
+			whereAni(section1Img1, {
+				animate: {
+					bottom: {
+						startValue: 30,
+						endValue: 57,
+						unit: '%',
+					},
+					opacity: {
+						startValue: 0,
+						endValue: 1,
+						unit: '',
+					},
+				},
+				// 指定滚动范围
+				scrollRange: wHeight,
+				// 指定起始滚动位置（可选）
+				startScroll: wHeight / 2,
+			});
+	}
+	if (scroll > wHeight * 1.5) {
+		const section1Img3 = document.querySelector('.section1 .image.image03');
+		if (scroll <= wHeight * 2.5)
+			whereAni(section1Img3, {
+				animate: {
+					bottom: {
+						startValue: 10,
+						endValue: 3,
+						unit: '%',
+					},
+					opacity: {
+						startValue: 0,
+						endValue: 1,
+						unit: '',
+					},
+				},
+				// 指定滚动范围
+				scrollRange: wHeight,
+				// 指定起始滚动位置（可选）
+				startScroll: wHeight * 1.5,
+			});
+	}
+	if (scroll > wHeight * 1) {
+		const section1Img2 = document.querySelector('.section1 .image.image02');
+		if (scroll <= wHeight * 2)
+			whereAni(section1Img2, {
+				animate: {
+					bottom: {
+						startValue: 0,
+						endValue: 14,
+						unit: '%',
+					},
+					opacity: {
+						startValue: 0,
+						endValue: 1,
+						unit: '',
+					},
+				},
+				// 指定滚动范围
+				scrollRange: wHeight,
+				// 指定起始滚动位置（可选）
+				startScroll: wHeight,
+			});
+	}
+	if (scroll > wHeight * 0.8) {
+		const section1Img4 = document.querySelector('.section1 .image.image04');
+		if (scroll <= wHeight * 1.8)
+			whereAni(section1Img4, {
+				animate: {
+					bottom: {
+						startValue: 0,
+						endValue: 19,
+						unit: '%',
+					},
+					opacity: {
+						startValue: 0,
+						endValue: 1,
+						unit: '',
+					},
+				},
+				// 指定滚动范围
+				scrollRange: wHeight,
+				// 指定起始滚动位置（可选）
+				startScroll: wHeight * 0.8,
+			});
+	}
+
+	// section1 end
+
+	// section2 start
+	const section2 = document.querySelector('.section2');
+	// console.log('section2 : ', section2.offsetHeight);
+	if (scroll > section2.offsetHeight * 0.2 + section2.offsetTop) {
+		const section2Part1 = document.querySelector('.section2 .part1');
+		if (scroll <= section2.offsetHeight * 0.5 + section2.offsetTop)
+			whereAni(section2Part1, {
+				animate: {
+					bottom: {
+						startValue: 0,
+						endValue: 40,
+						unit: '%',
+					},
+					opacity: {
+						startValue: 0,
+						endValue: 1,
+						unit: '',
+					},
+				},
+				// 指定滚动范围
+				scrollRange: section2.offsetHeight * 0.3,
+				// 指定起始滚动位置（可选）
+				startScroll: section2.offsetHeight * 0.2 + section2.offsetTop,
+			});
+		else {
+			if (scroll <= section2.offsetHeight * 1 + section2.offsetTop) {
+				console.log('zz');
+				whereAni(section2Part1, {
+					animate: {
+						bottom: {
+							startValue: 40,
+							endValue: -15,
+							unit: '%',
+						},
+					},
+					// 指定滚动范围
+					scrollRange: section2.offsetHeight * 1,
+					// 指定起始滚动位置（可选）
+					startScroll: section2.offsetHeight * 0.5 + section2.offsetTop,
+				});
+			}
+		}
+	}
+
+	// section2 end
 });
 
 // get leftAndRightDataBase
@@ -224,7 +474,6 @@ function setLocalstorage(Data) {
 	window.localStorage.setItem('data', JSON.stringify(reData));
 	console.log('succes localstorage');
 }
-
 function settingData(Data) {
 	const newDate = new Date();
 	const changeBtn = Data.changeBtn ? true : false;

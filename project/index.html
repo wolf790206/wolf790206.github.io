@@ -4,8 +4,9 @@
 		<meta charset="UTF-8" />
 		<meta
 			name="viewport"
-			content="width=device-width, initial-scale=1.0"
+			content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
 		/>
+
 		<title>Document</title>
 		<link
 			rel="stylesheet"
@@ -19,54 +20,62 @@
 			rel="stylesheet"
 			href="./assets/css/indexStyle.css"
 		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+		/>
 	</head>
 	<body>
 		<div class="backgroundImg"></div>
 		<div id="banner">
 			<div id="decorate">
-				<div class="box left">
-					<img
-						class="decorate1"
-						src="./assets/img/decorate/decorate01.png"
-						alt=""
-					/>
-					<img
-						class="decorate2"
-						src="./assets/img/decorate/decorate02.png"
-						alt=""
-					/>
-					<img
-						class="decorate3"
-						src="./assets/img/decorate/decorate03.png"
-						alt=""
-					/>
-					<img
-						class="decorate4"
-						src="./assets/img/decorate/decorate04.png"
-						alt=""
-					/>
+				<div class="box">
+					<div class="left">
+						<img
+							class="decorate1 animate__animated animate__slideInLeft animate__delay-1s animate__slow"
+							src="./assets/img/decorate/decorate01.png"
+							alt=""
+						/>
+						<img
+							class="decorate2 animate__animated animate__slideInLeft animate__slower"
+							src="./assets/img/decorate/decorate02.png"
+							alt=""
+						/>
+						<img
+							class="decorate3 animate__animated animate__slideInLeft"
+							src="./assets/img/decorate/decorate03.png"
+							alt=""
+						/>
+						<img
+							class="decorate4 animate__animated animate__slideInLeft animate__slow"
+							src="./assets/img/decorate/decorate04.png"
+							alt=""
+						/>
+					</div>
 				</div>
-				<div class="box right">
-					<img
-						class="decorate1"
-						src="./assets/img/decorate/decorate01.png"
-						alt=""
-					/>
-					<img
-						class="decorate2"
-						src="./assets/img/decorate/decorate02.png"
-						alt=""
-					/>
-					<img
-						class="decorate3"
-						src="./assets/img/decorate/decorate03.png"
-						alt=""
-					/>
-					<img
-						class="decorate4"
-						src="./assets/img/decorate/decorate04.png"
-						alt=""
-					/>
+				<div class="box">
+					<div class="right">
+						<img
+							class="decorate1 animate__animated animate__slideInRight animate__slower"
+							src="./assets/img/decorate/decorate01.png"
+							alt=""
+						/>
+						<img
+							class="decorate2 animate__animated animate__slideInRight animate__delay-1s animate__slow"
+							src="./assets/img/decorate/decorate02.png"
+							alt=""
+						/>
+						<img
+							class="decorate3 animate__animated animate__slideInRight animate__slow"
+							src="./assets/img/decorate/decorate03.png"
+							alt=""
+						/>
+						<img
+							class="decorate4 animate__animated animate__slideInRight"
+							src="./assets/img/decorate/decorate04.png"
+							alt=""
+						/>
+					</div>
 				</div>
 			</div>
 			<div class="slowgon tranCenter">
@@ -170,56 +179,77 @@
 				</div>
 			</nav>
 		</header>
-		<div class="scrollDown tranCenter">⬇️</div>
 		<main>
+			<section class="section1">
+				<div class="imageBox">
+					<img
+						class="image image04"
+						src="./assets/img/section1/S1-04.png"
+						alt=""
+					/>
+					<img
+						class="image image03"
+						src="./assets/img/section1/S1-03.png"
+						alt=""
+					/>
+					<img
+						class="image image02"
+						src="./assets/img/section1/S1-02.png"
+						alt=""
+					/>
+					<img
+						class="image image01"
+						src="./assets/img/section1/S1-01.png"
+						alt=""
+					/>
+				</div>
+			</section>
 			<section class="section2">
-				<div class="container center">
-					<div class="part1">
-						<div class="row">
-							<div class="controlImage">
-								<div class="imageContainer">
-									<div class="imageContainerInner">
-										<div id="mySlider"></div>
-									</div>
+				<div class="part1">
+					<div class="row">
+						<div class="controlImage">
+							<div class="imageContainer">
+								<div class="imageContainerInner">
+									<div id="mySlider"></div>
 								</div>
 							</div>
-							<div class="col">
-								<div class="imageContainer">
-									<div class="imageContainerInner image1"></div>
-								</div>
+						</div>
+						<div class="col">
+							<div class="imageContainer">
+								<div class="imageContainerInner image1"></div>
 							</div>
-							<div class="contentBox">
-								<div class="content">
-									猜猜左右哪一張圖是真人手繪圖？
-									<br />
-									Guess which one is the hand-drawn picture?
-								</div>
-								<div class="contentBtn">
-									<div
-										class="btn leftBtn"
-										data-left="1"
-										data-right="0"
-									>
-										左邊
-									</div>
-									<div
-										class="btn rightBtn"
-										data-left="0"
-										data-right="1"
-									>
-										右邊
-									</div>
-									<div class="changeBtn">
-										<div class="whiteBlock"></div>
-										<div class="pinkBlock">90%</div>
-									</div>
-									<div class="await"></div>
-								</div>
+						</div>
+						<div class="contentBox">
+							<div class="content">
+								猜猜左右哪一張圖是真人手繪圖？
+								<br />
+								Guess which one is the hand-drawn picture?
 							</div>
-							<div class="col">
-								<div class="imageContainer">
-									<div class="imageContainerInner image2"></div>
+							<div class="contentBtn">
+								<div
+									class="btn leftBtn"
+									data-left="1"
+									data-right="0"
+								>
+									左邊
 								</div>
+								<div
+									class="btn rightBtn"
+									data-left="0"
+									data-right="1"
+								>
+									右邊
+								</div>
+								<div class="changeBtn">
+									<div class="whiteBlock"></div>
+									<div class="pinkBlock">90%</div>
+								</div>
+								<div class="await"></div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="imageContainer">
+								<div class="imageContainerInner image2"></div>
 							</div>
 						</div>
 					</div>
@@ -234,6 +264,12 @@
 		<script src="https://cdn.jsdelivr.net/npm/before-after-slider@1.0.0/dist/slider.bundle.js"></script>
 		<script src="./assets/JS/globel.js"></script>
 		<script src="./assets/JS/index.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
+			integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
 		<script>
 			// drag Event
 			new SliderBar({
