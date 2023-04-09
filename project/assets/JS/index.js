@@ -1,6 +1,8 @@
 const header = document.querySelector('header');
 const wHeight = window.innerHeight;
 const wWidth = window.innerWidth;
+const mainColor = `#0032be`;
+const white = `#fff`;
 var leftAndRightDataBase;
 console.log('wHeight : ', wHeight);
 
@@ -101,23 +103,21 @@ function whereAni(element, options) {
 // onclick Event
 const hamburgerBtn = document.querySelector('#ipadNav .hamburgerBtn');
 const clossBtn = document.querySelector('#ipadNav .clossBtn');
+const ipadNavID = document.querySelector('#ipadNav');
+const ipadNav = document.querySelector('#ipadNav .navigator');
 hamburgerBtn.addEventListener('click', (e) => {
-	const ipadNav = document.querySelector('#ipadNav .navigator');
-	ipadNav.classList.toggle('active');
-	e.target.classList.toggle('active');
-	clossBtn.classList.toggle('active');
-	document.querySelector('#ipadNav').classList.toggle('active');
-	document.querySelector('#ipadNav').style.background = `#fff`;
+	ipadNav.classList.add('active');
+	hamburgerBtn.classList.add('active');
+	clossBtn.classList.add('active');
+	ipadNavID.classList.add('active');
+	ipadNavID.style.background = `${white}`;
 });
 clossBtn.addEventListener('click', (e) => {
-	const ipadNav = document.querySelector('#ipadNav .navigator');
-	ipadNav.classList.toggle('active');
-	e.target.classList.toggle('active');
-	hamburgerBtn.classList.toggle('active');
-	document.querySelector('#ipadNav').classList.toggle('active');
-	document.querySelector('#ipadNav').style.background = `${
-		window.scrollY > 100 ? '#fff' : 'none'
-	}`;
+	ipadNav.classList.remove('active');
+	clossBtn.classList.toggle('active');
+	hamburgerBtn.classList.remove('active');
+	ipadNavID.classList.toggle('active');
+	ipadNavID.style.background = `${window.scrollY > 100 ? `${white}` : 'none'}`;
 });
 
 const contentBtnAwait = document.querySelector('.contentBtn .await');
@@ -159,6 +159,13 @@ function changeBtnAction(ele) {
 	}, 2500);
 }
 
+const section3Part2Col = document.querySelectorAll('.section3 .part2 .aniBox .column');
+section3Part2Col.forEach((ele) => {
+	ele.addEventListener('click', (e) => {
+		if (window.innerWidth <= 768) e.target.closest('.column').classList.toggle('active');
+	});
+});
+
 // resize Event
 window.addEventListener('resize', (e) => {
 	const size = e.target.innerWidth;
@@ -179,40 +186,33 @@ window.addEventListener('resize', (e) => {
 	bannerDecoratePos(size);
 });
 function bannerDecoratePos(size) {
-	const bannerBox = document.querySelectorAll('#decorate .box');
-	const bannerBoxL = document.querySelector('#decorate .box .left');
-	const bannerBoxR = document.querySelector('#decorate .box .right');
-	if (size < 1200) {
-		if (size >= 375) {
-			let opacityRange = 0.5 * ((size - 375) / 825) + 0.5;
-			let topRange = -(12 * ((size - 375) / 825)) + 10;
+	const bannerBox = document.querySelectorAll('#banner #decorate .box');
+	const bannerRBox = document.querySelector('#banner #decorate .box.right');
+	const bannerBoxL = document.querySelector('#banner #decorate .box .left');
+	const bannerBoxR = document.querySelector('#banner #decorate .box .right');
+	if (size < 1000) {
+		if (size >= 500)
 			bannerBox.forEach((e) => {
-				e.style.opacity = `${opacityRange}`;
-				e.style.top = `${topRange}%`;
+				e.style.height = `${size / 10}vh`;
 			});
-			let leftRange = 110 * ((size - 375) / 825) - 150;
-			bannerBoxL.style.left = `${leftRange}%`;
-			if (size < 500) {
-				let rightRange = 60 * ((size - 375) / 125) - 120;
-				bannerBoxR.style.right = `${rightRange}%`;
-			} else {
-				bannerBoxR.style.right = `-60%`;
-			}
-		} else {
+		else {
 			bannerBox.forEach((e) => {
-				e.style.opacity = `.5`;
-				e.style.top = `10%`;
+				e.style.height = `50vh`;
 			});
-			let leftRange = 50 * ((size - 320) / 55) - 200;
-			bannerBoxL.style.left = `${leftRange}%`;
 		}
 	} else {
 		bannerBox.forEach((e) => {
-			e.style.opacity = `1`;
-			e.style.top = `-2%`;
+			e.style.height = `100vh`;
 		});
+	}
+	if (size < 500) {
+		bannerBoxL.style.left = `-50%`;
+		bannerBoxR.style.right = `-30%`;
+		bannerRBox.style.bottom = `-2%`;
+	} else {
 		bannerBoxL.style.left = `-40%`;
 		bannerBoxR.style.right = `-60%`;
+		bannerRBox.style.bottom = `2%`;
 	}
 }
 bannerDecoratePos(wWidth);
@@ -253,11 +253,11 @@ document.addEventListener('scroll', () => {
 
 	const ipadNavContainer = document.querySelector('#ipadNav');
 	if (scroll > 100) {
-		ipadNavContainer.style.background = `#fff`;
-		hamburgerBtn.style.color = `#0000ff`;
+		ipadNavContainer.style.background = `${white}`;
+		hamburgerBtn.style.fill = `${mainColor}`;
 	} else {
 		ipadNavContainer.style.background = `transparent`;
-		hamburgerBtn.style.color = `#fff`;
+		hamburgerBtn.style.fill = `${white}`;
 	}
 	// navigate end
 
@@ -285,142 +285,468 @@ document.addEventListener('scroll', () => {
 	}
 	// banner end
 	// section1 start
-	if (scroll > wHeight / 2) {
-		const section1Img1 = document.querySelector('.section1 .image.image01');
-		if (scroll <= wHeight * 1.5)
-			whereAni(section1Img1, {
-				animate: {
-					bottom: {
-						startValue: 30,
-						endValue: 57,
-						unit: '%',
+	const section1 = document.querySelector('.section1');
+	const section1Position = section1.getBoundingClientRect();
+	if (window.innerWidth > 1024) {
+		if (section1Position.top < wHeight * 1.2) {
+			const section1Img1 = document.querySelector('.section1 .image.image01');
+			if (section1Position.top > 0)
+				whereAni(section1Img1, {
+					animate: {
+						bottom: {
+							startValue: 30,
+							endValue: 57,
+							unit: '%',
+						},
+						opacity: {
+							startValue: 0,
+							endValue: 1,
+							unit: '',
+						},
 					},
-					opacity: {
-						startValue: 0,
-						endValue: 1,
-						unit: '',
+					// 指定滚动范围
+					scrollRange: wHeight * 0.8,
+					// 指定起始滚动位置（可选）
+					startScroll: wHeight * 0.2,
+				});
+		}
+		if (section1Position.top < 0) {
+			const section1Img3 = document.querySelector('.section1 .image.image03');
+			if (section1Position.top > -1.5 * wHeight)
+				whereAni(section1Img3, {
+					animate: {
+						bottom: {
+							startValue: -30,
+							endValue: 3,
+							unit: '%',
+						},
+						opacity: {
+							startValue: 0,
+							endValue: 1,
+							unit: '',
+						},
 					},
-				},
-				// 指定滚动范围
-				scrollRange: wHeight,
-				// 指定起始滚动位置（可选）
-				startScroll: wHeight / 2,
-			});
-	}
-	if (scroll > wHeight * 1.5) {
-		const section1Img3 = document.querySelector('.section1 .image.image03');
-		if (scroll <= wHeight * 2.5)
-			whereAni(section1Img3, {
-				animate: {
-					bottom: {
-						startValue: 10,
-						endValue: 3,
-						unit: '%',
+					// 指定滚动范围
+					scrollRange: wHeight * 1.5,
+					// 指定起始滚动位置（可选）
+					startScroll: wHeight,
+				});
+		}
+		if (section1Position.top < wHeight * 0.2) {
+			const section1Img2 = document.querySelector('.section1 .image.image02');
+			if (section1Position.top > -0.8 * wHeight)
+				whereAni(section1Img2, {
+					animate: {
+						bottom: {
+							startValue: 0,
+							endValue: 14,
+							unit: '%',
+						},
+						opacity: {
+							startValue: 0,
+							endValue: 1,
+							unit: '',
+						},
 					},
-					opacity: {
-						startValue: 0,
-						endValue: 1,
-						unit: '',
+					// 指定滚动范围
+					scrollRange: wHeight,
+					// 指定起始滚动位置（可选）
+					startScroll: wHeight * 0.8,
+				});
+		}
+		if (section1Position.top < wHeight * 0.5) {
+			const section1Img4 = document.querySelector('.section1 .image.image04');
+			if (section1Position.top > 0)
+				whereAni(section1Img4, {
+					animate: {
+						bottom: {
+							startValue: 0,
+							endValue: 19,
+							unit: '%',
+						},
+						opacity: {
+							startValue: 0,
+							endValue: 1,
+							unit: '',
+						},
 					},
-				},
-				// 指定滚动范围
-				scrollRange: wHeight,
-				// 指定起始滚动位置（可选）
-				startScroll: wHeight * 1.5,
-			});
-	}
-	if (scroll > wHeight * 1) {
-		const section1Img2 = document.querySelector('.section1 .image.image02');
-		if (scroll <= wHeight * 2)
-			whereAni(section1Img2, {
-				animate: {
-					bottom: {
-						startValue: 0,
-						endValue: 14,
-						unit: '%',
+					// 指定滚动范围
+					scrollRange: wHeight * 0.5,
+					// 指定起始滚动位置（可选）
+					startScroll: wHeight * 0.5,
+				});
+		}
+	} else if (window.innerWidth >= 768) {
+		if (section1Position.top < wHeight * 0.8) {
+			const section1Img1 = document.querySelector('.section1 .image.image01');
+			if (section1Position.top > wHeight * 0.1)
+				whereAni(section1Img1, {
+					animate: {
+						bottom: {
+							startValue: 60,
+							endValue: 40,
+							unit: '%',
+						},
+						opacity: {
+							startValue: 0,
+							endValue: 1,
+							unit: '',
+						},
 					},
-					opacity: {
-						startValue: 0,
-						endValue: 1,
-						unit: '',
+					// 指定滚动范围
+					scrollRange: wHeight * 0.8,
+					// 指定起始滚动位置（可选）
+					startScroll: wHeight * 0.2,
+				});
+		}
+		if (section1Position.top < 0) {
+			const section1Img3 = document.querySelector('.section1 .image.image03');
+			if (section1Position.top > -1 * wHeight * 0.5)
+				whereAni(section1Img3, {
+					animate: {
+						bottom: {
+							startValue: -30,
+							endValue: 3,
+							unit: '%',
+						},
+						opacity: {
+							startValue: 0,
+							endValue: 1,
+							unit: '',
+						},
 					},
-				},
-				// 指定滚动范围
-				scrollRange: wHeight,
-				// 指定起始滚动位置（可选）
-				startScroll: wHeight,
-			});
-	}
-	if (scroll > wHeight * 0.8) {
-		const section1Img4 = document.querySelector('.section1 .image.image04');
-		if (scroll <= wHeight * 1.8)
-			whereAni(section1Img4, {
-				animate: {
-					bottom: {
-						startValue: 0,
-						endValue: 19,
-						unit: '%',
+					// 指定滚动范围
+					scrollRange: wHeight * 1.3,
+					// 指定起始滚动位置（可选）
+					startScroll: wHeight * 1,
+				});
+		}
+		if (section1Position.top < wHeight * 0.5) {
+			const section1Img2 = document.querySelector('.section1 .image.image02');
+			if (section1Position.top > -1 * wHeight * 0.2)
+				whereAni(section1Img2, {
+					animate: {
+						bottom: {
+							startValue: 10,
+							endValue: 14,
+							unit: '%',
+						},
+						opacity: {
+							startValue: 0,
+							endValue: 1,
+							unit: '',
+						},
 					},
-					opacity: {
-						startValue: 0,
-						endValue: 1,
-						unit: '',
+					// 指定滚动范围
+					scrollRange: wHeight * 1.2,
+					// 指定起始滚动位置（可选）
+					startScroll: wHeight * 0.7,
+				});
+		}
+		if (section1Position.top < wHeight * 0.5) {
+			const section1Img4 = document.querySelector('.section1 .image.image04');
+			if (section1Position.top > 0)
+				whereAni(section1Img4, {
+					animate: {
+						bottom: {
+							startValue: 13,
+							endValue: 30,
+							unit: '%',
+						},
+						opacity: {
+							startValue: 0,
+							endValue: 1,
+							unit: '',
+						},
 					},
-				},
-				// 指定滚动范围
-				scrollRange: wHeight,
-				// 指定起始滚动位置（可选）
-				startScroll: wHeight * 0.8,
-			});
+					// 指定滚动范围
+					scrollRange: wHeight * 1.2,
+					// 指定起始滚动位置（可选）
+					startScroll: wHeight * 0.7,
+				});
+		}
+	} else {
+		if (section1Position.top < wHeight * 0.8) {
+			const section1Img1 = document.querySelector('.section1 .image.image01');
+			if (section1Position.top > wHeight * 0.1)
+				whereAni(section1Img1, {
+					animate: {
+						bottom: {
+							startValue: 60,
+							endValue: 40,
+							unit: '%',
+						},
+						opacity: {
+							startValue: 0,
+							endValue: 1,
+							unit: '',
+						},
+					},
+					// 指定滚动范围
+					scrollRange: wHeight * 0.8,
+					// 指定起始滚动位置（可选）
+					startScroll: wHeight * 0.2,
+				});
+		}
+		if (section1Position.top < 0) {
+			const section1Img3 = document.querySelector('.section1 .image.image03');
+			if (section1Position.top > -1 * wHeight)
+				whereAni(section1Img3, {
+					animate: {
+						bottom: {
+							startValue: -20,
+							endValue: 10,
+							unit: '%',
+						},
+						opacity: {
+							startValue: 0,
+							endValue: 1,
+							unit: '',
+						},
+					},
+					// 指定滚动范围
+					scrollRange: wHeight * 2,
+					// 指定起始滚动位置（可选）
+					startScroll: wHeight * 1,
+				});
+		}
+		if (section1Position.top < wHeight * 0.5) {
+			const section1Img2 = document.querySelector('.section1 .image.image02');
+			if (section1Position.top > -1 * wHeight * 0.2)
+				whereAni(section1Img2, {
+					animate: {
+						bottom: {
+							startValue: 10,
+							endValue: 14,
+							unit: '%',
+						},
+						opacity: {
+							startValue: 0,
+							endValue: 1,
+							unit: '',
+						},
+					},
+					// 指定滚动范围
+					scrollRange: wHeight * 1.2,
+					// 指定起始滚动位置（可选）
+					startScroll: wHeight * 0.7,
+				});
+		}
+		if (section1Position.top < wHeight * 0.5) {
+			const section1Img4 = document.querySelector('.section1 .image.image04');
+			if (section1Position.top > 0)
+				whereAni(section1Img4, {
+					animate: {
+						bottom: {
+							startValue: 13,
+							endValue: 30,
+							unit: '%',
+						},
+						opacity: {
+							startValue: 0,
+							endValue: 1,
+							unit: '',
+						},
+					},
+					// 指定滚动范围
+					scrollRange: wHeight * 1.2,
+					// 指定起始滚动位置（可选）
+					startScroll: wHeight * 0.7,
+				});
+		}
 	}
 
 	// section1 end
 
 	// section2 start
 	const section2 = document.querySelector('.section2');
-	// console.log('section2 : ', section2.offsetHeight);
-	if (scroll > section2.offsetHeight * 0.2 + section2.offsetTop) {
+	const section2Position = section2.getBoundingClientRect();
+	if (section2Position.top < wHeight) {
 		const section2Part1 = document.querySelector('.section2 .part1');
-		if (scroll <= section2.offsetHeight * 0.5 + section2.offsetTop)
-			whereAni(section2Part1, {
-				animate: {
-					bottom: {
-						startValue: 0,
-						endValue: 40,
-						unit: '%',
-					},
-					opacity: {
-						startValue: 0,
-						endValue: 1,
-						unit: '',
-					},
-				},
-				// 指定滚动范围
-				scrollRange: section2.offsetHeight * 0.3,
-				// 指定起始滚动位置（可选）
-				startScroll: section2.offsetHeight * 0.2 + section2.offsetTop,
-			});
-		else {
-			if (scroll <= section2.offsetHeight * 1 + section2.offsetTop) {
-				console.log('zz');
+		if (section2Position.top < wHeight * 0.5)
+			if (section2Position.top > 0) {
 				whereAni(section2Part1, {
 					animate: {
-						bottom: {
-							startValue: 40,
-							endValue: -15,
-							unit: '%',
+						opacity: {
+							startValue: 0,
+							endValue: 1,
+							unit: '',
 						},
 					},
 					// 指定滚动范围
-					scrollRange: section2.offsetHeight * 1,
+					scrollRange: wHeight * 0.5,
 					// 指定起始滚动位置（可选）
-					startScroll: section2.offsetHeight * 0.5 + section2.offsetTop,
+					startScroll: section2.offsetTop + wHeight * 0.5,
 				});
+			} else {
+				section2Part1.style.opacity = `1`;
 			}
+		if (section2Position.top < 0) {
+			if (section2Position.top > -0.5 * wHeight)
+				section2Part1.style.top = `${section2Position.top * -1}px`;
+			else section2Part1.style.top = `${0.5 * wHeight}px`;
+		} else {
+			section2Part1.style.top = `0px`;
 		}
 	}
 
 	// section2 end
+
+	// section3 start
+	const section3 = document.querySelector('.section3');
+	const section3Position = section3.getBoundingClientRect();
+	const section3Part1Content = document.querySelector('.section3 .part1 .content');
+	if (section3Position.top < wHeight * 1.3) {
+		if (section3Position.top > wHeight * 0.8) {
+			let result = section3Position.top / wHeight;
+			section3Part1Content.style.transform = `scale(${result + 0.2})`;
+		} else {
+			section3Part1Content.style.transform = `scale(1)`;
+		}
+	}
+	const section3Part1 = document.querySelector('.section3 .part1');
+	if (section3Position.top < wHeight * 0.8) {
+		if (section3Position.top > wHeight * 0.3) {
+			let result = (section3Position.top * 60) / wHeight;
+			section3Part1.style.top = `${18 - result}vh`;
+		} else {
+			section3Part1.style.top = `0`;
+		}
+	}
+	const section3Part1Box = document.querySelector('.section3 .part1 .box');
+	const section3Part1SliderRow = document.querySelector('.section3 .part1 .box .sliderRow');
+	if (window.innerWidth > 768) {
+		if (section3Position.top < 0) {
+			if (section3Position.top > wHeight * -2) {
+				let result = (section3Position.top / wHeight) * 150;
+				section3Part1Box.style.top = `${0 - section3Position.top}px`;
+				section3Part1SliderRow.style.left = `${result + 100}%`;
+			} else {
+			}
+		}
+	} else {
+		if (section3Position.top < 0) {
+			if (section3Position.top > wHeight * -4) {
+				let result = (section3Position.top / wHeight) * 100;
+				section3Part1Box.style.top = `${0 - section3Position.top}px`;
+				section3Part1SliderRow.style.left = `${result + 100}%`;
+			} else {
+			}
+		}
+	}
+	const section3Part2 = document.querySelector('.section3 .part2');
+	const section3Part2Position = section3Part2.getBoundingClientRect();
+	console.log('section3Part2Position : ', section3Part2Position.top);
+	if (section3Part2Position.top < wHeight) {
+		const section3Part2Content = document.querySelector('.section3 .part2 .content');
+		const section3Part2Box = document.querySelector('.section3 .part2 .box');
+		const section3Part2aniBox = document.querySelector('.section3 .part2 .aniBox');
+		const section3Part2Img = section3Part2aniBox.querySelectorAll('.imageContainer');
+		if (section3Part2Position.top > wHeight * 0.5) {
+			section3Part2Content.style.transform = `scale(2)`;
+			section3Part2aniBox.style.width = `0%`;
+		} else if (section3Part2Position.top > 0) {
+			let result = (section3Part2Position.top * 2) / wHeight;
+			section3Part2Content.style.transform = `scale(${result + 1})`;
+		}
+		if (section3Part2Position.top < 0) {
+			if (section3Part2Position.top > wHeight * -2) {
+				section3Part2Box.style.top = `${-section3Part2Position.top}px`;
+			}
+			if (section3Part2Position.top > wHeight * -0.5) {
+				let result = ((section3Part2Position.top * -2) / wHeight) * 100;
+				section3Part2aniBox.style.width = `${result}%`;
+			} else {
+				section3Part2aniBox.style.width = `100%`;
+			}
+			if (section3Part2Position.top < wHeight * -0.5) {
+				section3Part2Img.forEach((e) => {
+					e.style.opacity = `1`;
+				});
+				if (section3Part2Position.top > wHeight * -1.5) {
+					let result1 = (section3Part2Position.top / wHeight) * -300;
+					let result2 = (section3Part2Position.top / wHeight) * 720;
+					section3Part2Img[0].style.transform = `translateX(${result1 - 450}%) rotate(${
+						result2 + 1080
+					}deg)`;
+				} else {
+					section3Part2Img[0].style.transform = `translateX(0) rotate(0)`;
+				}
+				if (section3Part2Position.top > wHeight * -1.5) {
+					let result1 = (section3Part2Position.top / wHeight) * -300;
+					let result2 = (section3Part2Position.top / wHeight) * 360;
+					section3Part2Img[1].style.transform = `translateY(${result1 - 450}%) rotate(${
+						result2 + 540
+					}deg)`;
+				} else {
+					section3Part2Img[1].style.transform = `translateY(0) rotate(0)`;
+				}
+				if (section3Part2Position.top > wHeight * -1.5) {
+					let result1 = (section3Part2Position.top / wHeight) * 250;
+					let result2 = (section3Part2Position.top / wHeight) * -540;
+					section3Part2Img[2].style.transform = `translateX(${result1 + 375}%) rotate(${
+						result2 - 810
+					}deg)`;
+				} else {
+					section3Part2Img[2].style.transform = `translateX(0) rotate(0)`;
+				}
+				if (section3Part2Position.top < wHeight * -0.9) {
+					if (section3Part2Position.top > wHeight * -1.8) {
+						let result1 = ((section3Part2Position.top / wHeight) * -3000) / 9;
+						let result2 = (section3Part2Position.top / wHeight) * 600;
+						section3Part2Img[3].style.transform = `translateX(${
+							result1 - 600
+						}%) rotate(${result2 + 1080}deg)`;
+					} else {
+						section3Part2Img[3].style.transform = `translateX(0) rotate(0)`;
+					}
+					if (section3Part2Position.top > wHeight * -1.6) {
+						let result1 = aniFn({
+							now: section3Part2Position.top,
+							ds: wHeight * -0.9,
+							df: wHeight * -1.6,
+							as: 250,
+							af: 0,
+						});
+						let result2 = aniFn({
+							now: section3Part2Position.top,
+							ds: wHeight * -0.9,
+							df: wHeight * -1.6,
+							as: 540,
+							af: 0,
+						});
+						section3Part2Img[4].style.transform = `translateY(${result1}%) rotate(${result2}deg)`;
+					} else {
+						section3Part2Img[4].style.transform = `translateX(0) rotate(0)`;
+					}
+					if (section3Part2Position.top > wHeight * -1.7) {
+						let result1 = aniFn({
+							now: section3Part2Position.top,
+							ds: wHeight * -0.9,
+							df: wHeight * -1.7,
+							as: 300,
+							af: 0,
+						});
+						let result2 = aniFn({
+							now: section3Part2Position.top,
+							ds: wHeight * -0.9,
+							df: wHeight * -1.7,
+							as: 720,
+							af: 0,
+						});
+						section3Part2Img[5].style.transform = `translateY(${result1}%) rotate(${result2}deg)`;
+					} else {
+						section3Part2Img[5].style.transform = `translateX(0) rotate(0)`;
+					}
+				}
+			} else {
+				section3Part2Img.forEach((e) => {
+					e.style.opacity = `0`;
+				});
+			}
+		}
+	}
+	// section3 end
 });
 
 // get leftAndRightDataBase
@@ -481,4 +807,12 @@ function settingData(Data) {
 		time: newDate,
 		changeBtn: changeBtn,
 	};
+}
+
+function aniFn(option) {
+	let cal1 = option.now - option.ds;
+	let cal2 = option.af - option.as;
+	let cal3 = option.df - option.ds;
+	let cal4 = (cal1 * cal2) / cal3;
+	return cal4 + option.as;
 }
