@@ -184,38 +184,8 @@ window.addEventListener('resize', (e) => {
 	}
 	// banner
 	bannerDecoratePos(size);
+	resizeSection3Part3(size);
 });
-function bannerDecoratePos(size) {
-	const bannerBox = document.querySelectorAll('#banner #decorate .box');
-	const bannerRBox = document.querySelector('#banner #decorate .box.right');
-	const bannerBoxL = document.querySelector('#banner #decorate .box .left');
-	const bannerBoxR = document.querySelector('#banner #decorate .box .right');
-	if (size < 1000) {
-		if (size >= 500)
-			bannerBox.forEach((e) => {
-				e.style.height = `${size / 10}vh`;
-			});
-		else {
-			bannerBox.forEach((e) => {
-				e.style.height = `50vh`;
-			});
-		}
-	} else {
-		bannerBox.forEach((e) => {
-			e.style.height = `100vh`;
-		});
-	}
-	if (size < 500) {
-		bannerBoxL.style.left = `-50%`;
-		bannerBoxR.style.right = `-30%`;
-		bannerRBox.style.bottom = `-2%`;
-	} else {
-		bannerBoxL.style.left = `-40%`;
-		bannerBoxR.style.right = `-60%`;
-		bannerRBox.style.bottom = `2%`;
-	}
-}
-bannerDecoratePos(wWidth);
 
 // scroll Event
 document.addEventListener('scroll', () => {
@@ -657,13 +627,116 @@ function settingData(Data) {
 	};
 }
 
-function aniFn(option) {
-	let cal1 = option.now - option.ds;
-	let cal2 = option.af - option.as;
-	let cal3 = option.df - option.ds;
-	let cal4 = (cal1 * cal2) / cal3;
-	return cal4 + option.as;
+// easeInOut
+function easeInOutAniFn(option) {
+	let progress = (option.now - option.ds) / (option.df - option.ds);
+	let t = easeInOut(progress);
+	let nowAni =
+		option.as + (3 * (option.af - option.as) * t * t - 2 * (option.af - option.as) * t * t * t);
+	return nowAni;
 }
+function easeInOut(t) {
+	return 3 * t * t - 2 * t * t * t;
+}
+// line
+function lineAniFn(option) {
+	let progress = ((option.now - option.ds) * (option.af - option.as)) / (option.df - option.ds);
+	let nowAni = progress + option.as;
+	return nowAni;
+}
+
+// resize ani
+bannerDecoratePos(wWidth);
+function bannerDecoratePos(size) {
+	const bannerBox = document.querySelectorAll('#banner #decorate .box');
+	const bannerRBox = document.querySelector('#banner #decorate .box.right');
+	const bannerBoxL = document.querySelector('#banner #decorate .box .left');
+	const bannerBoxR = document.querySelector('#banner #decorate .box .right');
+	if (size < 1000) {
+		if (size >= 500)
+			bannerBox.forEach((e) => {
+				e.style.height = `${size / 10}vh`;
+			});
+		else {
+			bannerBox.forEach((e) => {
+				e.style.height = `50vh`;
+			});
+		}
+	} else {
+		bannerBox.forEach((e) => {
+			e.style.height = `100vh`;
+		});
+	}
+	if (size < 500) {
+		bannerBoxL.style.left = `-50%`;
+		bannerBoxR.style.right = `-30%`;
+		bannerRBox.style.bottom = `-2%`;
+	} else {
+		bannerBoxL.style.left = `-40%`;
+		bannerBoxR.style.right = `-60%`;
+		bannerRBox.style.bottom = `2%`;
+	}
+}
+resizeSection3Part3(wWidth);
+function resizeSection3Part3(size) {
+	const section3Part3NewsRow = document.querySelector('.section3 .part3 .newsBox .newsRow');
+	if (size < 1440) {
+		if (size > 768) {
+			let result1 = lineAniFn({
+				now: size,
+				ds: 1440,
+				df: 768,
+				as: 1,
+				af: 0.5,
+			});
+			let result2 = lineAniFn({
+				now: size,
+				ds: 1440,
+				df: 768,
+				as: -50,
+				af: -100,
+			});
+			section3Part3NewsRow.style.transform = `scale(${result1}) translate(${result2}%, ${result2}%)`;
+		} else {
+			section3Part3NewsRow.style.transform = `scale(0.5) translate(-100%, -100%)`;
+		}
+	} else {
+		section3Part3NewsRow.style.transform = `scale(1) translate(-50%, -50%)`;
+	}
+	if (size < 1440) {
+		if (size > 768) {
+			let left = 58;
+			if (size >= 1000) {
+				let result = lineAniFn({
+					now: size,
+					ds: 1440,
+					df: 1000,
+					as: 50,
+					af: left,
+				});
+				section3Part3NewsRow.style.left = `${result}%`;
+			} else {
+				let result = lineAniFn({
+					now: size,
+					ds: 1000,
+					df: 768,
+					as: left,
+					af: 50,
+				});
+				section3Part3NewsRow.style.left = `${result}%`;
+			}
+		} else {
+			section3Part3NewsRow.style.left = `50%`;
+		}
+	} else {
+		section3Part3NewsRow.style.left = `50%`;
+	}
+	if (size < 450) {
+		section3Part3NewsRow.style.transform = `scale(1) translate(-50%, -50%)`;
+	}
+}
+
+// scroll ani
 section3Ani();
 function section3Ani() {
 	const section3 = document.querySelector('.section3');
@@ -753,7 +826,7 @@ function section3Ani() {
 				}px`;
 			}
 			if (section3Part2Position.top > wHeight * -0.5) {
-				let result = aniFn({
+				let result = easeInOutAniFn({
 					now: section3Part2Position.top,
 					ds: wHeight * 0,
 					df: wHeight * -0.5,
@@ -769,7 +842,7 @@ function section3Ani() {
 					e.style.opacity = `1`;
 				});
 				if (section3Part2Position.top > wHeight * -1.5) {
-					let result1 = aniFn({
+					let result1 = easeInOutAniFn({
 						now: section3Part2Position.top,
 						ds: wHeight * -0.5,
 						df: wHeight * -1.5,
@@ -778,7 +851,7 @@ function section3Ani() {
 							section3Part2Img[0].closest('.aniBox').offsetTop,
 						af: 0,
 					});
-					let result2 = aniFn({
+					let result2 = easeInOutAniFn({
 						now: section3Part2Position.top,
 						ds: wHeight * -0.5,
 						df: wHeight * -1.5,
@@ -790,7 +863,7 @@ function section3Ani() {
 					section3Part2Img[0].style.transform = `translateX(0) rotate(0)`;
 				}
 				if (section3Part2Position.top > wHeight * -1.6) {
-					let result1 = aniFn({
+					let result1 = easeInOutAniFn({
 						now: section3Part2Position.top,
 						ds: wHeight * -0.5,
 						df: wHeight * -1.6,
@@ -799,7 +872,7 @@ function section3Ani() {
 							section3Part2Img[1].closest('.aniBox').offsetTop,
 						af: 0,
 					});
-					let result2 = aniFn({
+					let result2 = easeInOutAniFn({
 						now: section3Part2Position.top,
 						ds: wHeight * -0.5,
 						df: wHeight * -1.6,
@@ -815,7 +888,7 @@ function section3Ani() {
 					section3Part2Img[1].style.transform = `translateY(0) rotate(0)`;
 				}
 				if (section3Part2Position.top > wHeight * -1.7) {
-					let result1 = aniFn({
+					let result1 = easeInOutAniFn({
 						now: section3Part2Position.top,
 						ds: wHeight * -0.5,
 						df: wHeight * -1.7,
@@ -824,7 +897,7 @@ function section3Ani() {
 							section3Part2Img[2].closest('.aniBox').offsetTop,
 						af: 0,
 					});
-					let result2 = aniFn({
+					let result2 = easeInOutAniFn({
 						now: section3Part2Position.top,
 						ds: wHeight * -0.5,
 						df: wHeight * -1.7,
@@ -837,7 +910,7 @@ function section3Ani() {
 				}
 				if (section3Part2Position.top < wHeight * -0.9) {
 					if (section3Part2Position.top > wHeight * -1.8) {
-						let result1 = aniFn({
+						let result1 = easeInOutAniFn({
 							now: section3Part2Position.top,
 							ds: wHeight * -0.9,
 							df: wHeight * -1.8,
@@ -846,7 +919,7 @@ function section3Ani() {
 								section3Part2Img[3].closest('.aniBox').offsetTop,
 							af: 0,
 						});
-						let result2 = aniFn({
+						let result2 = easeInOutAniFn({
 							now: section3Part2Position.top,
 							ds: wHeight * -0.9,
 							df: wHeight * -1.8,
@@ -858,7 +931,7 @@ function section3Ani() {
 						section3Part2Img[3].style.transform = `translateX(0) rotate(0)`;
 					}
 					if (section3Part2Position.top > wHeight * -1.6) {
-						let result1 = aniFn({
+						let result1 = easeInOutAniFn({
 							now: section3Part2Position.top,
 							ds: wHeight * -0.9,
 							df: wHeight * -1.6,
@@ -867,7 +940,7 @@ function section3Ani() {
 								section3Part2Img[1].closest('.aniBox').offsetTop,
 							af: 0,
 						});
-						let result2 = aniFn({
+						let result2 = easeInOutAniFn({
 							now: section3Part2Position.top,
 							ds: wHeight * -0.9,
 							df: wHeight * -1.6,
@@ -879,7 +952,7 @@ function section3Ani() {
 						section3Part2Img[4].style.transform = `translateX(0) rotate(0)`;
 					}
 					if (section3Part2Position.top > wHeight * -1.7) {
-						let result1 = aniFn({
+						let result1 = easeInOutAniFn({
 							now: section3Part2Position.top,
 							ds: wHeight * -0.9,
 							df: wHeight * -1.7,
@@ -888,7 +961,7 @@ function section3Ani() {
 								section3Part2Img[1].closest('.aniBox').offsetTop,
 							af: 0,
 						});
-						let result2 = aniFn({
+						let result2 = easeInOutAniFn({
 							now: section3Part2Position.top,
 							ds: wHeight * -0.9,
 							df: wHeight * -1.7,
