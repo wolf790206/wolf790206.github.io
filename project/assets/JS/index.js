@@ -593,159 +593,7 @@ document.addEventListener('scroll', () => {
 	// section2 end
 
 	// section3 start
-	const section3 = document.querySelector('.section3');
-	const section3Position = section3.getBoundingClientRect();
-	const section3Part1Content = document.querySelector('.section3 .part1 .content');
-	if (section3Position.top < wHeight * 1.3) {
-		if (section3Position.top > wHeight * 0.8) {
-			let result = section3Position.top / wHeight;
-			section3Part1Content.style.transform = `scale(${result + 0.2})`;
-		} else {
-			section3Part1Content.style.transform = `scale(1)`;
-		}
-	}
-	const section3Part1 = document.querySelector('.section3 .part1');
-	if (section3Position.top < wHeight * 0.8) {
-		if (section3Position.top > wHeight * 0.3) {
-			let result = (section3Position.top * 60) / wHeight;
-			section3Part1.style.top = `${18 - result}vh`;
-		} else {
-			section3Part1.style.top = `0`;
-		}
-	}
-	const section3Part1Box = document.querySelector('.section3 .part1 .box');
-	const section3Part1SliderRow = document.querySelector('.section3 .part1 .box .sliderRow');
-	if (window.innerWidth > 768) {
-		if (section3Position.top < 0) {
-			if (section3Position.top > wHeight * -2) {
-				let result = (section3Position.top / wHeight) * 150;
-				section3Part1Box.style.top = `${0 - section3Position.top}px`;
-				section3Part1SliderRow.style.left = `${result + 100}%`;
-			} else {
-			}
-		}
-	} else {
-		if (section3Position.top < 0) {
-			if (section3Position.top > wHeight * -4) {
-				let result = (section3Position.top / wHeight) * 100;
-				section3Part1Box.style.top = `${0 - section3Position.top}px`;
-				section3Part1SliderRow.style.left = `${result + 100}%`;
-			} else {
-			}
-		}
-	}
-	const section3Part2 = document.querySelector('.section3 .part2');
-	const section3Part2Position = section3Part2.getBoundingClientRect();
-	console.log('section3Part2Position : ', section3Part2Position.top);
-	if (section3Part2Position.top < wHeight) {
-		const section3Part2Content = document.querySelector('.section3 .part2 .content');
-		const section3Part2Box = document.querySelector('.section3 .part2 .box');
-		const section3Part2aniBox = document.querySelector('.section3 .part2 .aniBox');
-		const section3Part2Img = section3Part2aniBox.querySelectorAll('.imageContainer');
-		if (section3Part2Position.top > wHeight * 0.5) {
-			section3Part2Content.style.transform = `scale(2)`;
-			section3Part2aniBox.style.width = `0%`;
-		} else if (section3Part2Position.top > 0) {
-			let result = (section3Part2Position.top * 2) / wHeight;
-			section3Part2Content.style.transform = `scale(${result + 1})`;
-		}
-		if (section3Part2Position.top < 0) {
-			if (section3Part2Position.top > wHeight * -2) {
-				section3Part2Box.style.top = `${-section3Part2Position.top}px`;
-			}
-			if (section3Part2Position.top > wHeight * -0.5) {
-				let result = ((section3Part2Position.top * -2) / wHeight) * 100;
-				section3Part2aniBox.style.width = `${result}%`;
-			} else {
-				section3Part2aniBox.style.width = `100%`;
-			}
-			if (section3Part2Position.top < wHeight * -0.5) {
-				section3Part2Img.forEach((e) => {
-					e.style.opacity = `1`;
-				});
-				if (section3Part2Position.top > wHeight * -1.5) {
-					let result1 = (section3Part2Position.top / wHeight) * -300;
-					let result2 = (section3Part2Position.top / wHeight) * 720;
-					section3Part2Img[0].style.transform = `translateX(${result1 - 450}%) rotate(${
-						result2 + 1080
-					}deg)`;
-				} else {
-					section3Part2Img[0].style.transform = `translateX(0) rotate(0)`;
-				}
-				if (section3Part2Position.top > wHeight * -1.5) {
-					let result1 = (section3Part2Position.top / wHeight) * -300;
-					let result2 = (section3Part2Position.top / wHeight) * 360;
-					section3Part2Img[1].style.transform = `translateY(${result1 - 450}%) rotate(${
-						result2 + 540
-					}deg)`;
-				} else {
-					section3Part2Img[1].style.transform = `translateY(0) rotate(0)`;
-				}
-				if (section3Part2Position.top > wHeight * -1.5) {
-					let result1 = (section3Part2Position.top / wHeight) * 250;
-					let result2 = (section3Part2Position.top / wHeight) * -540;
-					section3Part2Img[2].style.transform = `translateX(${result1 + 375}%) rotate(${
-						result2 - 810
-					}deg)`;
-				} else {
-					section3Part2Img[2].style.transform = `translateX(0) rotate(0)`;
-				}
-				if (section3Part2Position.top < wHeight * -0.9) {
-					if (section3Part2Position.top > wHeight * -1.8) {
-						let result1 = ((section3Part2Position.top / wHeight) * -3000) / 9;
-						let result2 = (section3Part2Position.top / wHeight) * 600;
-						section3Part2Img[3].style.transform = `translateX(${
-							result1 - 600
-						}%) rotate(${result2 + 1080}deg)`;
-					} else {
-						section3Part2Img[3].style.transform = `translateX(0) rotate(0)`;
-					}
-					if (section3Part2Position.top > wHeight * -1.6) {
-						let result1 = aniFn({
-							now: section3Part2Position.top,
-							ds: wHeight * -0.9,
-							df: wHeight * -1.6,
-							as: 250,
-							af: 0,
-						});
-						let result2 = aniFn({
-							now: section3Part2Position.top,
-							ds: wHeight * -0.9,
-							df: wHeight * -1.6,
-							as: 540,
-							af: 0,
-						});
-						section3Part2Img[4].style.transform = `translateY(${result1}%) rotate(${result2}deg)`;
-					} else {
-						section3Part2Img[4].style.transform = `translateX(0) rotate(0)`;
-					}
-					if (section3Part2Position.top > wHeight * -1.7) {
-						let result1 = aniFn({
-							now: section3Part2Position.top,
-							ds: wHeight * -0.9,
-							df: wHeight * -1.7,
-							as: 300,
-							af: 0,
-						});
-						let result2 = aniFn({
-							now: section3Part2Position.top,
-							ds: wHeight * -0.9,
-							df: wHeight * -1.7,
-							as: 720,
-							af: 0,
-						});
-						section3Part2Img[5].style.transform = `translateY(${result1}%) rotate(${result2}deg)`;
-					} else {
-						section3Part2Img[5].style.transform = `translateX(0) rotate(0)`;
-					}
-				}
-			} else {
-				section3Part2Img.forEach((e) => {
-					e.style.opacity = `0`;
-				});
-			}
-		}
-	}
+	section3Ani();
 	// section3 end
 });
 
@@ -815,4 +663,250 @@ function aniFn(option) {
 	let cal3 = option.df - option.ds;
 	let cal4 = (cal1 * cal2) / cal3;
 	return cal4 + option.as;
+}
+section3Ani();
+function section3Ani() {
+	const section3 = document.querySelector('.section3');
+	const section3Position = section3.getBoundingClientRect();
+
+	const section3Part1 = document.querySelector('.section3 .part1');
+	const section3Part1Position = section3Part1.getBoundingClientRect();
+	const section3Part1Box = document.querySelector('.section3 .part1 .box');
+	const section3Part1Content = document.querySelector('.section3 .part1 .content');
+	const section3Part1SliderRow = document.querySelector('.section3 .part1 .box .sliderRow');
+
+	const section3Part2 = document.querySelector('.section3 .part2');
+	const section3Part2Position = section3Part2.getBoundingClientRect();
+	const section3Part2Content = document.querySelector('.section3 .part2 .content');
+	const section3Part2Box = document.querySelector('.section3 .part2 .box');
+	const section3Part2aniBox = document.querySelector('.section3 .part2 .aniBox');
+	const section3Part2Img = section3Part2aniBox.querySelectorAll('.imageContainer');
+
+	const section3Part3 = document.querySelector('.section3 .part3');
+	const section3Part3Position = section3Part3.getBoundingClientRect();
+
+	if (section3Position.top < wHeight * 1.3) {
+		if (section3Position.top > wHeight * 0.8) {
+			let result = section3Position.top / wHeight;
+			section3Part1Content.style.transform = `scale(${result + 0.2})`;
+		} else {
+			section3Part1Content.style.transform = `scale(1)`;
+		}
+	}
+	if (section3Position.top < wHeight * 0.8) {
+		if (section3Position.top > wHeight * 0.3) {
+			let result = (section3Position.top * 60) / wHeight;
+			section3Part1.style.top = `${18 - result}vh`;
+		} else {
+			section3Part1.style.top = `0`;
+		}
+	}
+
+	if (window.innerWidth > 768) {
+		if (section3Position.top < 0) {
+			section3Part1Box.style.position = `fixed`;
+			section3Part1Box.style.top = `0`;
+			if (section3Part1Position.top > wHeight * -2) {
+				let result = (section3Position.top / wHeight) * 150;
+				section3Part1SliderRow.style.left = `${result + 100}%`;
+			}
+		} else {
+			section3Part1Box.style.position = `relative`;
+		}
+	} else {
+		if (section3Position.top < 0) {
+			section3Part1Box.style.position = `fixed`;
+			section3Part1Box.style.top = `0`;
+			if (section3Position.top > wHeight * -4) {
+				let result = (section3Position.top / wHeight) * 100;
+				section3Part1SliderRow.style.left = `${result + 100}%`;
+			}
+		} else {
+			section3Part1Box.style.position = `relative`;
+		}
+	}
+	if (section3Part2Position.top < wHeight) {
+		section3Part1Box.style.position = `relative`;
+		section3Part1Box.style.top = `${
+			section3Part1.offsetHeight - section3Part1Box.offsetHeight
+		}px`;
+	}
+
+	console.log('section3Part2Position : ', section3Part2Position.top);
+
+	if (section3Part2Position.top < wHeight) {
+		if (section3Part2Position.top > wHeight * 0.5) {
+			section3Part2Content.style.transform = `scale(2)`;
+			section3Part2aniBox.style.width = `0%`;
+		} else if (section3Part2Position.top > 0) {
+			let result = (section3Part2Position.top * 2) / wHeight;
+			section3Part2Content.style.transform = `scale(${result + 1})`;
+		}
+		if (section3Part2Position.top < 0) {
+			if (section3Part2Position.top > wHeight * -2) {
+				section3Part2Box.style.position = `fixed`;
+				section3Part2Box.style.top = `0`;
+			} else if (section3Part3Position.top < wHeight) {
+				section3Part2Box.style.position = `relative`;
+				section3Part2Box.style.top = `${
+					section3Part2.offsetHeight - section3Part2Box.offsetHeight
+				}px`;
+			}
+			if (section3Part2Position.top > wHeight * -0.5) {
+				let result = aniFn({
+					now: section3Part2Position.top,
+					ds: wHeight * 0,
+					df: wHeight * -0.5,
+					as: 0,
+					af: 100,
+				});
+				section3Part2aniBox.style.width = `${result}%`;
+			} else {
+				section3Part2aniBox.style.width = `100%`;
+			}
+			if (section3Part2Position.top < wHeight * -0.5) {
+				section3Part2Img.forEach((e) => {
+					e.style.opacity = `1`;
+				});
+				if (section3Part2Position.top > wHeight * -1.5) {
+					let result1 = aniFn({
+						now: section3Part2Position.top,
+						ds: wHeight * -0.5,
+						df: wHeight * -1.5,
+						as:
+							-section3Part2Img[0].offsetHeight -
+							section3Part2Img[0].closest('.aniBox').offsetTop,
+						af: 0,
+					});
+					let result2 = aniFn({
+						now: section3Part2Position.top,
+						ds: wHeight * -0.5,
+						df: wHeight * -1.5,
+						as: 720,
+						af: 0,
+					});
+					section3Part2Img[0].style.transform = `translateX(${result1}px) rotate(${result2}deg)`;
+				} else {
+					section3Part2Img[0].style.transform = `translateX(0) rotate(0)`;
+				}
+				if (section3Part2Position.top > wHeight * -1.6) {
+					let result1 = aniFn({
+						now: section3Part2Position.top,
+						ds: wHeight * -0.5,
+						df: wHeight * -1.6,
+						as:
+							-section3Part2Img[1].offsetHeight -
+							section3Part2Img[1].closest('.aniBox').offsetTop,
+						af: 0,
+					});
+					let result2 = aniFn({
+						now: section3Part2Position.top,
+						ds: wHeight * -0.5,
+						df: wHeight * -1.6,
+						as: 360,
+						af: 0,
+					});
+					console.log(
+						'section3Part2Img[1].parentElement : ',
+						section3Part2Img[1].parentNode
+					);
+					section3Part2Img[1].style.transform = `translateY(${result1}px) rotate(${result2}deg)`;
+				} else {
+					section3Part2Img[1].style.transform = `translateY(0) rotate(0)`;
+				}
+				if (section3Part2Position.top > wHeight * -1.7) {
+					let result1 = aniFn({
+						now: section3Part2Position.top,
+						ds: wHeight * -0.5,
+						df: wHeight * -1.7,
+						as:
+							section3Part2Img[2].offsetHeight +
+							section3Part2Img[2].closest('.aniBox').offsetTop,
+						af: 0,
+					});
+					let result2 = aniFn({
+						now: section3Part2Position.top,
+						ds: wHeight * -0.5,
+						df: wHeight * -1.7,
+						as: -540,
+						af: 0,
+					});
+					section3Part2Img[2].style.transform = `translateX(${result1}px) rotate(${result2}deg)`;
+				} else {
+					section3Part2Img[2].style.transform = `translateX(0) rotate(0)`;
+				}
+				if (section3Part2Position.top < wHeight * -0.9) {
+					if (section3Part2Position.top > wHeight * -1.8) {
+						let result1 = aniFn({
+							now: section3Part2Position.top,
+							ds: wHeight * -0.9,
+							df: wHeight * -1.8,
+							as:
+								-section3Part2Img[3].offsetHeight -
+								section3Part2Img[3].closest('.aniBox').offsetTop,
+							af: 0,
+						});
+						let result2 = aniFn({
+							now: section3Part2Position.top,
+							ds: wHeight * -0.9,
+							df: wHeight * -1.8,
+							as: 540,
+							af: 0,
+						});
+						section3Part2Img[3].style.transform = `translateX(${result1}px) rotate(${result2}deg)`;
+					} else {
+						section3Part2Img[3].style.transform = `translateX(0) rotate(0)`;
+					}
+					if (section3Part2Position.top > wHeight * -1.6) {
+						let result1 = aniFn({
+							now: section3Part2Position.top,
+							ds: wHeight * -0.9,
+							df: wHeight * -1.6,
+							as:
+								section3Part2Img[1].offsetHeight +
+								section3Part2Img[1].closest('.aniBox').offsetTop,
+							af: 0,
+						});
+						let result2 = aniFn({
+							now: section3Part2Position.top,
+							ds: wHeight * -0.9,
+							df: wHeight * -1.6,
+							as: 540,
+							af: 0,
+						});
+						section3Part2Img[4].style.transform = `translateY(${result1}px) rotate(${result2}deg)`;
+					} else {
+						section3Part2Img[4].style.transform = `translateX(0) rotate(0)`;
+					}
+					if (section3Part2Position.top > wHeight * -1.7) {
+						let result1 = aniFn({
+							now: section3Part2Position.top,
+							ds: wHeight * -0.9,
+							df: wHeight * -1.7,
+							as:
+								section3Part2Img[1].offsetHeight +
+								section3Part2Img[1].closest('.aniBox').offsetTop,
+							af: 0,
+						});
+						let result2 = aniFn({
+							now: section3Part2Position.top,
+							ds: wHeight * -0.9,
+							df: wHeight * -1.7,
+							as: 720,
+							af: 0,
+						});
+						section3Part2Img[5].style.transform = `translateY(${result1}px) rotate(${result2}deg)`;
+					} else {
+						section3Part2Img[5].style.transform = `translateX(0) rotate(0)`;
+					}
+				}
+			} else {
+				section3Part2Img.forEach((e) => {
+					e.style.opacity = `0`;
+				});
+			}
+		} else {
+			section3Part2Box.style.position = `relative`;
+		}
+	}
 }

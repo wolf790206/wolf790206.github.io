@@ -398,7 +398,6 @@ section {
 	color: #fff;
 	line-height: 1.5;
 	margin-bottom: 30px;
-	transform: scale(1.5);
 }
 .section3 .box .content .title {
 	font-size: 40px;
@@ -419,7 +418,9 @@ section {
 .section3 .part1 {
 	top: -30vh;
 	height: 300vh;
-	transform: scale();
+}
+.section3 .part1 .box .content {
+	transform: scale(1.5);
 }
 .section3 .part1 .sliderBox {
 	width: 100%;
