@@ -340,12 +340,12 @@ section {
 
 .section3 {
 	width: 100%;
-	height: 1200vh;
+	height: 1600vh;
 	/* border: 1px solid #000; */
 }
 @media screen and (max-width: 768px) {
 	.section3 {
-		height: 1400vh;
+		height: 1800vh;
 	}
 }
 .section3 .background {
@@ -605,12 +605,12 @@ section {
 
 .section3 .part3 {
 	top: 600vh;
-	height: 600vh;
+	height: 1000vh;
 }
 @media screen and (max-width: 768px) {
 	.section3 .part3 {
 		top: 800vh;
-		height: 600vh;
+		height: 1000vh;
 	}
 }
 .section3 .part3 .box {
@@ -646,34 +646,43 @@ section {
 	position: absolute;
 	top: 0;
 	left: 0;
+	z-index: 0;
 }
-.section3 .part3 .newsBox .column.fake {
+.section3 .part3 .newsBox .columnFake {
 	width: 100%;
 	position: relative;
 	z-index: -99;
 }
-.section3 .part3 .newsBox .column > .imageContainer {
+.section3 .part3 .newsBox .column > .imageContainer,
+.section3 .part3 .newsBox .columnFake > .imageContainer {
 	opacity: 0;
 	transition: all 0.3s;
-	z-index: 0;
 }
-.section3 .part3 .newsBox .column > .imageContainer.first {
-	opacity: 1;
+.section3 .part3 .newsBox .column.first {
 	z-index: 3;
 }
-.section3 .part3 .newsBox .column > .imageContainer.second {
-	opacity: 0.8;
-	transform: scale(0.95) translateY(-15%);
+.section3 .part3 .newsBox .column.first > .imageContainer {
+	opacity: 1;
+	transform: scale(1) translateY(0%);
+}
+.section3 .part3 .newsBox .column.second {
 	z-index: 2;
 }
-.section3 .part3 .newsBox .column > .imageContainer.third {
+.section3 .part3 .newsBox .column.second > .imageContainer {
+	opacity: 0.8;
+	transform: scale(0.95) translateY(-15%);
+}
+.section3 .part3 .newsBox .column.third {
+	z-index: 1;
+}
+.section3 .part3 .newsBox .column.third > .imageContainer {
 	opacity: 0.7;
 	top: -20px;
 	transform: scale(0.9) translateY(-25%);
-	z-index: 1;
 }
 
-.section3 .part3 .newsBox .column > .imageContainer::before {
+.section3 .part3 .newsBox .column > .imageContainer::before,
+.section3 .part3 .newsBox .columnFake > .imageContainer::before {
 	padding-top: 31%;
 }
 .section3 .part3 .newsBox .card {
@@ -724,11 +733,15 @@ section {
 .section3 .part3 .newsBox .card > .imageContainer {
 	width: 30%;
 	position: absolute;
-	background: #000;
 	border-radius: 50%;
 	overflow: hidden;
 	top: 32%;
 	left: 72%;
+}
+.section3 .part3 .newsBox .card > .imageContainer img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 @media screen and (max-width: 450px) {
 	.section3 .part3 .box .content {
@@ -739,22 +752,21 @@ section {
 		min-width: 320px;
 		transform: scale(1) translate(-50%, -50%);
 	}
-	.section3 .part3 .newsBox .column > .imageContainer.first {
+	.section3 .part3 .newsBox .column.first > .imageContainer {
 		opacity: 1;
-		z-index: 3;
+		transform: scale(1) translateY(0%);
 	}
-	.section3 .part3 .newsBox .column > .imageContainer.second {
+	.section3 .part3 .newsBox .column.second > .imageContainer {
 		opacity: 0.8;
 		transform: scale(0.9) translateY(-15%);
-		z-index: 2;
 	}
-	.section3 .part3 .newsBox .column > .imageContainer.third {
+	.section3 .part3 .newsBox .column.third > .imageContainer {
 		opacity: 0.7;
 		top: -20px;
 		transform: scale(0.8) translateY(-20%);
-		z-index: 1;
 	}
-	.section3 .part3 .newsBox .column > .imageContainer::before {
+	.section3 .part3 .newsBox .column > .imageContainer::before,
+	.section3 .part3 .newsBox .columnFake > .imageContainer::before {
 		padding-top: 50%;
 	}
 	.section3 .part3 .newsBox .card {
@@ -778,5 +790,17 @@ section {
 	.section3 .part3 .newsBox .card > .imageContainer {
 		top: 45%;
 		left: 75%;
+	}
+}
+
+.section3 .part4 {
+	top: 1600vh;
+	height: 100vh;
+}
+@media screen and (max-width: 768px) {
+	.section3 .part4 {
+		top: 1800vh;
+		height: 100vh;
+		transform: rotate();
 	}
 }

@@ -757,6 +757,13 @@ function section3Ani() {
 
 	const section3Part3 = document.querySelector('.section3 .part3');
 	const section3Part3Position = section3Part3.getBoundingClientRect();
+	const section3Part3Box = document.querySelector('.section3 .part3 .box');
+	const section3Part3NewsBox = document.querySelector('.section3 .part3 .newsBox');
+	const section3Part3Content = document.querySelector('.section3 .part3 .content');
+	const section3Part3Col = document.querySelectorAll('.section3 .part3 .column');
+
+	const section3Part4 = document.querySelector('.section3 .part4');
+	const section3Part4Position = section3Part4.getBoundingClientRect();
 
 	if (section3Position.top < wHeight * 1.3) {
 		if (section3Position.top > wHeight * 0.8) {
@@ -804,8 +811,6 @@ function section3Ani() {
 			section3Part1.offsetHeight - section3Part1Box.offsetHeight
 		}px`;
 	}
-
-	console.log('section3Part2Position : ', section3Part2Position.top);
 
 	if (section3Part2Position.top < wHeight) {
 		if (section3Part2Position.top > wHeight * 0.5) {
@@ -980,6 +985,146 @@ function section3Ani() {
 			}
 		} else {
 			section3Part2Box.style.position = `relative`;
+		}
+	}
+	console.log('section3Part3Position : ', section3Part3Position.top);
+	if (section3Part3Position.top < wHeight) {
+		if (section3Part3Position.top > wHeight * 0.5) {
+			let result1 = lineAniFn({
+				now: section3Part3Position.top,
+				ds: wHeight * 1,
+				df: wHeight * 0.5,
+				as: 0,
+				af: 100,
+			});
+			section3Part3NewsBox.style.width = `${result1}%`;
+			section3Part3NewsBox.style.opacity = `0`;
+			let result2 = lineAniFn({
+				now: section3Part3Position.top,
+				ds: wHeight * 1,
+				df: wHeight * 0.5,
+				as: 0.3,
+				af: 1,
+			});
+			section3Part3Content.style.scale = `${result2}`;
+		} else {
+			if (section3Part3Position.top > wHeight * 0) {
+				let result = lineAniFn({
+					now: section3Part3Position.top,
+					ds: wHeight * 0.5,
+					df: wHeight * 0,
+					as: 0,
+					af: 1,
+				});
+				section3Part3NewsBox.style.opacity = `${result}`;
+			} else {
+				section3Part3NewsBox.style.opacity = `1`;
+			}
+			section3Part3NewsBox.style.width = `100%`;
+		}
+	} else {
+		section3Part3NewsBox.style.width = `0%`;
+		section3Part3NewsBox.style.opacity = `0`;
+		section3Part3Content.style.scale = `.3`;
+	}
+	if (section3Part3Position.top < 0) {
+		section3Part3Box.style.position = `fixed`;
+		section3Part3Box.style.top = `0`;
+		if (section3Part4Position.top < wHeight) {
+			console.log('section3Part4Position.top  : ', section3Part4Position.top);
+			section3Part3Box.style.position = `relative`;
+			section3Part3Box.style.top = `${wHeight * 5}px`;
+		}
+		console.log('section3Part3Box.offsetHeight : ', section3Part3Box.offsetHeight);
+		outAni(section3Part3Col, section3Part3.offsetHeight - wHeight, -section3Part3Position.top);
+	} else {
+		section3Part3Box.style.position = `relative`;
+		section3Part3Box.style.top = `auto`;
+	}
+}
+
+function outAni(obj, danst, now) {
+	const count = obj.length;
+	const smallUnit = danst / count;
+	const persent = smallUnit / danst;
+	const unit = Math.floor(now / smallUnit);
+	if (unit % 2 === 0) {
+		if (now > persent * danst * unit) {
+			if (now < persent * danst * (unit + 1)) {
+				// Math.floor(now / smallUnit)
+				if (now > persent * danst * (unit + 0.2)) {
+					if (now < persent * danst * (unit + 0.5)) {
+						let result1 = lineAniFn({
+							now: now,
+							ds: persent * danst * (unit + 0.2),
+							df: persent * danst * (unit + 0.5),
+							as: 0,
+							af: -90,
+						});
+						obj[unit].style.transform = `rotate(${result1}deg)`;
+						obj[unit].style.transformOrigin = `-35% 150%`;
+					}
+				} else {
+					obj[unit].style.transform = `rotate(0deg)`;
+					obj[unit].style.transformOrigin = `50% 50%`;
+				}
+				if (now > persent * danst * (unit + 0.5)) {
+					if (now < persent * danst * (unit + 1)) {
+						if (obj[unit].classList.contains('first')) {
+							obj[unit].classList = `column`;
+							obj[unit + 1].classList = `column first`;
+							obj[unit + 2].classList = `column second`;
+							obj[unit + 3].classList = `column third`;
+						}
+					}
+				} else {
+					if (!obj[unit].classList.contains('first')) {
+						obj[unit].classList = `column first`;
+						obj[unit + 1].classList = `column second`;
+						obj[unit + 2].classList = `column third`;
+						obj[unit + 3].classList = `column`;
+					}
+				}
+			}
+		}
+	} else {
+		if (now > persent * danst * unit) {
+			if (now < persent * danst * (unit + 1)) {
+				// unit
+				if (now > persent * danst * (unit + 0.2)) {
+					if (now < persent * danst * (unit + 0.5)) {
+						let result1 = lineAniFn({
+							now: now,
+							ds: persent * danst * (unit + 0.2),
+							df: persent * danst * (unit + 0.5),
+							as: 0,
+							af: 90,
+						});
+						obj[unit].style.transform = `rotate(${result1}deg)`;
+						obj[unit].style.transformOrigin = `135% 150%`;
+					}
+				} else {
+					obj[unit].style.transform = `rotate(0deg)`;
+					obj[unit].style.transformOrigin = `50% 50%`;
+				}
+				if (now > persent * danst * (unit + 0.5)) {
+					if (now < persent * danst * (unit + 1)) {
+						if (obj[unit].classList.contains('first')) {
+							obj[unit].classList = `column`;
+							obj[unit + 1].classList = `column first`;
+							obj[unit + 2].classList = `column second`;
+							obj[unit + 3].classList = `column third`;
+						}
+					}
+				} else {
+					if (!obj[unit].classList.contains('first')) {
+						obj[unit].classList = `column first`;
+						obj[unit + 1].classList = `column second`;
+						obj[unit + 2].classList = `column third`;
+						obj[unit + 3].classList = `column`;
+					}
+				}
+			}
 		}
 	}
 }
