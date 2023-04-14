@@ -340,12 +340,12 @@ section {
 
 .section3 {
 	width: 100%;
-	height: 1600vh;
+	height: 1700vh;
 	/* border: 1px solid #000; */
 }
 @media screen and (max-width: 768px) {
 	.section3 {
-		height: 1800vh;
+		height: 1900vh;
 	}
 }
 .section3 .background {
@@ -617,7 +617,6 @@ section {
 	overflow: hidden;
 	width: 100%;
 	height: 100vh;
-	border: 1px solid #000;
 }
 .section3 .part3 .box .content {
 	margin-bottom: 50px;
@@ -794,13 +793,91 @@ section {
 }
 
 .section3 .part4 {
-	top: 1600vh;
-	height: 100vh;
+	height: 150vh;
+	position: absolute;
+	bottom: 0;
 }
 @media screen and (max-width: 768px) {
 	.section3 .part4 {
-		top: 1800vh;
-		height: 100vh;
+		height: 150vh;
 		transform: rotate();
 	}
+}
+.section3 .part4 {
+	height: 150vh;
+	position: absolute;
+	bottom: 0;
+}
+.section3 .part4 .box .contentBox {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+}
+.section3 .part4 .box .content {
+	margin: 0 auto 30px;
+}
+.section3 .part4 .box .text {
+	font-size: 20px;
+	font-weight: 900;
+	color: #fff;
+	white-space: nowrap;
+}
+.section3 .part4 .box .title {
+	font-size: 70px;
+	font-weight: 900;
+	color: #fff;
+	margin-bottom: 100px;
+	text-align: center;
+}
+.section3 .part4 .box .enterBox > .title {
+	font-size: 40px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.section3 .part4 .box .enterBox {
+	width: 80%;
+	max-width: 1100px;
+}
+.section3 .part4 .box .enterBox .enterStyle {
+	background-color: #fff;
+	height: 60px;
+	display: flex;
+	justify-content: space-between;
+	padding: 5px 0px 5px 15px;
+	border-radius: 5px;
+	box-shadow: 5px 5px 0 0 #ffff00;
+}
+.section3 .part4 .box .enterBox .textBox {
+	width: 85%;
+	font-size: 30px;
+	color: #0032be;
+	border: none;
+	outline: none;
+}
+.section3 .part4 .box .enterBox .enterBtn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	width: 15%;
+	min-width: 60px;
+	transition: all 0.3s;
+}
+@media screen and (max-width: 450px) {
+	.section3 .part4 .box .text {
+		font-size: 16px;
+		white-space: normal;
+	}
+	.section3 .part4 .box .title,
+	.section3 .part4 .box .enterBox > .title {
+		font-size: 24px;
+	}
+	.section3 .part4 .box .enterBox .textBox {
+		font-size: 24px;
+	}
+}
+
+.section4 {
+	width: 100%;
 }

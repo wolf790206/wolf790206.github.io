@@ -764,6 +764,12 @@ function section3Ani() {
 
 	const section3Part4 = document.querySelector('.section3 .part4');
 	const section3Part4Position = section3Part4.getBoundingClientRect();
+	const section3Part4Box = section3Part4.querySelector('.box');
+	const section3Part4EnterBox = section3Part4.querySelector('.enterBox');
+	const section3Part4Content = section3Part4.querySelector('.contentBox');
+
+	const section4 = document.querySelector('.section4');
+	const section4Position = section4.getBoundingClientRect();
 
 	if (section3Position.top < wHeight * 1.3) {
 		if (section3Position.top > wHeight * 0.8) {
@@ -884,10 +890,6 @@ function section3Ani() {
 						as: 360,
 						af: 0,
 					});
-					console.log(
-						'section3Part2Img[1].parentElement : ',
-						section3Part2Img[1].parentNode
-					);
 					section3Part2Img[1].style.transform = `translateY(${result1}px) rotate(${result2}deg)`;
 				} else {
 					section3Part2Img[1].style.transform = `translateY(0) rotate(0)`;
@@ -987,7 +989,7 @@ function section3Ani() {
 			section3Part2Box.style.position = `relative`;
 		}
 	}
-	console.log('section3Part3Position : ', section3Part3Position.top);
+
 	if (section3Part3Position.top < wHeight) {
 		if (section3Part3Position.top > wHeight * 0.5) {
 			let result1 = lineAniFn({
@@ -1030,30 +1032,116 @@ function section3Ani() {
 	if (section3Part3Position.top < 0) {
 		section3Part3Box.style.position = `fixed`;
 		section3Part3Box.style.top = `0`;
-		if (section3Part4Position.top < wHeight) {
-			console.log('section3Part4Position.top  : ', section3Part4Position.top);
+		if (section3Part4Position.top < wHeight * 0.5) {
 			section3Part3Box.style.position = `relative`;
-			section3Part3Box.style.top = `${wHeight * 5}px`;
+			section3Part3Box.style.top = `${section3Part3.offsetHeight - wHeight}px`;
+		} else {
+			outAni(
+				section3Part3Col,
+				section3Part3.offsetHeight - wHeight,
+				-section3Part3Position.top
+			);
 		}
-		console.log('section3Part3Box.offsetHeight : ', section3Part3Box.offsetHeight);
-		outAni(section3Part3Col, section3Part3.offsetHeight - wHeight, -section3Part3Position.top);
 	} else {
 		section3Part3Box.style.position = `relative`;
 		section3Part3Box.style.top = `auto`;
 	}
-}
+	console.log('section4Position : ', section4Position.top);
 
+	if (section3Part4Position.top < wHeight * 0.9) {
+		if (section3Part4Position.top > wHeight * 0.65) {
+			let result = easeInOutAniFn({
+				now: section3Part4Position.top,
+				ds: wHeight * 0.9,
+				df: wHeight * 0.65,
+				as: 1,
+				af: 0,
+			});
+			section3Part3Content.style.opacity = `${result}`;
+		} else {
+			section3Part3Content.style.opacity = `0`;
+		}
+	} else {
+		section3Part3Content.style.opacity = `1`;
+	}
+	if (section3Part4Position.top < wHeight * 0.2) {
+		if (section3Part4Position.top > wHeight * -0.2) {
+			let result = easeInOutAniFn({
+				now: section3Part4Position.top,
+				ds: wHeight * 0.2,
+				df: wHeight * -0.2,
+				as: 0,
+				af: 1,
+			});
+			section3Part4EnterBox.style.opacity = `${result}`;
+		} else {
+			section3Part4EnterBox.style.opacity = `1`;
+		}
+	} else {
+		section3Part4EnterBox.style.opacity = `0`;
+	}
+	if (section3Part4Position.top < wHeight * 0.1) {
+		if (section3Part4Position.top > wHeight * -0.3) {
+			let result1 = easeInOutAniFn({
+				now: section3Part4Position.top,
+				ds: wHeight * 0.1,
+				df: wHeight * -0.3,
+				as: 1,
+				af: 0,
+			});
+			let result2 = easeInOutAniFn({
+				now: section3Part4Position.top,
+				ds: wHeight * 0.1,
+				df: wHeight * -0.3,
+				as: section3Part4Content.offsetHeight,
+				af: 0,
+			});
+			section3Part4Content.style.scale = `${result1}`;
+			section3Part4Content.style.opacity = `${result1}`;
+			section3Part4Content.style.height = `${result2}px`;
+		} else {
+			section3Part4Content.style.scale = `0`;
+			section3Part4Content.style.opacity = `0}`;
+			section3Part4Content.style.height = `0`;
+		}
+	} else {
+		section3Part4Content.style.scale = `1`;
+		section3Part4Content.style.opacity = `1`;
+		section3Part4Content.style.height = `auto`;
+	}
+	if (section3Part4Position.top < wHeight * 0.5) {
+		if (section4Position.top < wHeight) {
+			section3Part4Box.style.position = `relative`;
+			section3Part4Box.style.bottom = `-${wHeight * 0.5}px`;
+		} else {
+			section3Part4Box.style.position = `fixed`;
+			section3Part4Box.style.bottom = `0px`;
+		}
+	} else {
+		section3Part4Box.style.position = `relative`;
+		section3Part4Box.style.bottom = `${wHeight * 0.5}px`;
+	}
+}
+var reload = true;
 function outAni(obj, danst, now) {
 	const count = obj.length;
 	const smallUnit = danst / count;
 	const persent = smallUnit / danst;
 	const unit = Math.floor(now / smallUnit);
-	if (unit % 2 === 0) {
-		if (now > persent * danst * unit) {
-			if (now < persent * danst * (unit + 1)) {
-				// Math.floor(now / smallUnit)
-				if (now > persent * danst * (unit + 0.2)) {
-					if (now < persent * danst * (unit + 0.5)) {
+	if (reload) {
+		obj.forEach((e) => (e.classList = `column`));
+		obj[unit].classList = `column first`;
+		if (count > unit + 1) obj[unit + 1].classList = `column second`;
+		if (count > unit + 2) obj[unit + 2].classList = `column third`;
+		if (count > unit + 3) obj[unit + 3].classList = `column`;
+		reload = false;
+	}
+	if (now > persent * danst * unit) {
+		if (now < persent * danst * (unit + 1)) {
+			// Math.floor(now / smallUnit)
+			if (now > persent * danst * (unit + 0.2)) {
+				if (now < persent * danst * (unit + 0.5)) {
+					if (unit % 2 === 0) {
 						let result1 = lineAniFn({
 							now: now,
 							ds: persent * danst * (unit + 0.2),
@@ -1063,36 +1151,7 @@ function outAni(obj, danst, now) {
 						});
 						obj[unit].style.transform = `rotate(${result1}deg)`;
 						obj[unit].style.transformOrigin = `-35% 150%`;
-					}
-				} else {
-					obj[unit].style.transform = `rotate(0deg)`;
-					obj[unit].style.transformOrigin = `50% 50%`;
-				}
-				if (now > persent * danst * (unit + 0.5)) {
-					if (now < persent * danst * (unit + 1)) {
-						if (obj[unit].classList.contains('first')) {
-							obj[unit].classList = `column`;
-							obj[unit + 1].classList = `column first`;
-							obj[unit + 2].classList = `column second`;
-							obj[unit + 3].classList = `column third`;
-						}
-					}
-				} else {
-					if (!obj[unit].classList.contains('first')) {
-						obj[unit].classList = `column first`;
-						obj[unit + 1].classList = `column second`;
-						obj[unit + 2].classList = `column third`;
-						obj[unit + 3].classList = `column`;
-					}
-				}
-			}
-		}
-	} else {
-		if (now > persent * danst * unit) {
-			if (now < persent * danst * (unit + 1)) {
-				// unit
-				if (now > persent * danst * (unit + 0.2)) {
-					if (now < persent * danst * (unit + 0.5)) {
+					} else {
 						let result1 = lineAniFn({
 							now: now,
 							ds: persent * danst * (unit + 0.2),
@@ -1103,26 +1162,26 @@ function outAni(obj, danst, now) {
 						obj[unit].style.transform = `rotate(${result1}deg)`;
 						obj[unit].style.transformOrigin = `135% 150%`;
 					}
-				} else {
-					obj[unit].style.transform = `rotate(0deg)`;
-					obj[unit].style.transformOrigin = `50% 50%`;
 				}
-				if (now > persent * danst * (unit + 0.5)) {
-					if (now < persent * danst * (unit + 1)) {
-						if (obj[unit].classList.contains('first')) {
-							obj[unit].classList = `column`;
-							obj[unit + 1].classList = `column first`;
-							obj[unit + 2].classList = `column second`;
-							obj[unit + 3].classList = `column third`;
-						}
+			} else {
+				obj[unit].style.transform = `rotate(0deg)`;
+				obj[unit].style.transformOrigin = `50% 50%`;
+			}
+			if (now > persent * danst * (unit + 0.35)) {
+				if (now < persent * danst * (unit + 1)) {
+					if (obj[unit].classList.contains('first')) {
+						obj[unit].classList = `column`;
+						if (count > unit + 1) obj[unit + 1].classList = `column first`;
+						if (count > unit + 2) obj[unit + 2].classList = `column second`;
+						if (count > unit + 3) obj[unit + 3].classList = `column third`;
 					}
-				} else {
-					if (!obj[unit].classList.contains('first')) {
-						obj[unit].classList = `column first`;
-						obj[unit + 1].classList = `column second`;
-						obj[unit + 2].classList = `column third`;
-						obj[unit + 3].classList = `column`;
-					}
+				}
+			} else {
+				if (!obj[unit].classList.contains('first')) {
+					obj[unit].classList = `column first`;
+					if (count > unit + 1) obj[unit + 1].classList = `column second`;
+					if (count > unit + 2) obj[unit + 2].classList = `column third`;
+					if (count > unit + 3) obj[unit + 3].classList = `column`;
 				}
 			}
 		}
