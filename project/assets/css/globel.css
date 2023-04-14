@@ -88,11 +88,43 @@ a {
 	position: absolute;
 	top: 0;
 	left: 0;
-	background: #00000051;
+	justify-content: center;
+	align-items: center;
+	background: rgba(0, 51, 190, 0.5);
 	display: none;
 }
 .await.active {
-	display: block;
+	display: flex;
+}
+
+.load-1 .line {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-radius: 15px;
+	background-color: #ff0082;
+}
+
+.load-1 .line:nth-last-child(1) {
+	animation: loadingA 1.5s 1s infinite;
+}
+.load-1 .line:nth-last-child(2) {
+	animation: loadingA 1.5s 0.5s infinite;
+}
+.load-1 .line:nth-last-child(3) {
+	animation: loadingA 1.5s 0s infinite;
+}
+
+@keyframes loadingA {
+	0% {
+		height: 15px;
+	}
+	50% {
+		height: 35px;
+	}
+	100% {
+		height: 15px;
+	}
 }
 
 /* ------------ *\
@@ -103,7 +135,7 @@ nav {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	z-index: 10;
+	z-index: 98;
 }
 
 #windowsNav {
@@ -149,7 +181,7 @@ nav .navAniEle {
 	display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
 	#windowsNav {
 		display: none;
 	}

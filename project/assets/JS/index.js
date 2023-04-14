@@ -6,7 +6,7 @@ const white = `#fff`;
 var leftAndRightDataBase;
 console.log('wHeight : ', wHeight);
 
-if (window.innerWidth > 768) {
+if (window.innerWidth > 1000) {
 	header.style.top = `-${header.clientHeight}px`;
 } else {
 	header.style.position = `fixed`;
@@ -145,6 +145,7 @@ function changeBtnAction(ele) {
 		let right = leftAndRightDataBase.right + Number(data.right);
 		let whiteBlock = document.querySelector('.changeBtn .whiteBlock');
 		let pinkBlock = document.querySelector('.changeBtn .pinkBlock');
+		let content = document.querySelector('.section2 .part1 .content');
 		whiteBlock.style.width = `${round2((left / (left + right)) * 100)}%`;
 		pinkBlock.style.width = `${round2((right / (left + right)) * 100)}%`;
 		pinkBlock.innerText = `${Math.round((left / (left + right)) * 100)}%`;
@@ -152,6 +153,7 @@ function changeBtnAction(ele) {
 			if (!e.classList.contains('active')) e.classList.add('active');
 		});
 		contentBtnAwait.classList.remove('active');
+		content.innerHTML = `左右兩張作品皆為AI人工智能繪圖作品<br>Both works are AI artificial intelligence drawing works`;
 		if (!getLocalstorageData) {
 			postData(data);
 			setLocalstorage({ changeBtn: true });
@@ -166,12 +168,38 @@ section3Part2Col.forEach((ele) => {
 	});
 });
 
+const playContentBtn = document.querySelector('.section3 .part4 .enterBtn');
+playContentBtn.addEventListener('click', playContentPostFn);
+window.addEventListener('keydown', (evt) => {
+	console.log(evt);
+	if (evt.key === 'Enter') {
+		playContentPostFn();
+	}
+});
+function playContentPostFn() {
+	const textBox = document.querySelector('.section3 .part4 input.textBox');
+	const section4Content = document.querySelector('.section4 .content');
+	if (textBox.value != '') {
+		postPlayContent({ content: textBox.value });
+		const action = [40, 70];
+		let div = document.createElement('div');
+		div.classList = 'text ani';
+		div.innerHTML = textBox.value;
+		div.style.animationDelay = `5s`;
+		div.style.top = `${action[Math.floor(Math.random() * Math.floor(2))]}%`;
+		div.style.scale = `${Math.random() * 0.2 + 0.8}`;
+		div.style.animationDuration = `${Math.floor(Math.random() * 6) + 10}s`;
+		section4Content.appendChild(div);
+		textBox.value = '';
+	}
+}
+
 // resize Event
 window.addEventListener('resize', (e) => {
 	const size = e.target.innerWidth;
 	// nav
 	const scroll = window.scrollY;
-	if (size > 768) {
+	if (size > 1000) {
 		if (scroll < header.clientHeight) {
 			header.style.position = `relative`;
 			header.style.top = `-${header.clientHeight - scroll}px`;
@@ -181,6 +209,7 @@ window.addEventListener('resize', (e) => {
 		}
 	} else {
 		header.style.position = `fixed`;
+		header.style.top = `0px`;
 	}
 	// banner
 	bannerDecoratePos(size);
@@ -583,6 +612,19 @@ function getData() {
 		.catch((err) => console.log('err', err));
 }
 getData();
+function getPlayContent() {
+	const scriptURL =
+		'https://script.google.com/macros/s/AKfycbzKYAIAwk5vIJRI2qN_XZ5xO9VLYNX5lG8IzO2tyeBWYZVstzjLoZlgBKQqQIg-0gtzTQ/exec';
+	fetch(scriptURL, { method: 'GET' })
+		.then((res) => {
+			return res.text();
+		})
+		.then((result) => {
+			section4Action(JSON.parse(result).data.content);
+		})
+		.catch((err) => console.log('err', err));
+}
+getPlayContent();
 
 function postData(data) {
 	function getHTMLData() {
@@ -596,6 +638,21 @@ function postData(data) {
 	}
 	const scriptURL =
 		'https://script.google.com/macros/s/AKfycbx9OZindyqrkwlqcEpNe34qRQEtP0QFJHEXKj17nTAz_d6fEUlGcqSrItXIZQ_f-i5Z/exec';
+	$.post(scriptURL, getHTMLData(data), function (e) {
+		console.log('post data msg', e);
+	});
+}
+function postPlayContent(data) {
+	function getHTMLData() {
+		let option = {
+			sheetUrl: '1EqSAhJCpBriKPb1AcMqhP_7ugh4Nh5tJrcqUwdD9SjE',
+			sheetTag: 'workinSheet',
+			content: data.content,
+		};
+		return option;
+	}
+	const scriptURL =
+		'https://script.google.com/macros/s/AKfycbyF-W-iH6RU9kUsDs-0QnqGcBthKlLBRthfSay6BmPEOc2c-W0qy_V452amWERttMu0_A/exec';
 	$.post(scriptURL, getHTMLData(data), function (e) {
 		console.log('post data msg', e);
 	});
@@ -1186,4 +1243,23 @@ function outAni(obj, danst, now) {
 			}
 		}
 	}
+}
+
+function section4Action(data) {
+	const section4Content = document.querySelector('.section4 .content');
+	const action = [80, 10, 30, 90, 60, 20];
+
+	data.forEach((e, key) => {
+		let div = document.createElement('div');
+		div.classList = 'text ani';
+		div.innerHTML = e;
+		div.style.animationDelay = `${key * 2}s`;
+		div.style.top = `${action[key % 6]}%`;
+		div.style.scale = `${Math.random() * 0.4 + 0.7}`;
+		div.style.animationDuration = `${Math.floor(Math.random() * 6) + 10}s`;
+		section4Content.appendChild(div);
+	});
+}
+function generateRandomNumber() {
+	return Math.random() * 0.4 + 0.7;
 }
