@@ -20,28 +20,11 @@ function section6Imgpos() {
 	const shuffledNodeList = shuffleNodeList(section6Img);
 	const shuffledArray = Array.from(shuffledNodeList);
 
-	shuffledArray.forEach((e, key) => {
-		e.style.scale = `${getRandomNumberInRange(0.8, 1, true)}`;
-		if (key % 4 === 0) {
-			e.style.top = `${getRandomNumberInRange(23, 50, false)}%`;
-			e.style.left = `${getRandomNumberInRange(55, 100, false)}%`;
-		}
-		if (key % 4 === 1) {
-			e.style.top = `${getRandomNumberInRange(30, 56, false)}%`;
-			e.style.left = `${getRandomNumberInRange(0, 45, false)}%`;
-		}
-		if (key % 4 === 2) {
-			e.style.top = `${getRandomNumberInRange(54, 80, false)}%`;
-			e.style.left = `${getRandomNumberInRange(55, 100, false)}%`;
-		}
-		if (key % 4 === 3) {
-			e.style.top = `${getRandomNumberInRange(60, 90, false)}%`;
-			e.style.left = `${getRandomNumberInRange(0, 45, false)}%`;
-		}
+	shuffledArray.forEach((e) => {
+		e.style.scale = `${getRandomNumberInRange(0.7, 0.9, true)}`;
 		if (getRandomNumberInRange(0, 10, false) < 4)
 			e.style.opacity = `${getRandomNumberInRange(0, 0.3, true)}`;
 		else e.style.opacity = `${getRandomNumberInRange(0.7, 1, true)}`;
-		// getRandomNumberInRange(min, max, hasDecimal)
 	});
 
 	let section6fake = document.querySelector('.section6 > .fake');

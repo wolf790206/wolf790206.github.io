@@ -1069,12 +1069,12 @@ section {
 
 .section6 {
 	width: 100%;
-	height: 200vh;
+	height: 300vh;
 }
 .section6 .box,
 .section6 .fake {
 	width: 100%;
-	height: 250vh;
+	height: 350vh;
 	position: absolute;
 	bottom: 0;
 	overflow: hidden;
@@ -1111,7 +1111,7 @@ section {
 	}
 	.section6 .box img,
 	.section6 .fake img {
-		width: 60%;
+		width: 45%;
 	}
 }
 
