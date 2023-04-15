@@ -7,54 +7,6 @@ if (window.innerWidth > 1000) {
 	header.style.top = `0px`;
 }
 
-function animateEaseInOut(element, options) {
-	let startValues = {};
-	let endValues = {};
-	let units = {};
-
-	// 初始化每个元素的属性值
-	Object.keys(options.animate).forEach((prop) => {
-		startValues[prop] = options.animate[prop].startValue;
-		endValues[prop] = options.animate[prop].endValue;
-		units[prop] = options.animate[prop].unit || '';
-	});
-
-	// 滚动范围
-	let scrollRange =
-		options.scrollRange || document.documentElement.scrollHeight - window.innerHeight;
-
-	function animate() {
-		let scrollPosition = window.scrollY - options.startScroll;
-		let scrollPercentage = scrollPosition / scrollRange;
-		let progressPercentage = Math.sin((scrollPercentage * Math.PI) / 2);
-
-		Object.keys(endValues).forEach((prop) => {
-			let currentValue =
-				startValues[prop] + progressPercentage * (endValues[prop] - startValues[prop]);
-			element.style[prop] = currentValue + units[prop];
-		});
-
-		if (scrollPosition < scrollRange) {
-			// 如果滚动位置未到达目标，则继续更新动画
-			window.requestAnimationFrame(animate);
-		} else {
-			// 动画完成
-			if (typeof options.onComplete === 'function') {
-				options.onComplete();
-			}
-		}
-	}
-
-	animate();
-}
-function whereAni(element, options) {
-	const ROption = {};
-	ROption['animate'] = options.animate;
-	ROption['scrollRange'] = options.scrollRange;
-	ROption['startScroll'] = options.startScroll;
-
-	animateEaseInOut(element, ROption);
-}
 sectionTextLength();
 function sectionTextLength() {
 	let section5Title = document.querySelectorAll('.section5 .title span');
@@ -62,7 +14,6 @@ function sectionTextLength() {
 		e.parentNode.style.width = `${e.offsetWidth + 30}px`;
 	});
 }
-
 section6Imgpos();
 function section6Imgpos() {
 	let section6Img = document.querySelectorAll('.section6 .box img');
@@ -126,7 +77,7 @@ function changeBtnAction(ele) {
 		let right = leftAndRightDataBase.right + Number(data.right);
 		let whiteBlock = document.querySelector('.changeBtn .whiteBlock');
 		let pinkBlock = document.querySelector('.changeBtn .pinkBlock');
-		let content = document.querySelector('.section2 .part1 .content');
+		let content = document.querySelector('.section2 .box .content');
 		whiteBlock.style.width = `${round2((left / (left + right)) * 100)}%`;
 		pinkBlock.style.width = `${round2((right / (left + right)) * 100)}%`;
 		pinkBlock.innerText = `${Math.round((left / (left + right)) * 100)}%`;
@@ -185,314 +136,9 @@ window.addEventListener('resize', (e) => {
 // scroll Event
 document.addEventListener('scroll', () => {
 	const scroll = window.scrollY;
-	// section1 start
-	const section1 = document.querySelector('.section1');
-	const section1Position = section1.getBoundingClientRect();
-	if (window.innerWidth > 1024) {
-		if (section1Position.top < wHeight * 1.2) {
-			const section1Img1 = document.querySelector('.section1 .image.image01');
-			if (section1Position.top > 0)
-				whereAni(section1Img1, {
-					animate: {
-						bottom: {
-							startValue: 30,
-							endValue: 57,
-							unit: '%',
-						},
-						opacity: {
-							startValue: 0,
-							endValue: 1,
-							unit: '',
-						},
-					},
-					// 指定滚动范围
-					scrollRange: wHeight * 0.8,
-					// 指定起始滚动位置（可选）
-					startScroll: wHeight * 0.2,
-				});
-		}
-		if (section1Position.top < 0) {
-			const section1Img3 = document.querySelector('.section1 .image.image03');
-			if (section1Position.top > -1.5 * wHeight)
-				whereAni(section1Img3, {
-					animate: {
-						bottom: {
-							startValue: -30,
-							endValue: 3,
-							unit: '%',
-						},
-						opacity: {
-							startValue: 0,
-							endValue: 1,
-							unit: '',
-						},
-					},
-					// 指定滚动范围
-					scrollRange: wHeight * 1.5,
-					// 指定起始滚动位置（可选）
-					startScroll: wHeight,
-				});
-		}
-		if (section1Position.top < wHeight * 0.2) {
-			const section1Img2 = document.querySelector('.section1 .image.image02');
-			if (section1Position.top > -0.8 * wHeight)
-				whereAni(section1Img2, {
-					animate: {
-						bottom: {
-							startValue: 0,
-							endValue: 14,
-							unit: '%',
-						},
-						opacity: {
-							startValue: 0,
-							endValue: 1,
-							unit: '',
-						},
-					},
-					// 指定滚动范围
-					scrollRange: wHeight,
-					// 指定起始滚动位置（可选）
-					startScroll: wHeight * 0.8,
-				});
-		}
-		if (section1Position.top < wHeight * 0.5) {
-			const section1Img4 = document.querySelector('.section1 .image.image04');
-			if (section1Position.top > 0)
-				whereAni(section1Img4, {
-					animate: {
-						bottom: {
-							startValue: 0,
-							endValue: 19,
-							unit: '%',
-						},
-						opacity: {
-							startValue: 0,
-							endValue: 1,
-							unit: '',
-						},
-					},
-					// 指定滚动范围
-					scrollRange: wHeight * 0.5,
-					// 指定起始滚动位置（可选）
-					startScroll: wHeight * 0.5,
-				});
-		}
-	} else if (window.innerWidth >= 768) {
-		if (section1Position.top < wHeight * 0.8) {
-			const section1Img1 = document.querySelector('.section1 .image.image01');
-			if (section1Position.top > wHeight * 0.1)
-				whereAni(section1Img1, {
-					animate: {
-						bottom: {
-							startValue: 60,
-							endValue: 40,
-							unit: '%',
-						},
-						opacity: {
-							startValue: 0,
-							endValue: 1,
-							unit: '',
-						},
-					},
-					// 指定滚动范围
-					scrollRange: wHeight * 0.8,
-					// 指定起始滚动位置（可选）
-					startScroll: wHeight * 0.2,
-				});
-		}
-		if (section1Position.top < 0) {
-			const section1Img3 = document.querySelector('.section1 .image.image03');
-			if (section1Position.top > -1 * wHeight * 0.5)
-				whereAni(section1Img3, {
-					animate: {
-						bottom: {
-							startValue: -30,
-							endValue: 3,
-							unit: '%',
-						},
-						opacity: {
-							startValue: 0,
-							endValue: 1,
-							unit: '',
-						},
-					},
-					// 指定滚动范围
-					scrollRange: wHeight * 1.3,
-					// 指定起始滚动位置（可选）
-					startScroll: wHeight * 1,
-				});
-		}
-		if (section1Position.top < wHeight * 0.5) {
-			const section1Img2 = document.querySelector('.section1 .image.image02');
-			if (section1Position.top > -1 * wHeight * 0.2)
-				whereAni(section1Img2, {
-					animate: {
-						bottom: {
-							startValue: 10,
-							endValue: 14,
-							unit: '%',
-						},
-						opacity: {
-							startValue: 0,
-							endValue: 1,
-							unit: '',
-						},
-					},
-					// 指定滚动范围
-					scrollRange: wHeight * 1.2,
-					// 指定起始滚动位置（可选）
-					startScroll: wHeight * 0.7,
-				});
-		}
-		if (section1Position.top < wHeight * 0.5) {
-			const section1Img4 = document.querySelector('.section1 .image.image04');
-			if (section1Position.top > 0)
-				whereAni(section1Img4, {
-					animate: {
-						bottom: {
-							startValue: 13,
-							endValue: 30,
-							unit: '%',
-						},
-						opacity: {
-							startValue: 0,
-							endValue: 1,
-							unit: '',
-						},
-					},
-					// 指定滚动范围
-					scrollRange: wHeight * 1.2,
-					// 指定起始滚动位置（可选）
-					startScroll: wHeight * 0.7,
-				});
-		}
-	} else {
-		if (section1Position.top < wHeight * 0.8) {
-			const section1Img1 = document.querySelector('.section1 .image.image01');
-			if (section1Position.top > wHeight * 0.1)
-				whereAni(section1Img1, {
-					animate: {
-						bottom: {
-							startValue: 60,
-							endValue: 40,
-							unit: '%',
-						},
-						opacity: {
-							startValue: 0,
-							endValue: 1,
-							unit: '',
-						},
-					},
-					// 指定滚动范围
-					scrollRange: wHeight * 0.8,
-					// 指定起始滚动位置（可选）
-					startScroll: wHeight * 0.2,
-				});
-		}
-		if (section1Position.top < 0) {
-			const section1Img3 = document.querySelector('.section1 .image.image03');
-			if (section1Position.top > -1 * wHeight)
-				whereAni(section1Img3, {
-					animate: {
-						bottom: {
-							startValue: -20,
-							endValue: 10,
-							unit: '%',
-						},
-						opacity: {
-							startValue: 0,
-							endValue: 1,
-							unit: '',
-						},
-					},
-					// 指定滚动范围
-					scrollRange: wHeight * 2,
-					// 指定起始滚动位置（可选）
-					startScroll: wHeight * 1,
-				});
-		}
-		if (section1Position.top < wHeight * 0.5) {
-			const section1Img2 = document.querySelector('.section1 .image.image02');
-			if (section1Position.top > -1 * wHeight * 0.2)
-				whereAni(section1Img2, {
-					animate: {
-						bottom: {
-							startValue: 10,
-							endValue: 14,
-							unit: '%',
-						},
-						opacity: {
-							startValue: 0,
-							endValue: 1,
-							unit: '',
-						},
-					},
-					// 指定滚动范围
-					scrollRange: wHeight * 1.2,
-					// 指定起始滚动位置（可选）
-					startScroll: wHeight * 0.7,
-				});
-		}
-		if (section1Position.top < wHeight * 0.5) {
-			const section1Img4 = document.querySelector('.section1 .image.image04');
-			if (section1Position.top > 0)
-				whereAni(section1Img4, {
-					animate: {
-						bottom: {
-							startValue: 13,
-							endValue: 30,
-							unit: '%',
-						},
-						opacity: {
-							startValue: 0,
-							endValue: 1,
-							unit: '',
-						},
-					},
-					// 指定滚动范围
-					scrollRange: wHeight * 1.2,
-					// 指定起始滚动位置（可选）
-					startScroll: wHeight * 0.7,
-				});
-		}
-	}
 
-	// section1 end
-
-	// section2 start
-	const section2 = document.querySelector('.section2');
-	const section2Position = section2.getBoundingClientRect();
-	if (section2Position.top < wHeight) {
-		const section2Part1 = document.querySelector('.section2 .part1');
-		if (section2Position.top < wHeight * 0.5)
-			if (section2Position.top > 0) {
-				whereAni(section2Part1, {
-					animate: {
-						opacity: {
-							startValue: 0,
-							endValue: 1,
-							unit: '',
-						},
-					},
-					// 指定滚动范围
-					scrollRange: wHeight * 0.5,
-					// 指定起始滚动位置（可选）
-					startScroll: section2.offsetTop + wHeight * 0.5,
-				});
-			} else {
-				section2Part1.style.opacity = `1`;
-			}
-		if (section2Position.top < 0) {
-			if (section2Position.top > -0.5 * wHeight)
-				section2Part1.style.top = `${section2Position.top * -1}px`;
-			else section2Part1.style.top = `${0.5 * wHeight}px`;
-		} else {
-			section2Part1.style.top = `0px`;
-		}
-	}
-
-	// section2 end
-
+	section1Ani(window.innerWidth);
+	section2Ani();
 	section3Ani();
 	section5Ani();
 	section6Ani();
@@ -641,7 +287,369 @@ function resizeSection3Part3(size) {
 }
 
 // scroll ani
-section3Ani();
+
+function section1Ani(wWidth) {
+	const section1 = document.querySelector('.section1');
+	const section1Position = section1.getBoundingClientRect();
+	const section1Img1 = document.querySelector('.section1 .image.image01');
+	const section1Img3 = document.querySelector('.section1 .image.image03');
+	const section1Img2 = document.querySelector('.section1 .image.image02');
+	const section1Img4 = document.querySelector('.section1 .image.image04');
+
+	if (wWidth > 1024) {
+		if (section1Position.top < wHeight * 1) {
+			if (section1Position.top > 0) {
+				let result1 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 1,
+					df: wHeight * 0,
+					as: 50,
+					af: 30,
+				});
+				let result2 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 1,
+					df: wHeight * 0,
+					as: 0,
+					af: 1,
+				});
+				section1Img1.style.bottom = `${result1}%`;
+				section1Img1.style.opacity = `${result2}`;
+			} else {
+				section1Img1.style.bottom = `30%`;
+				section1Img1.style.opacity = `1`;
+			}
+		} else {
+			section1Img1.style.bottom = `50%`;
+			section1Img1.style.opacity = `0`;
+		}
+		if (section1Position.top < wHeight * 0) {
+			if (section1Position.top > -1.5 * wHeight) {
+				let result1 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0,
+					df: wHeight * -1.5,
+					as: -30,
+					af: 3,
+				});
+				let result2 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0,
+					df: wHeight * -1.5,
+					as: 0,
+					af: 1,
+				});
+				section1Img3.style.bottom = `${result1}%`;
+				section1Img3.style.opacity = `${result2}`;
+			} else {
+				section1Img3.style.bottom = `3%`;
+				section1Img3.style.opacity = `1`;
+			}
+		} else {
+			section1Img3.style.bottom = `-30%`;
+			section1Img3.style.opacity = `0`;
+		}
+		if (section1Position.top < wHeight * 0.2) {
+			if (section1Position.top > -0.8 * wHeight) {
+				let result1 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.2,
+					df: wHeight * -0.8,
+					as: 0,
+					af: 14,
+				});
+				let result2 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.2,
+					df: wHeight * -0.8,
+					as: 0,
+					af: 1,
+				});
+				section1Img2.style.bottom = `${result1}%`;
+				section1Img2.style.opacity = `${result2}`;
+			} else {
+				section1Img2.style.bottom = `14%`;
+				section1Img2.style.opacity = `1`;
+			}
+		} else {
+			section1Img2.style.bottom = `0%`;
+			section1Img2.style.opacity = `0`;
+		}
+		if (section1Position.top < wHeight * 0.5) {
+			if (section1Position.top > 0) {
+				let result1 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.5,
+					df: wHeight * 0,
+					as: 0,
+					af: 19,
+				});
+				let result2 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.5,
+					df: wHeight * 0,
+					as: 0,
+					af: 1,
+				});
+				section1Img4.style.bottom = `${result1}%`;
+				section1Img4.style.opacity = `${result2}`;
+			} else {
+				section1Img4.style.bottom = `19%`;
+				section1Img4.style.opacity = `1`;
+			}
+		} else {
+			section1Img4.style.bottom = `0%`;
+			section1Img4.style.opacity = `0`;
+		}
+	} else if (wWidth >= 768) {
+		if (section1Position.top < wHeight * 0.8) {
+			if (section1Position.top > wHeight * 0.1) {
+				let result1 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.8,
+					df: wHeight * 0.1,
+					as: 60,
+					af: 40,
+				});
+				let result2 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.8,
+					df: wHeight * 0.1,
+					as: 0,
+					af: 1,
+				});
+				section1Img1.style.bottom = `${result1}%`;
+				section1Img1.style.opacity = `${result2}`;
+			} else {
+				section1Img1.style.bottom = `40%`;
+				section1Img1.style.opacity = `1`;
+			}
+		} else {
+			section1Img1.style.bottom = `60%`;
+			section1Img1.style.opacity = `0`;
+		}
+		if (section1Position.top < wHeight * 0) {
+			if (section1Position.top > -1 * wHeight * 0.5) {
+				let result1 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0,
+					df: wHeight * -0.5,
+					as: -30,
+					af: 3,
+				});
+				let result2 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0,
+					df: wHeight * -0.5,
+					as: 0,
+					af: 1,
+				});
+				section1Img3.style.bottom = `${result1}%`;
+				section1Img3.style.opacity = `${result2}`;
+			} else {
+				section1Img3.style.bottom = `3%`;
+				section1Img3.style.opacity = `1`;
+			}
+		} else {
+			section1Img3.style.bottom = `-30%`;
+			section1Img3.style.opacity = `0`;
+		}
+		if (section1Position.top < wHeight * 0.5) {
+			if (section1Position.top > -1 * wHeight * 0.2) {
+				let result1 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.5,
+					df: wHeight * -0.2,
+					as: 0,
+					af: 14,
+				});
+				let result2 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.5,
+					df: wHeight * -0.2,
+					as: 0,
+					af: 1,
+				});
+				section1Img2.style.bottom = `${result1}%`;
+				section1Img2.style.opacity = `${result2}`;
+			} else {
+				section1Img2.style.bottom = `14%`;
+				section1Img2.style.opacity = `1`;
+			}
+		} else {
+			section1Img2.style.bottom = `0%`;
+			section1Img2.style.opacity = `0`;
+		}
+		if (section1Position.top < wHeight * 0.5) {
+			if (section1Position.top > 0) {
+				let result1 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.5,
+					df: wHeight * 0,
+					as: 13,
+					af: 30,
+				});
+				let result2 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.5,
+					df: wHeight * 0,
+					as: 0,
+					af: 1,
+				});
+				section1Img4.style.bottom = `${result1}%`;
+				section1Img4.style.opacity = `${result2}`;
+			} else {
+				section1Img4.style.bottom = `30%`;
+				section1Img4.style.opacity = `1`;
+			}
+		} else {
+			section1Img4.style.bottom = `13%`;
+			section1Img4.style.opacity = `0`;
+		}
+	} else {
+		if (section1Position.top < wHeight * 0.8) {
+			if (section1Position.top > wHeight * 0.1) {
+				let result1 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.8,
+					df: wHeight * 0.1,
+					as: 60,
+					af: 40,
+				});
+				let result2 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.8,
+					df: wHeight * 0.1,
+					as: 0,
+					af: 1,
+				});
+				section1Img1.style.bottom = `${result1}%`;
+				section1Img1.style.opacity = `${result2}`;
+			} else {
+				section1Img1.style.bottom = `40%`;
+				section1Img1.style.opacity = `1`;
+			}
+		} else {
+			section1Img1.style.bottom = `60%`;
+			section1Img1.style.opacity = `0`;
+		}
+		if (section1Position.top < wHeight * 0) {
+			if (section1Position.top > -1 * wHeight) {
+				let result1 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0,
+					df: wHeight * -1,
+					as: -20,
+					af: 10,
+				});
+				let result2 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0,
+					df: wHeight * -1,
+					as: 0,
+					af: 1,
+				});
+				section1Img3.style.bottom = `${result1}%`;
+				section1Img3.style.opacity = `${result2}`;
+			} else {
+				section1Img3.style.bottom = `10%`;
+				section1Img3.style.opacity = `1`;
+			}
+		} else {
+			section1Img3.style.bottom = `-20%`;
+			section1Img3.style.opacity = `0`;
+		}
+		if (section1Position.top < wHeight * 0.5) {
+			if (section1Position.top > -1 * wHeight * 0.2) {
+				let result1 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.5,
+					df: wHeight * -0.2,
+					as: 2,
+					af: 14,
+				});
+				let result2 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.5,
+					df: wHeight * -0.2,
+					as: 0,
+					af: 1,
+				});
+				section1Img2.style.bottom = `${result1}%`;
+				section1Img2.style.opacity = `${result2}`;
+			} else {
+				section1Img2.style.bottom = `14%`;
+				section1Img2.style.opacity = `1`;
+			}
+		} else {
+			section1Img2.style.bottom = `2%`;
+			section1Img2.style.opacity = `0`;
+		}
+		if (section1Position.top < wHeight * 0.5) {
+			if (section1Position.top > 0) {
+				let result1 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.5,
+					df: wHeight * 0,
+					as: 13,
+					af: 30,
+				});
+				let result2 = lineAniFn({
+					now: section1Position.top,
+					ds: wHeight * 0.5,
+					df: wHeight * 0,
+					as: 0,
+					af: 1,
+				});
+				section1Img4.style.bottom = `${result1}%`;
+				section1Img4.style.opacity = `${result2}`;
+			} else {
+				section1Img4.style.bottom = `30%`;
+				section1Img4.style.opacity = `1`;
+			}
+		} else {
+			section1Img4.style.bottom = `13%`;
+			section1Img4.style.opacity = `0`;
+		}
+	}
+}
+function section2Ani() {
+	const section2 = document.querySelector('.section2');
+	const section2Position = section2.getBoundingClientRect();
+	const section2Box = section2.querySelector('.box');
+
+	const section3 = document.querySelector('.section3 .part1');
+	const section3Position = section3.getBoundingClientRect();
+
+	if (section2Position.top < wHeight * 0.5) {
+		if (section2Position.top > 0) {
+			let result = easeInOutAniFn({
+				now: section2Position.top,
+				ds: wHeight * 0.5,
+				df: wHeight * 0,
+				as: 0,
+				af: 1,
+			});
+			section2Box.style.opacity = `${result}`;
+		} else {
+			section2Box.style.opacity = `1`;
+		}
+	} else {
+		section2Box.style.opacity = `0`;
+	}
+	if (section2Position.top < 0) {
+		if (section3Position.top > wHeight) {
+			section2Box.style.position = `fixed`;
+			section2Box.style.top = `0`;
+		} else {
+			section2Box.style.position = `relative`;
+			section2Box.style.top = `${wHeight * 0.7}px`;
+		}
+	} else {
+		section2Box.style.position = `relative`;
+		section2Box.style.top = `0px`;
+	}
+}
 function section3Ani() {
 	const section3 = document.querySelector('.section3');
 	const section3Position = section3.getBoundingClientRect();
@@ -1090,7 +1098,6 @@ function outAni(obj, danst, now) {
 		}
 	}
 }
-
 function section4Action(data) {
 	const section4Content = document.querySelector('.section4 .content');
 	const action = [80, 10, 30, 90, 60, 20];
@@ -1106,11 +1113,6 @@ function section4Action(data) {
 		section4Content.appendChild(div);
 	});
 }
-function generateRandomNumber() {
-	return Math.random() * 0.4 + 0.7;
-}
-
-section5Ani();
 function section5Ani() {
 	const section5 = document.querySelector('.section5');
 	const section5Position = section5.getBoundingClientRect();
@@ -1121,8 +1123,6 @@ function section5Ani() {
 		if (section5Box.classList.contains('ani')) section5Box.classList.remove('ani');
 	}
 }
-
-section6Ani();
 function section6Ani() {
 	const section6 = document.querySelector('.section6');
 	const section6Position = section6.getBoundingClientRect();
@@ -1173,8 +1173,6 @@ function section6Ani() {
 		}
 	});
 }
-
-section7Ani();
 function section7Ani() {
 	const section7 = document.querySelector('.section7');
 	const section7Position = section7.getBoundingClientRect();
@@ -1185,3 +1183,9 @@ function section7Ani() {
 		if (section7Box.classList.contains('ani')) section7Box.classList.remove('ani');
 	}
 }
+section1Ani(wWidth);
+section2Ani();
+section3Ani();
+section5Ani();
+section6Ani();
+section7Ani();
