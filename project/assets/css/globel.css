@@ -130,6 +130,100 @@ a {
 /* ------------ *\
     component
 \* ------------ */
+#banner {
+	width: 100%;
+	height: 100vh;
+}
+#banner .slowgon {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+	line-height: 1.5;
+	font-weight: 900;
+	color: #fff;
+	height: 60vh;
+	white-space: nowrap;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+#banner .slowgon .top {
+	font-size: 24px;
+}
+#banner .slowgon .bottom {
+	font-size: 18px;
+}
+@media screen and (max-width: 768px) {
+	#banner .slowgon {
+		height: 40vh;
+	}
+	#banner .slowgon .top,
+	#banner .slowgon .bottom {
+		font-size: 14px;
+	}
+}
+
+#banner .slowgon .logo {
+	max-width: 600px;
+	min-width: 250px;
+	width: 50vw;
+}
+
+#decorate {
+	width: 100%;
+	height: 100%;
+}
+#decorate .box {
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	opacity: 1;
+}
+#banner #decorate .box.right {
+	bottom: 2%;
+}
+#decorate .box .left {
+	width: 100%;
+	height: 100%;
+	left: -40%;
+}
+#decorate .box .right {
+	width: 100%;
+	height: 100%;
+	right: -60%;
+}
+
+#decorate .box img {
+	width: 70%;
+	min-width: 400px;
+	max-width: 1000px;
+	position: absolute;
+}
+#decorate .box img.decorate1 {
+	top: 0;
+	left: 15%;
+}
+#decorate .box img.decorate2 {
+	top: 15%;
+	left: 30%;
+}
+#decorate .box img.decorate3 {
+	bottom: 0%;
+	left: 0%;
+}
+#decorate .box img.decorate4 {
+	width: 50%;
+	min-width: 300px;
+	max-width: 730px;
+	bottom: 0%;
+	left: 5%;
+}
+
 header,
 nav {
 	display: flex;
@@ -256,5 +350,159 @@ nav .navAniEle {
 	#ipadNav .navigator.active {
 		opacity: 1;
 		height: 30vh;
+	}
+}
+
+.socialMedia {
+	position: absolute;
+	bottom: -100px;
+	left: 0;
+	display: flex;
+	gap: 20px;
+	margin-left: 30px;
+	transition: all 0.5s;
+}
+.GoTop {
+	position: absolute;
+	bottom: 0px;
+	right: 0;
+	display: flex;
+	margin-right: 30px;
+	opacity: 0;
+	transition: all 0.5s;
+}
+.socialMedia.ani {
+	bottom: 0px;
+}
+.GoTop.ani {
+	opacity: 1;
+}
+.socialMedia .box,
+.GoTop .box {
+	width: 64px;
+	height: 64px;
+	border-radius: 10px;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5%;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+.GoTop .box {
+	border-radius: 50%;
+	overflow: hidden;
+}
+.socialMedia .box img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.GoTop .box img {
+	width: 60%;
+	height: 60%;
+	object-fit: contain;
+}
+.socialMedia .box.FB img {
+	width: 90%;
+	height: 90%;
+}
+@media screen and (max-width: 768px) {
+	.socialMedia .box,
+	.GoTop .box {
+		width: 52px;
+		height: 52px;
+	}
+}
+@media screen and (max-width: 450px) {
+	.socialMedia .box,
+	.GoTop .box {
+		width: 44px;
+		height: 44px;
+		margin-bottom: 10px;
+	}
+	.socialMedia {
+		gap: 15px;
+		margin-left: 20px;
+	}
+	.GoTop {
+		margin-right: 20px;
+	}
+}
+
+footer {
+	width: 100%;
+	background-color: #fff;
+	padding: 2% 0;
+}
+footer .container {
+	flex-direction: column;
+	align-items: center;
+}
+footer .container i {
+	font-size: 16px;
+	color: #0032be;
+}
+footer .container span {
+	font-size: 16px;
+	color: #0032be;
+	font-weight: normal;
+	line-height: 1.5;
+}
+.container .contact {
+	display: block;
+}
+
+@media screen and (max-width: 1200px) {
+	footer .container {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.container .contact {
+		display: flex;
+		flex-direction: column;
+	}
+	footer .container i {
+		display: none;
+	}
+	.container .contact.chinese {
+		order: 2;
+		align-items: end;
+	}
+}
+@media screen and (max-width: 1024px) {
+	footer .container span {
+		font-size: 14px;
+	}
+}
+@media screen and (max-width: 768px) {
+	footer .container {
+		width: 85%;
+	}
+	.container .contact {
+		display: none;
+		flex-direction: column;
+		align-items: start;
+	}
+	footer .container.active .contact.chinese {
+		display: flex;
+		align-items: start;
+	}
+	footer .container .english {
+		display: flex;
+	}
+	footer .container.active .english {
+		display: none;
+	}
+}
+@media screen and (max-width: 450px) {
+	footer .container {
+		width: 90%;
+	}
+	footer .container span {
+		font-size: 12px;
+		white-space: nowrap;
 	}
 }
