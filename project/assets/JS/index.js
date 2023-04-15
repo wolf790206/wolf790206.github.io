@@ -99,6 +99,57 @@ function whereAni(element, options) {
 
 	animateEaseInOut(element, ROption);
 }
+sectionTextLength();
+function sectionTextLength() {
+	let section5Title = document.querySelectorAll('.section5 .title span');
+	section5Title.forEach((e) => {
+		e.parentNode.style.width = `${e.offsetWidth + 30}px`;
+	});
+}
+function shuffleNodeList(nodeList) {
+	const arr = Array.from(nodeList); // 將 NodeList 轉換成陣列
+	const shuffledArr = shuffleArray(arr); // 打亂陣列
+	return shuffledArr;
+}
+function shuffleArray(arr) {
+	return arr.sort(() => Math.random() - 0.5);
+}
+
+section6Imgpos();
+function section6Imgpos() {
+	let section6Img = document.querySelectorAll('.section6 .box img');
+	const shuffledNodeList = shuffleNodeList(section6Img);
+	const shuffledArray = Array.from(shuffledNodeList);
+
+	shuffledArray.forEach((e, key) => {
+		e.style.scale = `${getRandomNumberInRange(0.8, 1, true)}`;
+		if (key % 4 === 0) {
+			e.style.top = `${getRandomNumberInRange(23, 50, false)}%`;
+			e.style.left = `${getRandomNumberInRange(55, 100, false)}%`;
+		}
+		if (key % 4 === 1) {
+			e.style.top = `${getRandomNumberInRange(30, 56, false)}%`;
+			e.style.left = `${getRandomNumberInRange(0, 45, false)}%`;
+		}
+		if (key % 4 === 2) {
+			e.style.top = `${getRandomNumberInRange(54, 80, false)}%`;
+			e.style.left = `${getRandomNumberInRange(55, 100, false)}%`;
+		}
+		if (key % 4 === 3) {
+			e.style.top = `${getRandomNumberInRange(60, 90, false)}%`;
+			e.style.left = `${getRandomNumberInRange(0, 45, false)}%`;
+		}
+		if (getRandomNumberInRange(0, 10, false) < 4)
+			e.style.opacity = `${getRandomNumberInRange(0, 0.3, true)}`;
+		else e.style.opacity = `${getRandomNumberInRange(0.7, 1, true)}`;
+		// getRandomNumberInRange(min, max, hasDecimal)
+	});
+
+	let section6fake = document.querySelector('.section6 > .fake');
+	document.querySelectorAll('.section6 .box img').forEach((e) => {
+		section6fake.appendChild(e.cloneNode(true));
+	});
+}
 
 // onclick Event
 const hamburgerBtn = document.querySelector('#ipadNav .hamburgerBtn');
@@ -214,6 +265,7 @@ window.addEventListener('resize', (e) => {
 	// banner
 	bannerDecoratePos(size);
 	resizeSection3Part3(size);
+	sectionTextLength();
 });
 
 // scroll Event
@@ -594,6 +646,12 @@ document.addEventListener('scroll', () => {
 	// section3 start
 	section3Ani();
 	// section3 end
+	// section5 start
+	section5Ani();
+	// section5 end
+	// section6 start
+	section6Ani();
+	// section6 end
 });
 
 // get leftAndRightDataBase
@@ -663,6 +721,16 @@ function postPlayContent(data) {
 function round2(num) {
 	var m = Number((Math.abs(num) * 100).toPrecision(15));
 	return (Math.round(m) / 100) * Math.sign(num);
+}
+function getRandomNumberInRange(min, max, hasDecimal) {
+	let randomNumber;
+	if (hasDecimal) {
+		randomNumber = Math.random() * (max - min) + min;
+		randomNumber = parseFloat(randomNumber.toFixed(2));
+	} else {
+		randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+	}
+	return randomNumber;
 }
 
 // localstorage
@@ -1103,7 +1171,6 @@ function section3Ani() {
 		section3Part3Box.style.position = `relative`;
 		section3Part3Box.style.top = `auto`;
 	}
-	console.log('section4Position : ', section4Position.top);
 
 	if (section3Part4Position.top < wHeight * 0.9) {
 		if (section3Part4Position.top > wHeight * 0.65) {
@@ -1262,4 +1329,70 @@ function section4Action(data) {
 }
 function generateRandomNumber() {
 	return Math.random() * 0.4 + 0.7;
+}
+
+section5Ani();
+function section5Ani() {
+	const section5 = document.querySelector('.section5');
+	const section5Position = section5.getBoundingClientRect();
+	const section5Box = section5.querySelector('.box');
+	if (section5Position.top < wHeight * 0.2) {
+		if (!section5Box.classList.contains('ani')) section5Box.classList.add('ani');
+	} else {
+		if (section5Box.classList.contains('ani')) section5Box.classList.remove('ani');
+	}
+}
+
+section6Ani();
+function section6Ani() {
+	const section6 = document.querySelector('.section6');
+	const section6Position = section6.getBoundingClientRect();
+	console.log('section6Position.top : ', section6Position.top);
+	const section6Img = document.querySelectorAll('.section6 .box img');
+	const section6FakeImg = document.querySelectorAll('.section6 .fake img');
+	section6FakeImg.forEach((e, key) => {
+		let ePosition = e.getBoundingClientRect();
+		if (ePosition.top < wHeight) {
+			if (ePosition.top > wHeight * 0.3) {
+				console.log('e.style.top : ', Number(e.style.top.match(/\d+/)[0]));
+				let result1 = easeInOutAniFn({
+					now: ePosition.top,
+					ds: wHeight * 1,
+					df: wHeight * 0.3,
+					as: Number(e.style.top.match(/\d+/)[0]),
+					af: Number(e.style.top.match(/\d+/)[0]) - 5,
+				});
+				section6Img[key].style.top = `${result1}%`;
+				if (Number(e.style.opacity) > 0.5) {
+					let result2 = easeInOutAniFn({
+						now: ePosition.top,
+						ds: wHeight * 1,
+						df: wHeight * 0.3,
+						as: Number(e.style.opacity),
+						af: 0.1,
+					});
+					section6Img[key].style.opacity = `${result2}`;
+				} else {
+					let result2 = easeInOutAniFn({
+						now: ePosition.top,
+						ds: wHeight * 1,
+						df: wHeight * 0.3,
+						as: Number(e.style.opacity),
+						af: 1,
+					});
+					section6Img[key].style.opacity = `${result2}`;
+				}
+			} else {
+				section6Img[key].style.top = `${Number(e.style.top.match(/\d+/)[0]) - 5}%`;
+				if (e.style.opacity > 0.5) {
+					section6Img[key].style.opacity = `.1`;
+				} else {
+					section6Img[key].style.opacity = `1`;
+				}
+			}
+		} else {
+			section6Img[key].style.top = `${Number(e.style.top.match(/\d+/)[0])}%`;
+			section6Img[key].style.opacity = `${e.style.opacity}`;
+		}
+	});
 }
