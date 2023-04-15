@@ -239,6 +239,16 @@ function navAniBlock(ele1, ele2, height, scroll) {
 		}
 }
 navAniEle();
+// nav reset
+function resetNav(wWidth) {
+	if (wWidth > 1000) {
+		header.style.top = `-${header.clientHeight}px`;
+	} else {
+		header.style.position = `fixed`;
+		header.style.top = `0px`;
+	}
+}
+resetNav(wWidth);
 
 // shuffleNodeList
 function shuffleNodeList(nodeList) {

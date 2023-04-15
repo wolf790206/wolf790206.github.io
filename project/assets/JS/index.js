@@ -1,12 +1,5 @@
 var leftAndRightDataBase;
 
-if (window.innerWidth > 1000) {
-	header.style.top = `-${header.clientHeight}px`;
-} else {
-	header.style.position = `fixed`;
-	header.style.top = `0px`;
-}
-
 sectionTextLength();
 function sectionTextLength() {
 	let section5Title = document.querySelectorAll('.section5 .title span');
