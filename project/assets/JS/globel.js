@@ -295,3 +295,10 @@ function getRandomNumberInRange(min, max, hasDecimal) {
 	}
 	return randomNumber;
 }
+
+// loading
+
+try {
+	const Loading = document.getElementById('loader');
+	Loading.classList.add('ani');
+} catch {}

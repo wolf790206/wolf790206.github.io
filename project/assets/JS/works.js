@@ -7,6 +7,7 @@ function getData() {
 		})
 		.then((result) => {
 			createContent(JSON.parse(result).data);
+			Loading.classList.remove('ani');
 		})
 		.catch((err) => console.log('err', err));
 }
@@ -15,13 +16,25 @@ getData();
 function createContent(Data) {
 	console.log(Data);
 	Data.forEach((e) => {
-		createEleFn('div', e.ID);
+		const li = createEleFn('li', hrefEleFn(e.worksName, e.ID), ['navItem']);
+		const ul = createEleFn('ul', li, ['nav']);
+		const content = document.getElementById('content');
+		content.appendChild(ul);
 	});
 }
 
-function createEleFn(ele, child) {
-	const content = document.getElementById('content');
-	const div = document.createElement(ele);
-	div.innerHTML = child;
-	content.appendChild(div);
+function createEleFn(ele, context, classNa) {
+	const element = document.createElement(ele);
+	if (classNa) classNa.forEach((name) => element.classList.add(name));
+	console.log(typeof context);
+	if (typeof context === 'object') element.appendChild(context);
+	else element.innerHTML = context;
+	return element;
+}
+function hrefEleFn(url, context) {
+	const element = document.createElement('a');
+	element.classList.add('link');
+	element.href = `${url}`;
+	element.innerHTML = context;
+	return element;
 }
