@@ -12,7 +12,7 @@ const hamburgerBtn = document.querySelector('#ipadNav .hamburgerBtn');
 const clossBtn = document.querySelector('#ipadNav .clossBtn');
 const ipadNavID = document.querySelector('#ipadNav');
 const ipadNav = document.querySelector('#ipadNav .navigator');
-const navItemLink = document.querySelectorAll('a');
+const navItemLink = document.querySelectorAll('a.navLink');
 
 footerContainer.addEventListener('click', () => {
 	if (window.innerWidth < 768) footerContainer.classList.toggle('active');

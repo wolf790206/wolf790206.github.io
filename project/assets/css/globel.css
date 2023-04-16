@@ -107,7 +107,8 @@ a {
 #loader.ani .load-1 {
 	opacity: 1;
 }
-#loader span {
+#loader span,
+#loader span > a {
 	font-size: 30px;
 	color: #fff;
 }

@@ -128,7 +128,7 @@
 				<div class="navigator">
 					<div class="navItem">
 						<a
-							href="./index.html"
+							href="/"
 							class="navLink"
 						>
 							形象主題簡介
@@ -137,7 +137,7 @@
 					|
 					<div class="navItem">
 						<a
-							href="./works.html"
+							href="/works"
 							class="navLink"
 						>
 							作品一覽
@@ -146,7 +146,7 @@
 					|
 					<div class="navItem">
 						<a
-							href="./virtualexhibition.html"
+							href="/virtualexhibition"
 							class="navLink"
 						>
 							虛擬展場
@@ -155,7 +155,7 @@
 					|
 					<div class="navItem">
 						<a
-							href="./designers.html"
+							href="/designers"
 							class="navLink"
 						>
 							設計師介紹
@@ -215,7 +215,7 @@
 				<div class="navigator">
 					<div class="navItem">
 						<a
-							href="./index.html"
+							href="/index"
 							class="navLink"
 						>
 							形象主題簡介
@@ -223,7 +223,7 @@
 					</div>
 					<div class="navItem">
 						<a
-							href="./works.html"
+							href="/works"
 							class="navLink"
 						>
 							作品一覽
@@ -231,7 +231,7 @@
 					</div>
 					<div class="navItem">
 						<a
-							href="./virtualexhibition.html"
+							href="/virtualexhibition"
 							class="navLink"
 						>
 							虛擬展場
@@ -239,7 +239,7 @@
 					</div>
 					<div class="navItem">
 						<a
-							href="./designers.html"
+							href="/designers"
 							class="navLink"
 						>
 							設計師介紹
@@ -1158,8 +1158,13 @@
 						</div>
 						<div class="enterBox">
 							<div class="title">看到這裡，你有什麼感想？</div>
-							<div class="enterStyle">
+							<form
+								id="myForm"
+								onkeypress="handleKeyPress(event)"
+								class="enterStyle"
+							>
 								<input
+									id="input1"
 									type="text"
 									class="textBox"
 									placeholder="寫下你的感受吧！"
@@ -1178,7 +1183,7 @@
 										/>
 									</svg>
 								</div>
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -1391,8 +1396,8 @@
 			crossorigin="anonymous"
 		></script>
 		<script src="https://cdn.jsdelivr.net/npm/before-after-slider@1.0.0/dist/slider.bundle.js"></script>
-		<script src="./assets/JS/globel.js"></script>
-		<script src="./assets/JS/index.js"></script>
+		<script src="/assets/JS/globel.js"></script>
+		<script src="/assets/JS/index.js"></script>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
 			integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g=="
