@@ -12,6 +12,7 @@ const hamburgerBtn = document.querySelector('#ipadNav .hamburgerBtn');
 const clossBtn = document.querySelector('#ipadNav .clossBtn');
 const ipadNavID = document.querySelector('#ipadNav');
 const ipadNav = document.querySelector('#ipadNav .navigator');
+const navItemLink = document.querySelectorAll('a');
 
 footerContainer.addEventListener('click', () => {
 	if (window.innerWidth < 768) footerContainer.classList.toggle('active');
@@ -32,6 +33,13 @@ clossBtn.addEventListener('click', (e) => {
 	hamburgerBtn.classList.remove('active');
 	ipadNavID.classList.toggle('active');
 	ipadNavID.style.background = `${window.scrollY > 100 ? `${white}` : 'none'}`;
+});
+console.log('navItemLink : ', navItemLink);
+console.log('window.location : ', window.location.pathname.split('/'));
+const path = window.location.pathname.split('/');
+navItemLink.forEach((e) => {
+	let file = path[path.length - 1];
+	if (e.href.split('/')[e.href.split('/').length - 1] === file) e.style.pointerEvents = 'none';
 });
 
 // scroll evt

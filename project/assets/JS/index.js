@@ -61,7 +61,7 @@ function changeBtnAction(ele) {
 			if (!e.classList.contains('active')) e.classList.add('active');
 		});
 		contentBtnAwait.classList.remove('active');
-		content.innerHTML = `左右兩張作品皆為AI人工智能繪圖作品<br>Both works are AI artificial intelligence drawing works`;
+		content.innerHTML = `左右兩張皆為AI人工智能繪圖作品<br>Both works are AI artificial intelligence drawing works`;
 		if (!getLocalstorageData) {
 			postData(data);
 			setLocalstorage({ changeBtn: true });
