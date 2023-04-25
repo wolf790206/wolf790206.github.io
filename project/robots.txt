@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /assets/img/logo
+Disallow: /assets/img/section2
+Disallow: /assets/img/section3
+Disallow: /assets/img/section6
+
+Sitemap: https://www.auvcd108.com/sitemap.xml

@@ -9,6 +9,10 @@ section {
 /* ------------ *\
     component
 \* ------------ */
+h1.logo {
+	overflow: hidden;
+	white-space: nowrap;
+}
 
 .section1 {
 	height: 200vh;

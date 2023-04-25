@@ -899,6 +899,8 @@ function section3Ani() {
 		} else {
 			section3Part2Box.style.position = `relative`;
 		}
+	} else {
+		section3Part2Box.style.position = `relative`;
 	}
 
 	if (section3Part3Position.top < wHeight) {

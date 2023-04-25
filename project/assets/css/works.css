@@ -1,0 +1,47 @@
+#content {
+	width: 85%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 0 auto;
+}
+#content a {
+	display: block;
+	width: 33%;
+}
+#content .card {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+#content .title {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	font-size: 20px;
+	font-weight: bolder;
+	color: #fff;
+	padding: 0 10px;
+}
+#content .title .titleEng {
+	font-size: 16px;
+	font-weight: bold;
+}
+#content .tourGuide {
+	width: 100%;
+	font-size: 16px;
+	font-weight: normal;
+	padding: 0 10px;
+	color: #fff;
+}
+#content .card .imageContainer.changeTo75 {
+	width: 95%;
+	box-shadow: 10px 10px 0 0 #fff;
+	border-radius: 30px;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+#content .card .imageContainer.changeTo75::before {
+	padding-top: 75%;
+}

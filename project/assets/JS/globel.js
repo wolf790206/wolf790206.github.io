@@ -13,6 +13,7 @@ const clossBtn = document.querySelector('#ipadNav .clossBtn');
 const ipadNavID = document.querySelector('#ipadNav');
 const ipadNav = document.querySelector('#ipadNav .navigator');
 const navItemLink = document.querySelectorAll('a.navLink');
+const goDownBtn = document.querySelector('.goDownBtn');
 
 footerContainer.addEventListener('click', () => {
 	if (window.innerWidth < 768) footerContainer.classList.toggle('active');
@@ -40,6 +41,10 @@ const path = window.location.pathname.split('/');
 navItemLink.forEach((e) => {
 	let file = path[path.length - 1];
 	if (e.href.split('/')[e.href.split('/').length - 1] === file) e.style.pointerEvents = 'none';
+});
+
+goDownBtn.addEventListener('click', () => {
+	window.scrollTo({ top: wHeight, behavior: 'smooth' });
 });
 
 // scroll evt
