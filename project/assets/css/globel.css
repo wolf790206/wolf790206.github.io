@@ -83,22 +83,28 @@ a {
     Utility 
 \* ------------ */
 #loader {
-	width: 0%;
+	width: 100%;
 	height: 100vh;
-	transition: width, 0.3s;
-	position: fixed;
+	transition: all, 0.3s;
+	position: absolute;
 	top: 0;
 	left: 0;
-	background: #000;
-	z-index: 999;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	gap: 20px;
+	animation-name: loadingB;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	animation-duration: 1s;
 }
 #loader.ani {
 	width: 100%;
+	animation-name: none;
+}
+#loader .load-1 .line {
+	animation-name: none;
 }
 #loader .load-1 {
 	opacity: 0;
@@ -128,7 +134,8 @@ a {
 	display: flex;
 }
 
-.load-1 .line {
+#loader.ani .load-1 .line {
+	animation-name: loadingA;
 	display: inline-block;
 	width: 15px;
 	height: 15px;
@@ -155,6 +162,20 @@ a {
 	}
 	100% {
 		height: 15px;
+	}
+}
+@keyframes loadingB {
+	0% {
+		display: flex;
+		z-index: 999;
+	}
+	99% {
+		display: flex;
+		z-index: 999;
+	}
+	100% {
+		display: none;
+		z-index: -1;
 	}
 }
 

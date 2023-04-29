@@ -1,4 +1,5 @@
 const Loading = document.getElementById('loader');
+const content = document.getElementById('content');
 function getData() {
 	const scriptURL =
 		'https://script.google.com/macros/s/AKfycbwiBglFCi3-JUsQsOfVhjcGNZ7seFSwUpXdZ1owVksnQ22CvNpV92CXiCGsqBy6_hsp8A/exec';
@@ -7,37 +8,27 @@ function getData() {
 			return res.text();
 		})
 		.then((result) => {
-			createContent(JSON.parse(result).data);
+			createContent(JSON.parse(result).category, JSON.parse(result).data);
 			Loading.classList.remove('ani');
+			content.classList.add('ani');
 		})
 		.catch((err) => console.log('err', err));
 }
 getData();
 
-function createContent(Data) {
+function createContent(Category, Data) {
+	console.log(Category);
 	console.log(Data);
-	Data.forEach((e) => {
-		// const projectLink = `/work#/work?ID=${e.ID}`;
-		// const card = createEleFn('div', '', ['card']);
-		// const titleChi = createEleFn('span', e.worksName, ['titleChi']);
-		// const titleEng = createEleFn('span', e.englishName, ['titleEng']);
-		// const tourGuide = createEleFn('p', e.tourGuide, ['tourGuide']);
-		// const info = createEleFn('div', '', ['info']);
-		// const title = createEleFn('div', '', ['title']);
-		// const cardImage = ImageContainerEleFn(e.thumbnail, ['changeTo75']);
-		// card.appendChild(cardImage);
-		// title.appendChild(titleChi);
-		// title.appendChild(titleEng);
-		// info.appendChild(title);
-		// info.appendChild(tourGuide);
-		// card.appendChild(title);
-		// card.appendChild(info);
-		// const cardLink = hrefEleFn(projectLink, card);
-		// cardLink.appendChild(card);
-		const content = document.getElementById('content');
 
-		// content.appendChild(cardLink);
-		content.appendChild(Card(e));
+	const content = document.getElementById('content');
+
+	Category.forEach((cat) => {
+		let result = Data.filter((e) => e.category == cat);
+		console.log(result);
+		content.appendChild(createEleFn('div', cat, ['category']));
+		result.forEach((e) => {
+			content.appendChild(Card(e));
+		});
 	});
 }
 
@@ -68,7 +59,7 @@ function ImageContainerEleFn(url, classNa) {
 	return imageContainer;
 }
 function Card(data) {
-	const projectLink = `/work#/work?ID=${data.ID}`;
+	const projectLink = `./work.html#/work?ID=${data.ID}`;
 	const html = `
 			<div class="card">
 				<div class="imageContainer changeTo75">

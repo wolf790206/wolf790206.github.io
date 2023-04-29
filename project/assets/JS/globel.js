@@ -35,8 +35,8 @@ clossBtn.addEventListener('click', (e) => {
 	ipadNavID.classList.toggle('active');
 	ipadNavID.style.background = `${window.scrollY > 100 ? `${white}` : 'none'}`;
 });
-console.log('navItemLink : ', navItemLink);
-console.log('window.location : ', window.location.pathname.split('/'));
+// console.log('navItemLink : ', navItemLink);
+// console.log('window.location : ', window.location.pathname.split('/'));
 const path = window.location.pathname.split('/');
 navItemLink.forEach((e) => {
 	let file = path[path.length - 1];
