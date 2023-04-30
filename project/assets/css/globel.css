@@ -179,6 +179,235 @@ a {
 	}
 }
 
+@media (min-width: 320px) {
+	#startAni .lineSty {
+		width: 10px;
+		height: 200px;
+		background-color: #fff;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	}
+	.pad-show {
+		display: initial;
+	}
+	:root {
+		--start-ani-logo: 250px;
+		--start-ani-width: 300px;
+		--start-ani-box-width: 300px;
+		--font-size: 16px;
+		--start-ani-padding: 20px;
+	}
+	#startAni .text {
+		white-space: nowrap;
+		display: inline-block;
+		line-height: 1.5;
+		font-size: var(--font-size);
+	}
+	#startAni .text .chi {
+		padding-top: 10px;
+		font-size: 1.5em;
+	}
+}
+@media (min-width: 375px) {
+	:root {
+		--start-ani-logo: 300px;
+		--start-ani-width: 350px;
+		--start-ani-box-width: 350px;
+		--font-size: 18px;
+	}
+}
+@media (min-width: 768px) {
+	:root {
+		--start-ani-logo: 500px;
+		--start-ani-width: 600px;
+		--start-ani-box-width: 650px;
+		--font-size: 30px;
+		--start-ani-padding: 50px;
+	}
+	#startAni .lineSty {
+		height: 300px;
+	}
+}
+@media (min-width: 992px) {
+	.hide {
+		display: none;
+	}
+	:root {
+		--start-ani-logo: 600px;
+		--start-ani-width: 700px;
+		--start-ani-box-width: 800px;
+		--font-size: 36px;
+	}
+	#startAni .text .chi {
+		font-size: 1.2em;
+	}
+}
+@media (min-width: 1200px) {
+	:root {
+		--start-ani-logo: 700px;
+		--start-ani-width: 800px;
+		--start-ani-box-width: 900px;
+		--font-size: 40px;
+	}
+}
+#startAni {
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	z-index: 999;
+	background-color: #0032be;
+	color: #fff;
+	animation-name: startAniD;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	animation-delay: 6.3s;
+	animation-timing-function: ease-in-out;
+	animation-duration: 0.3s;
+}
+
+#startAni .linepos1 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+#startAni .linepos1 .lineSty {
+	opacity: 0;
+	animation-name: startAniA;
+	animation-iteration-count: 1;
+	animation-delay: 0s;
+	animation-timing-function: ease-in-out;
+	animation-duration: 1.5s;
+}
+@keyframes startAniA {
+	0% {
+		opacity: 1;
+	}
+	30% {
+		opacity: 1;
+	}
+	45% {
+		opacity: 0.3;
+	}
+	60% {
+		opacity: 1;
+	}
+	75% {
+		opacity: 0;
+	}
+	90% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+#startAni .textAni1 {
+	width: 0px;
+	height: 100vh;
+	overflow: hidden;
+	animation-name: startAniB;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	animation-delay: 1.5s;
+	animation-timing-function: ease-in-out;
+	animation-duration: 2s;
+}
+
+#startAni .linepos2 {
+	position: absolute;
+	top: 50%;
+	left: 0%;
+}
+#startAni .linepos2 .lineSty {
+	transform: translate(0%, -50%);
+}
+#startAni .linepos3 .lineSty {
+	transform: translate(-100%, -50%);
+}
+#startAni .linepos3 {
+	position: absolute;
+	top: 50%;
+	right: 0%;
+}
+@keyframes startAniB {
+	0% {
+		width: 10px;
+		padding: 0 0px;
+	}
+	40% {
+		width: var(--start-ani-box-width);
+		padding: 0 var(--start-ani-padding);
+	}
+	60% {
+		width: var(--start-ani-box-width);
+		padding: 0 var(--start-ani-padding);
+	}
+	90% {
+		padding: 0 0px;
+		width: 10px;
+	}
+}
+#startAni .textAni2 {
+	width: 0px;
+	height: 100vh;
+	overflow: hidden;
+	animation-name: startAniC;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	animation-delay: 3.3s;
+	animation-timing-function: ease-in-out;
+	animation-duration: 3s;
+}
+#startAni .text img {
+	width: var(--start-ani-logo);
+}
+@keyframes startAniC {
+	0% {
+		width: 10px;
+		padding: 0 0px;
+	}
+	10% {
+		width: 10px;
+		padding: 0 0px;
+	}
+	50% {
+		width: var(--start-ani-width);
+		padding: 0 50px;
+		opacity: 1;
+	}
+	65% {
+		opacity: 0.3;
+	}
+	70% {
+		opacity: 1;
+	}
+	75% {
+		opacity: 0;
+	}
+	85% {
+		opacity: 1;
+	}
+	100% {
+		width: var(--start-ani-width);
+		opacity: 0;
+	}
+}
+@keyframes startAniD {
+	0% {
+		opacity: 1;
+		display: block;
+	}
+	95% {
+		opacity: 0;
+		display: block;
+	}
+	100% {
+		opacity: 0;
+		display: none;
+	}
+}
+
 /* ------------ *\
     component
 \* ------------ */
@@ -347,8 +576,6 @@ nav .navAniEle {
 	}
 	#ipadNav.active {
 		background: #fff;
-	}
-	#ipadNav .logo {
 	}
 	#ipadNav .hamburgerBtn {
 		cursor: pointer;
