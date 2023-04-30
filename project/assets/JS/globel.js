@@ -4,6 +4,15 @@ const wWidth = window.innerWidth;
 const mainColor = `#0032be`;
 const white = `#fff`;
 
+//start ani
+document.documentElement.style.overflowY = 'hidden';
+setTimeout(() => {
+	document.documentElement.style.overflowY = 'scroll';
+	setTimeout(() => {
+		document.getElementById('startAni').style.display = 'none';
+	}, 500);
+}, 6400);
+
 // click evt
 
 const footerContainer = document.querySelector(' footer .container');

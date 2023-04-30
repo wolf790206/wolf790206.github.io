@@ -6,6 +6,14 @@ const clossBtn = document.querySelector('#ipadNav .clossBtn');
 const ipadNavID = document.querySelector('#ipadNav');
 const ipadNav = document.querySelector('#ipadNav .navigator');
 
+document.documentElement.style.overflowY = 'hidden';
+setTimeout(() => {
+	document.documentElement.style.overflowY = 'scroll';
+	setTimeout(() => {
+		document.getElementById('startAni').style.display = 'none';
+	}, 500);
+}, 6400);
+
 hamburgerBtn.addEventListener('click', (e) => {
 	ipadNav.classList.add('active');
 	hamburgerBtn.classList.add('active');
