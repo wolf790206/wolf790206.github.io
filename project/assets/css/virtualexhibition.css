@@ -1,0 +1,86 @@
+main {
+}
+#content {
+	width: 80%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	color: #fff;
+	padding: 100px 0 0;
+}
+#content {
+	padding: 100px 0 70px;
+}
+.title {
+	font-size: 40px;
+	font-weight: bolder;
+	line-height: 1.5;
+	margin-bottom: 20px;
+}
+.info {
+	font-size: 20px;
+	font-weight: normal;
+	line-height: 1.5;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: -10px;
+}
+.break {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+@media (max-width: 768px) {
+	.title {
+		font-size: 25px;
+	}
+	.info {
+		font-size: 16px;
+	}
+	.break {
+		flex-direction: column;
+	}
+}
+@media (max-width: 450px) {
+	.title {
+		font-size: 22px;
+	}
+	.info {
+		font-size: 12px;
+	}
+}
+.imageContainer {
+	width: 80%;
+}
+#content iframe {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	border-radius: 15px;
+	box-shadow: 5px 5px 0 0 #fff;
+}
+
+.imageContainer.changeTo75::before {
+	padding-top: 75%;
+}
+.line {
+	width: 80%;
+	height: 1px;
+	background-color: #fff;
+	margin: 60px 0 50px;
+}
+#content.longscreen .line {
+	height: 0px;
+	margin: 20px 0 10px;
+}
+#content.longscreen .imageContainer {
+	width: 100%;
+}
+#content.longscreen .imageContainer.changeTo75::before {
+	padding-top: 150%;
+}
