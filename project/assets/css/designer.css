@@ -8,3 +8,140 @@
 	justify-content: flex-start;
 	gap: 3.5%;
 }
+#content .card {
+	display: block;
+	width: 31%;
+	opacity: 1;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 2%;
+	transition: opacity 1s;
+	animation-name: loading;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	animation-duration: 0.6s;
+}
+@keyframes loading {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+#content .category {
+	width: 100%;
+	font-size: 35px;
+	display: flex;
+	flex-wrap: nowrap;
+	white-space: nowrap;
+	gap: 30px;
+	color: #fff;
+	align-items: center;
+	padding-top: 10px;
+	margin-bottom: 30px;
+	font-weight: bolder;
+}
+#content .category .englishName {
+	font-size: 30px;
+}
+#content .category .line {
+	width: 100%;
+	height: 2px;
+	background-color: #fff;
+}
+#content .title {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	font-size: 22px;
+	font-weight: bolder;
+	color: #fff;
+	padding: 10px 0;
+	white-space: nowrap;
+	align-items: baseline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#content .title .titleEng {
+	font-size: 16px;
+	font-weight: bold;
+}
+#content .card .imageContainer.changeTo75 {
+	width: 100%;
+	box-shadow: 0px 0px 0 0 #fff;
+	top: 0;
+	left: 0;
+	border-radius: 30px;
+	overflow: hidden;
+	transition: all, 0.3s;
+}
+#content a:hover .card .imageContainer.changeTo75 {
+	width: 98%;
+	top: -10px;
+	left: -10px;
+	box-shadow: 10px 10px 0 0 #fff;
+}
+#content .card .imageContainer.changeTo75::before {
+	padding-top: 75%;
+}
+#content .card .category {
+	font-size: 16px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: start;
+	gap: 5px;
+	padding-top: 0px;
+	margin-bottom: 0px;
+	padding-bottom: 5px;
+}
+#content .card .category .text {
+	display: flex;
+}
+#content .card .category .text::after {
+	display: block;
+	content: '、';
+}
+#content .card .category .text:last-child::after {
+	display: none;
+}
+#content .card .mail {
+	color: #fff;
+}
+@media screen and (max-width: 768px) {
+	#content .card {
+		width: 48%;
+		margin-bottom: 3%;
+	}
+	#content .card .imageContainer.changeTo75 {
+		border-radius: 10px;
+	}
+	#content .card {
+		gap: 0px;
+	}
+	#content .category {
+		font-size: 16px;
+	}
+	#content .category .englishName {
+		font-size: 14px;
+	}
+	#content .title {
+		font-size: 14px;
+		padding: 0;
+		padding: 5px 0;
+	}
+	#content .card .category,
+	#content .card .mail {
+		width: 100%;
+		font-size: 14px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	#content .title .titleEng {
+		font-size: 12px;
+	}
+}
