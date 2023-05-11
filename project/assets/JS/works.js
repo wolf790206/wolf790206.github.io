@@ -17,14 +17,9 @@ function getData() {
 getData();
 
 function createContent(Category, Data) {
-	console.log(Category);
-	console.log(Data);
-
 	const content = document.getElementById('content');
-
 	Category.forEach((cat) => {
 		let result = Data.filter((e) => e.category == cat);
-		console.log(result);
 		content.appendChild(createEleFn('div', cat, ['category']));
 		result.forEach((e) => {
 			content.appendChild(Card(e));

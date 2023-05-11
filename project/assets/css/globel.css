@@ -363,6 +363,7 @@ a {
 }
 #startAni .text img {
 	width: var(--start-ani-logo);
+	border-radius: 0px;
 }
 @keyframes startAniC {
 	0% {
@@ -556,6 +557,13 @@ nav .navAniEle {
 }
 #ipadNav {
 	display: none;
+	z-index: -1;
+}
+#ipadNav .navigator .navItem {
+	display: none;
+}
+#ipadNav .navigator.active .navItem {
+	display: block;
 }
 
 @media screen and (max-width: 1000px) {

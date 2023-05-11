@@ -6,6 +6,9 @@ header {
 	top: 0;
 	width: 100%;
 }
+main {
+	overflow: hidden;
+}
 #windowsNav {
 	gap: 20px;
 	width: 100%;
@@ -72,7 +75,7 @@ img {
 #content {
 	width: 80%;
 	min-height: calc(100vh - 100px);
-	padding-top: 150px;
+	padding-top: 50px;
 	padding-bottom: 50px;
 	margin: 0 auto;
 }
@@ -295,5 +298,80 @@ img {
 	#linkPage a > div {
 		font-size: 14px;
 		gap: 0px;
+	}
+}
+
+#mainNav {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 80px;
+}
+#mainNav > .navBox {
+	width: 100%;
+	height: 0;
+	overflow: hidden;
+	transition: height 0.7s;
+}
+#mainNav .navigator {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: start;
+	color: #fff;
+}
+#mainNav .navigator .category {
+	padding-top: 5px;
+	width: 100%;
+	font-weight: bold;
+	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+#mainNav .navigator .category::after {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 1px;
+	background-color: #fff;
+}
+#mainNav .navigator a.product {
+	color: #fff;
+	margin: 10px 25px;
+}
+#mainNav .collapose {
+	display: flex;
+	height: 20px;
+	cursor: pointer;
+}
+#mainNav .collapose::before,
+#mainNav .collapose::after {
+	content: '';
+	display: block;
+	width: 20px;
+	height: 4px;
+	border-radius: 30px;
+	background-color: #fff;
+	transition: all 0.5s;
+}
+#mainNav.active .collapose::before {
+	transform: translateX(4px) rotate(-45deg);
+}
+#mainNav.active .collapose::after {
+	transform: translateX(-4px) rotate(45deg);
+}
+#mainNav .collapose::before {
+	transform: translateX(4px) rotate(45deg);
+}
+#mainNav .collapose::after {
+	transform: translateX(-4px) rotate(-45deg);
+}
+@media screen and (max-width: 768px) {
+	#mainNav {
+		width: 90%;
 	}
 }

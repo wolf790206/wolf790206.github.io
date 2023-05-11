@@ -1,5 +1,6 @@
 const Loading = document.getElementById('loader');
 const content = document.getElementById('content');
+const main = document.querySelector('main');
 Loading.classList.add('ani');
 var dataCategory = null;
 var dataDesigner = null;
@@ -26,19 +27,15 @@ function getData() {
 getData();
 
 function createContent(Category, Data) {
-	console.log(Category);
-	console.log(Data);
-
 	const content = document.getElementById('content');
-
 	Category.forEach((cat) => {
 		let result = Data.filter((e) => e.teamName == cat);
-		console.log(result);
 		content.append(category(result[0]));
 		result.forEach((e) => {
 			content.appendChild(Card(e));
 		});
 	});
+	addMailListener();
 }
 
 function createEleFn(ele, context, classNa) {
@@ -99,4 +96,28 @@ function designerCat(data) {
 		element.append(createEleFn('span', e, ['text']));
 	});
 	return element;
+}
+
+function clipBox() {
+	const element = document.createElement('div');
+	element.classList.add('clipBox');
+	const text = ['已複製至剪貼簿', 'Copied to clipboard'];
+	text.forEach((e) => {
+		element.append(createEleFn('span', e, ['text']));
+	});
+	main.appendChild(element);
+	setTimeout(() => {
+		const clip = document.querySelectorAll('main > .clipBox');
+		clip[0].remove();
+	}, 3000);
+}
+
+function addMailListener() {
+	const mail = document.querySelectorAll('#content .mail');
+	mail.forEach((e) => {
+		e.addEventListener('click', () => {
+			navigator.clipboard.writeText(e.innerHTML);
+			clipBox();
+		});
+	});
 }

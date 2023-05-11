@@ -1,3 +1,57 @@
+.mainContnet {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	white-space: nowrap;
+	padding-top: 100px;
+}
+.mainContnet > h2.title {
+	font-size: 40px;
+	font-weight: bolder;
+	margin-bottom: 40px;
+}
+.mainContnet > .infoBox {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	white-space: nowrap;
+	gap: 20px;
+}
+.mainContnet > .infoBox .text {
+	text-align: center;
+	font-size: 20px;
+	font-weight: normal;
+	line-height: 1.5;
+}
+.mainContnet > .infoBox .text strong {
+	border-bottom: solid #fff;
+	font-weight: bolder;
+}
+@media screen and (max-width: 768px) {
+	.mainContnet > h2.title {
+		font-size: 36px;
+		margin-bottom: 30px;
+	}
+	.mainContnet > .infoBox .text {
+		font-size: 18px;
+	}
+}
+@media screen and (max-width: 450px) {
+	.mainContnet {
+		width: 100%;
+		overflow: hidden;
+	}
+	.mainContnet > h2.title {
+		font-size: 25px;
+	}
+	.mainContnet > .infoBox .text {
+		font-size: 14px;
+	}
+}
+
 #content {
 	width: 85%;
 	min-height: 100vh;
@@ -110,8 +164,12 @@
 }
 #content .card .mail {
 	color: #fff;
+	cursor: pointer;
 }
 @media screen and (max-width: 768px) {
+	#content {
+		padding-top: 80px;
+	}
 	#content .card {
 		width: 48%;
 		margin-bottom: 3%;
@@ -143,5 +201,50 @@
 	}
 	#content .title .titleEng {
 		font-size: 12px;
+	}
+}
+
+.clipBox {
+	position: fixed;
+	z-index: 999;
+	top: 20px;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	padding: 15px 25px;
+	background-color: white;
+	color: #0032be;
+	display: flex;
+	gap: 5px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+	font-weight: bold;
+	animation-name: clipBox;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+	animation-duration: 2.5s;
+}
+
+@media screen and (max-width: 768px) {
+	.clipBox {
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+@keyframes clipBox {
+	0% {
+		transform: translate(-50%, -150%);
+	}
+	40% {
+		transform: translate(-50%, 0%);
+	}
+	70% {
+		opacity: 1;
+		transform: translate(-50%, 0%);
+	}
+	100% {
+		opacity: 0;
+		transform: translate(-50%, -150%);
 	}
 }

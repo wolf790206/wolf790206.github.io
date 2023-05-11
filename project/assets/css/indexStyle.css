@@ -1158,6 +1158,16 @@ h1.logo {
 	color: #fff;
 	white-space: nowrap;
 }
+.section7 .box .content a.btn {
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 1.5;
+	color: #0032be;
+	background-color: #fff;
+	border-radius: 50px;
+	padding: 5px 15px;
+	margin-top: 50px;
+}
 
 .section7 .box.ani .logo {
 	animation-name: section7AniLogo;
@@ -1212,5 +1222,9 @@ h1.logo {
 @media screen and (max-width: 450px) {
 	.section7 .box .content span.text {
 		font-size: 16px;
+	}
+	.section7 .box .content a.btn {
+		font-size: 16px;
+		margin-top: 30px;
 	}
 }

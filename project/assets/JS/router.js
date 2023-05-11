@@ -17,6 +17,7 @@ function getData() {
 				e.imageLinkMedium = e.imageLinkMedium.split(',');
 				e.imageLinkSmall = e.imageLinkSmall.split(',');
 			});
+			navData(JSON.parse(result).category, Datas);
 			router();
 			// Loading.classList.remove('ani');
 		})
@@ -54,7 +55,6 @@ window.addEventListener('hashchange', router);
 window.addEventListener('load', router);
 
 function works(ID) {
-	console.log(Datas);
 	if (Datas) {
 		result = Datas.filter((Data) => Data.ID === ID);
 		const Loading = document.getElementById('loader');
@@ -104,7 +104,6 @@ function Linkpage(key) {
 }
 
 function card(Data) {
-	console.log(Data);
 	const element = document.createElement('div');
 	element.classList = `card`;
 	element.appendChild(titleBox(Data));
@@ -242,4 +241,36 @@ function CTA(Data) {
 	element.href = Data.CTA;
 	element.target = `_blank`;
 	return element;
+}
+function hrefEleFn(url, context, classNa) {
+	const element = document.createElement('a');
+	if (classNa) classNa.forEach((name) => element.classList.add(name));
+	element.classList.add('link');
+	element.href = `${url}`;
+	if (typeof context === 'object') element.appendChild(context);
+	else element.innerHTML = context;
+	return element;
+}
+function navData(Cat, Data) {
+	const nav = document.querySelector('#mainNav .navigator');
+	console.log(Cat);
+	console.log(Data);
+	Cat.forEach((ca) => {
+		nav.appendChild(createEleFn('div', ca, ['category']));
+		let result = Data.filter((e) => e.category == ca);
+		result.forEach((da) => {
+			const projectLink = `./work.html#/work?ID=${da.ID}`;
+			nav.appendChild(hrefEleFn(projectLink, da.worksName, ['product']));
+		});
+	});
+	const collapose = document.querySelector('#mainNav .collapose');
+	collapose.addEventListener('click', () => {
+		const mainNav = document.querySelector('#mainNav');
+		mainNav.classList.toggle('active');
+		if (mainNav.classList.contains('active'))
+			document.querySelector('#mainNav .navBox').style.height = `${
+				document.querySelector('#mainNav .navigator').clientHeight
+			}px`;
+		else document.querySelector('#mainNav .navBox').style.height = '0px';
+	});
 }
