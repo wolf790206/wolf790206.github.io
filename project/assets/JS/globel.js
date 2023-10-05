@@ -31,6 +31,7 @@ GoTop.addEventListener('click', () => {
 	window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 hamburgerBtn.addEventListener('click', (e) => {
+	console.log('e', e);
 	ipadNav.classList.add('active');
 	hamburgerBtn.classList.add('active');
 	clossBtn.classList.add('active');
